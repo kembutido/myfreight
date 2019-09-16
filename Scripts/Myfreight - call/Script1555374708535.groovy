@@ -18,13 +18,15 @@ WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.e
 
 WebUI.callTestCase(findTestCase('MyFreight - Set Current Customer'), [:], FailureHandling.STOP_ON_FAILURE)
 
+WebUI.callTestCase(findTestCase('Consignments landing page'), [:], FailureHandling.STOP_ON_FAILURE)
+
 /*WebUI.callTestCase(findTestCase('Myfreight - New Consignment - new receiver address - 1 item no DG'), [('strReference') : 'sup', ('strAddrSearchTerm') : 'new'
         , ('Item1Quantity') : '3', ('Item1Length') : '18', ('Item1Width') : '22', ('Item1Height') : '14', ('Item1DeadWeight') : '5'], 
     FailureHandling.STOP_ON_FAILURE)
 */
-WebUI.callTestCase(findTestCase('Myfreight - New Consignment - existing receiver address'), [('strReference') : 'hey', ('strAddrSearchTerm') : 'Hill'
-        , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'], 
-    FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('Myfreight - New Consignment - existing receiver address - 1 item with DG'), [('strReference') : 'hey'
+        , ('strAddrSearchTerm') : 'Bill', ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15'
+        , ('Item1DeadWeight') : '5', ('Item1DG_UN') : '1980'], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.callTestCase(findTestCase('Myfreight - New Consignment - new receiver address - 1 item with DG'), [('strReference') : 'sup'
         , ('strAddrSearchTerm') : 'new', ('Item1Quantity') : '3', ('Item1Length') : '18', ('Item1Width') : '22', ('Item1Height') : '14'

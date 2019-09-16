@@ -13,3 +13,12 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
+try {
+    WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), FailureHandling.OPTIONAL)
+
+    WebUI.verifyElementText(findTestObject('MyFreight-Users/Page_Myfreight/div_There are no consignments'), 'There are no consignments to display.')
+}
+catch (Exception ex) {
+    WebUI.delay(2)
+} 
+
