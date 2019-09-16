@@ -65,5 +65,3 @@ String ts = System.currentTimeMillis().toString()
 
 WebUI.takeScreenshot(('Test/existingreceiveraddress' + ts) + '.png')
 
-WebUI.closeBrowser()
-

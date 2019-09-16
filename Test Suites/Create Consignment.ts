@@ -16,10 +16,4 @@
       <isRun>true</isRun>
       <testCaseId>Test Cases/Myfreight - call</testCaseId>
    </testCaseLink>
-   <testCaseLink>
-      <guid>9eb028ce-7a7f-4d17-a12d-b4bcfea609bb</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/MyFreight - Call 2</testCaseId>
-   </testCaseLink>
 </TestSuiteEntity>

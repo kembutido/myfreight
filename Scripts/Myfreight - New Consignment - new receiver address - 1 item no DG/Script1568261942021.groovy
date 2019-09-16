@@ -25,7 +25,7 @@ WebUI.waitForPageLoad(1)
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
 //WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'), 0)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'), 5)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'))
 
@@ -33,7 +33,7 @@ WebUI.delay(1)
 
 WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 0)
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 0)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 5)
 
 String ts = System.currentTimeMillis().toString()
 
@@ -79,7 +79,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
 WebUI.delay(1)
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 0)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 5)
 
 WebUI.takeScreenshot(('Test/newreceiveraddress-nodg' + ts) + '.png')
 
