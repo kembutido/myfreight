@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>New normal consignment</description>
+   <name>Myfreight - New Consignment - existing receiver address - To Fail</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>337e532d-ffbf-41fd-9cd4-63db1ab5dade</testCaseGuid>
+   <variable>
+      <defaultValue>'hey'</defaultValue>
+      <description></description>
+      <id>b3cd0fad-f3dc-4add-b8ce-351e1976c415</id>
+      <masked>false</masked>
+      <name>strReference</name>
+   </variable>
+   <variable>
+      <defaultValue>'Bill'</defaultValue>
+      <description></description>
+      <id>289150cc-0f42-45b6-b4b4-ecc5c7182307</id>
+      <masked>false</masked>
+      <name>strAddrSearchTerm</name>
+   </variable>
+   <variable>
+      <defaultValue>'2'</defaultValue>
+      <description></description>
+      <id>cd656959-4fa2-42a3-ad47-71663d4daa38</id>
+      <masked>false</masked>
+      <name>Item1Quantity</name>
+   </variable>
+   <variable>
+      <defaultValue>'22'</defaultValue>
+      <description></description>
+      <id>da457423-77e3-4b1a-a931-fe2934beb167</id>
+      <masked>false</masked>
+      <name>Item1Length</name>
+   </variable>
+   <variable>
+      <defaultValue>'24'</defaultValue>
+      <description></description>
+      <id>38d4709f-9df4-47a3-8b0d-ac200c812fcf</id>
+      <masked>false</masked>
+      <name>Item1Width</name>
+   </variable>
+   <variable>
+      <defaultValue>'15'</defaultValue>
+      <description></description>
+      <id>b94d6f33-6d7e-4c9f-82ad-7129baa22991</id>
+      <masked>false</masked>
+      <name>Item1Height</name>
+   </variable>
+   <variable>
+      <defaultValue>'5'</defaultValue>
+      <description></description>
+      <id>268e6e91-13aa-4e5a-8f26-c954cb193b1c</id>
+      <masked>false</masked>
+      <name>Item1DeadWeight</name>
+   </variable>
+</TestCaseEntity>

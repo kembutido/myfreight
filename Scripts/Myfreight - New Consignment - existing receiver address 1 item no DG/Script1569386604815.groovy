@@ -41,7 +41,7 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), I
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 1)
 
-WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 'Carton', false)
+WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 'Carton2', false)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_LENGTH'), Item1Length)
 
@@ -51,24 +51,14 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_HEIGHT'), 
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_DEAD WEIGHT'), Item1DeadWeight)
 
-'Toggle the Hazardous flag for the first item'
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dangerous-goods-toggle ng-scope'))
-
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), 0)
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), Item1DG_UN)
-
-WebUI.delay(1)
-
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dg-search-list'))
-
-WebUI.delay(1)
+'wait for the carrier selection to be populated - code can be improved'
+WebUI.delay(2)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
-String ts = System.currentTimeMillis().toString()
+WebUI.delay(1)
 
-WebUI.takeScreenshot(('Test/existingreceiveraddress' + ts) + '.png')
+WebUI.takeScreenshot('Test/existingreceiveraddress.png')
 
 WebUI.closeBrowser()
 

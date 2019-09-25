@@ -18,6 +18,11 @@ import org.openqa.selenium.Keys as Keys
 //import ru.yandex.qatools.ashot.Screenshot
 //import ru.yandex.qatools.ashot.shooting.ShootingStrategies
 //import javax.imageio.ImageIO as ImageIO
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.ealdama@flexisourceit.com.au', ('loginPwd') : 'Jvf9mmfhklcCEM+RmaiVtA=='], 
+    FailureHandling.STOP_ON_FAILURE)
+
+WebUI.callTestCase(findTestCase('MyFreight - Set Current Customer'), [:], FailureHandling.STOP_ON_FAILURE)
+
 WebUI.waitForPageLoad(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
@@ -99,4 +104,6 @@ WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNME
 //Screenshot screenshot = Ashot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver)
 //ImageIO.write(screenshot.getImage(),"PNG",new File("C:\\Users\\dealdama\\Katalon Studio\\MyFreight - Consignments.prj\\Test\\test.png"))
 WebUI.takeScreenshot(('Test/newreceiveraddress-wdg' + ts) + '.png')
+
+WebUI.closeBrowser()
 

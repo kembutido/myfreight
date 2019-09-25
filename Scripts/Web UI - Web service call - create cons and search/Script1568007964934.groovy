@@ -31,7 +31,8 @@ WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.e
 
 ResponseObject ro = WS.sendRequest(findTestObject('Test Request'))
 
-if (ro != null) {
+//WS.verifyResponseStatusCode(ro, 201)
+if (ro.statusCode == 201) {
     String respbodyContent = ro.getResponseBodyContent()
 
     def jsonSlurper = new JsonSlurper()
@@ -45,9 +46,11 @@ if (ro != null) {
 
     log.logInfo(id)
 
-    WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/inputsearch-consignment-field'), id) //WebUI.closeBrowser()
-	WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_ng-scope'))
+    WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/inputsearch-consignment-field'), id //WebUI.closeBrowser()
+        )
+
+    WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_ng-scope'))
+
+    WebUI.delay(2)
 }
-
-
 

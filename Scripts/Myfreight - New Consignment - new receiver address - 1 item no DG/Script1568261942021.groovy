@@ -14,6 +14,11 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.ealdama@flexisourceit.com.au', ('loginPwd') : 'Jvf9mmfhklcCEM+RmaiVtA=='], 
+    FailureHandling.STOP_ON_FAILURE)
+
+WebUI.callTestCase(findTestCase('MyFreight - Set Current Customer'), [:], FailureHandling.STOP_ON_FAILURE)
+
 WebUI.waitForPageLoad(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
@@ -82,4 +87,6 @@ WebUI.delay(1)
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 5)
 
 WebUI.takeScreenshot(('Test/newreceiveraddress-nodg' + ts) + '.png')
+
+WebUI.closeBrowser()
 
