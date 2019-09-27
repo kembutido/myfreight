@@ -41,7 +41,7 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), I
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 1)
 
-WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 'Carton2', false)
+WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), Item1ItemType, false)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_LENGTH'), Item1Length)
 
@@ -58,7 +58,9 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
 WebUI.delay(1)
 
-WebUI.takeScreenshot('Test/existingreceiveraddress.png')
+String ts = System.currentTimeMillis().toString()
+
+WebUI.takeScreenshot(('Test/existingreceiveraddress' + ts) + '.png')
 
 WebUI.closeBrowser()
 

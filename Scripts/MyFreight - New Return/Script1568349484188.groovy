@@ -13,5 +13,21 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.click(findTestObject(null))
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
+    FailureHandling.STOP_ON_FAILURE)
+
+WebUI.waitForPageLoad(1)
+
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'), 2)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Return'))
+
+WebUI.waitForPageLoad(1)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
+
+//WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Sender'), strAddrSearchTerm)
 

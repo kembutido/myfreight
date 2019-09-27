@@ -6,14 +6,14 @@
    <comment></comment>
    <testCaseGuid>630f1259-a116-4ca0-a0b4-a2952856b33a</testCaseGuid>
    <variable>
-      <defaultValue>'david.ealdama@flexisourceit.com.au'</defaultValue>
+      <defaultValue>'davide.myfreight@gmail.com'</defaultValue>
       <description></description>
       <id>11fa34f3-ee29-4de7-b963-53d7965159c1</id>
       <masked>false</masked>
       <name>loginEmail</name>
    </variable>
    <variable>
-      <defaultValue>'Jvf9mmfhklcCEM+RmaiVtA=='</defaultValue>
+      <defaultValue>'EFc/3RtcwuGANqtaSV3M6Q=='</defaultValue>
       <description></description>
       <id>2e89229a-0dad-4880-bef0-3435f56ad6ae</id>
       <masked>false</masked>

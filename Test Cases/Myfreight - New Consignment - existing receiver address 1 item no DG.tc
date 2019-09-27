@@ -54,4 +54,11 @@
       <masked>false</masked>
       <name>Item1DeadWeight</name>
    </variable>
+   <variable>
+      <defaultValue>'Carton'</defaultValue>
+      <description></description>
+      <id>061f89d4-4cd1-41ca-910a-ef9ae0c7fcf0</id>
+      <masked>false</masked>
+      <name>Item1ItemType</name>
+   </variable>
 </TestCaseEntity>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description>New normal consignment</description>
-   <name>Myfreight - New Consignment - existing receiver address - To Fail</name>
+   <name>Myfreight - New Consignment - existing receiver address - InvalidItemTypeInput</name>
    <tag></tag>
    <comment></comment>
    <testCaseGuid>337e532d-ffbf-41fd-9cd4-63db1ab5dade</testCaseGuid>
@@ -53,5 +53,12 @@
       <id>268e6e91-13aa-4e5a-8f26-c954cb193b1c</id>
       <masked>false</masked>
       <name>Item1DeadWeight</name>
+   </variable>
+   <variable>
+      <defaultValue>'CartonZ'</defaultValue>
+      <description></description>
+      <id>605f2323-d1f6-47bc-af8c-0fd8380c3266</id>
+      <masked>false</masked>
+      <name>Item1ItemType</name>
    </variable>
 </TestCaseEntity>

@@ -4,6 +4,7 @@
    <name>Login Test Suite collection</name>
    <tag></tag>
    <executionMode>SEQUENTIAL</executionMode>
+   <maxConcurrentInstances>8</maxConcurrentInstances>
    <testSuiteRunConfigurations>
       <TestSuiteRunConfiguration>
          <configuration>
@@ -27,7 +28,7 @@
          <configuration>
             <groupName>Web Desktop</groupName>
             <profileName>default</profileName>
-            <runConfigurationId>Safari</runConfigurationId>
+            <runConfigurationId>IE</runConfigurationId>
          </configuration>
          <runEnabled>true</runEnabled>
          <testSuiteEntity>Test Suites/Simple Examples/Login test suite with test data from xlsx files</testSuiteEntity>
@@ -38,7 +39,7 @@
             <profileName>default</profileName>
             <runConfigurationId>Chrome (headless)</runConfigurationId>
          </configuration>
-         <runEnabled>false</runEnabled>
+         <runEnabled>true</runEnabled>
          <testSuiteEntity>Test Suites/Simple Examples/Login test suite with test data from mysql</testSuiteEntity>
       </TestSuiteRunConfiguration>
    </testSuiteRunConfigurations>

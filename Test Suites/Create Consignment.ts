@@ -57,6 +57,12 @@
          <value></value>
          <variableId>4e43af07-22b4-4c45-a788-bd124f8d59d0</variableId>
       </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>061f89d4-4cd1-41ca-910a-ef9ae0c7fcf0</variableId>
+      </variableLink>
    </testCaseLink>
    <testCaseLink>
       <guid>c29cd159-b05e-49c4-ae3e-a06268841308</guid>
@@ -111,12 +117,18 @@
          <value></value>
          <variableId>ff4633ba-1446-4a93-9123-8a61ce60fbb2</variableId>
       </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>85088b5b-3317-490c-8683-b579d3596ab2</variableId>
+      </variableLink>
    </testCaseLink>
    <testCaseLink>
       <guid>0caa6fd3-7b01-4de8-843c-092f0965c12d</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Myfreight - New Consignment - existing receiver address - To Fail</testCaseId>
+      <testCaseId>Test Cases/Myfreight - New Consignment - existing receiver address - InvalidItemTypeInput</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
@@ -158,6 +170,12 @@
          <type>DEFAULT</type>
          <value></value>
          <variableId>268e6e91-13aa-4e5a-8f26-c954cb193b1c</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>605f2323-d1f6-47bc-af8c-0fd8380c3266</variableId>
       </variableLink>
    </testCaseLink>
    <testCaseLink>

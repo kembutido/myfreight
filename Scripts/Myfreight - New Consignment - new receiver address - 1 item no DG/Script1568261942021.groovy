@@ -14,10 +14,8 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.ealdama@flexisourceit.com.au', ('loginPwd') : 'Jvf9mmfhklcCEM+RmaiVtA=='], 
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
-
-WebUI.callTestCase(findTestCase('MyFreight - Set Current Customer'), [:], FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForPageLoad(1)
 
@@ -36,7 +34,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'))
 
 WebUI.delay(1)
 
-WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 0)
+WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 1)
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 5)
 
@@ -86,7 +84,9 @@ WebUI.delay(1)
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 5)
 
-WebUI.takeScreenshot(('Test/newreceiveraddress-nodg' + ts) + '.png')
+WebUI.delay(1)
+
+WebUI.takeScreenshot(('Test/newreceiveraddrnodg' + ts) + '.png')
 
 WebUI.closeBrowser()
 

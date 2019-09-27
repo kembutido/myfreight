@@ -19,7 +19,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/img_1'))
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/select_ng-valid ng-not-empty n (1)'))
 
-WebUI.delay(6)
+WebUI.delay(5)
 
 WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ng-valid ng-not-empty n (1)'), 'Myfreight (TEST)', 
     false)

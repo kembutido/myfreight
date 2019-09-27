@@ -61,4 +61,11 @@
       <masked>false</masked>
       <name>Item1DG_UN</name>
    </variable>
+   <variable>
+      <defaultValue>'Carton'</defaultValue>
+      <description></description>
+      <id>28ffd033-face-4c46-87fa-17b57bef8f55</id>
+      <masked>false</masked>
+      <name>Item1ItemType</name>
+   </variable>
 </TestCaseEntity>
