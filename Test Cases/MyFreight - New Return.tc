@@ -6,31 +6,59 @@
    <comment></comment>
    <testCaseGuid>e5189ee5-eb2d-4c0b-b794-f6e597151ca9</testCaseGuid>
    <variable>
-      <defaultValue>''</defaultValue>
+      <defaultValue>'ReturnCons'</defaultValue>
       <description></description>
       <id>d0aaf561-e4cb-4fe8-b01e-c1536fcf46e7</id>
       <masked>false</masked>
-      <name>variable</name>
+      <name>strReference</name>
    </variable>
    <variable>
-      <defaultValue>''</defaultValue>
+      <defaultValue>'Hill'</defaultValue>
       <description></description>
       <id>ce1a00f2-01d7-4b9b-b431-ba40679272f9</id>
       <masked>false</masked>
-      <name>variable_0</name>
+      <name>strAddrSearchTerm</name>
    </variable>
    <variable>
-      <defaultValue>''</defaultValue>
+      <defaultValue>'1'</defaultValue>
       <description></description>
       <id>ec8f05aa-38ba-49b5-9e07-724e493aaac9</id>
       <masked>false</masked>
-      <name>variable_1</name>
+      <name>Item1Quantity</name>
    </variable>
    <variable>
-      <defaultValue>''</defaultValue>
+      <defaultValue>'Carton'</defaultValue>
       <description></description>
       <id>aa74d503-ab0d-4606-b0e8-333a20e9b53a</id>
       <masked>false</masked>
-      <name>variable_2</name>
+      <name>Item1ItemType</name>
+   </variable>
+   <variable>
+      <defaultValue>'15'</defaultValue>
+      <description></description>
+      <id>233525f3-1fbd-4804-9596-8d3dc018b35d</id>
+      <masked>false</masked>
+      <name>Item1Length</name>
+   </variable>
+   <variable>
+      <defaultValue>'15'</defaultValue>
+      <description></description>
+      <id>67f7af62-c1cd-483c-83f7-b4efd1088761</id>
+      <masked>false</masked>
+      <name>Item1Width</name>
+   </variable>
+   <variable>
+      <defaultValue>'15'</defaultValue>
+      <description></description>
+      <id>5b6e6039-942c-4e2d-8d13-51be21f0a070</id>
+      <masked>false</masked>
+      <name>Item1Height</name>
+   </variable>
+   <variable>
+      <defaultValue>'15'</defaultValue>
+      <description></description>
+      <id>7a1017ed-ab6e-4583-aeb4-be886a1c6835</id>
+      <masked>false</masked>
+      <name>Item1DeadWeight</name>
    </variable>
 </TestCaseEntity>

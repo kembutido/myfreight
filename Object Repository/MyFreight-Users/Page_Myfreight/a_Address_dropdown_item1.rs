@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>a_RecipientAddress_dropdown_item1</name>
+   <name>a_Address_dropdown_item1</name>
    <tag></tag>
    <elementGuidId>6fcae761-99f9-40bf-a816-0ca35a81115a</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>XPATH</key>
-         <value>//form[@name='consignmentForm']//li[1]</value>
-      </entry>
-      <entry>
          <key>BASIC</key>
          <value>//a[@bind-html-unsafe = 'match.label | typeaheadHighlight:query' and @class = 'ng-scope ng-binding']</value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//form[@name='consignmentForm']//li[1]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
@@ -62,24 +62,28 @@
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
+      <type>Main</type>
       <value>//body[@id='ng-app']/div/div[3]/form/div[3]/div/div[2]/div/div[2]/div/ul/li/a</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
+      <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='RECEIVER DETAILS'])[1]/following::a[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
+      <type>Main</type>
       <value>(.//*[normalize-space(text()) and normalize-space(.)='FERNOFERNO BRISBANE11 Johnstone RoadBRENDALE QLD 4500'])[1]/following::a[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
+      <type>Main</type>
       <value>//div[2]/div/ul/li/a</value>
    </webElementXpaths>
 </WebElementEntity>

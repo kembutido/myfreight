@@ -33,7 +33,7 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_RECEIVER DETA
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_RecipientAddress_dropdown_item1'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 

@@ -31,3 +31,31 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REF
 //WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Sender'), strAddrSearchTerm)
 
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
+
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 1)
+
+WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), Item1ItemType, false)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_LENGTH'), Item1Length)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_WIDTH'), Item1Width)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_HEIGHT'), Item1Height)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_DEAD WEIGHT'), Item1DeadWeight)
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
+
+String ts = System.currentTimeMillis().toString()
+
+WebUI.takeScreenshot(('Test/NewReturnExistingrcvraddr' + ts) + '.png')
+
+WebUI.closeBrowser()
+
