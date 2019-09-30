@@ -57,7 +57,7 @@ String ts = System.currentTimeMillis().toString()
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), 1)
 
-WebUI.takeScreenshot(('Test/NewReturnExistingrcvraddr' + ts) + '.png')
+WebUI.takeScreenshot(('Test/NewReturnExistingSenderAddr' + ts) + '.png')
 
 WebUI.closeBrowser()
 
