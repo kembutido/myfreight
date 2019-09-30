@@ -280,4 +280,58 @@
          <variableId>00ab74d2-3ec8-4946-97eb-acc6f2dc2376</variableId>
       </variableLink>
    </testCaseLink>
+   <testCaseLink>
+      <guid>d80217f7-0602-439a-ad80-6360cfdc8782</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/MyFreight - New Return</testCaseId>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>d0aaf561-e4cb-4fe8-b01e-c1536fcf46e7</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>ce1a00f2-01d7-4b9b-b431-ba40679272f9</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>ec8f05aa-38ba-49b5-9e07-724e493aaac9</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>aa74d503-ab0d-4606-b0e8-333a20e9b53a</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>233525f3-1fbd-4804-9596-8d3dc018b35d</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>67f7af62-c1cd-483c-83f7-b4efd1088761</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>5b6e6039-942c-4e2d-8d13-51be21f0a070</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>7a1017ed-ab6e-4583-aeb4-be886a1c6835</variableId>
+      </variableLink>
+   </testCaseLink>
 </TestSuiteEntity>

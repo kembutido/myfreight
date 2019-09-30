@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
-   <description>New return consignment draft</description>
+   <description>New return consignment - existing address - no DG</description>
    <name>MyFreight - New Return</name>
    <tag></tag>
    <comment></comment>
