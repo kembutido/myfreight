@@ -24,7 +24,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-invers
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Third Party Pickup'))
 
-WebUI.waitForPageLoad(1)
+WebUI.delay(1)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
@@ -63,7 +63,7 @@ String ts = System.currentTimeMillis().toString()
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), 1)
 
-WebUI.takeScreenshot(('Test/NewThirdPartyExistingAddresses' + ts) + '.png')
+WebUI.takeScreenshot(('Test/NewThirdPartyExistingAddress' + ts) + '.png')
 
 WebUI.closeBrowser()
 

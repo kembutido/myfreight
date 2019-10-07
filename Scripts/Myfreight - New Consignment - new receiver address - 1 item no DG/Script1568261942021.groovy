@@ -21,9 +21,11 @@ WebUI.waitForPageLoad(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
 
+WebUI.delay(1)
+
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_New'))
 
-WebUI.waitForPageLoad(1)
+WebUI.delay(1)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
