@@ -28,12 +28,45 @@ WebUI.delay(1)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
-//WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Sender'), strAddrSearchTerm)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'), 5)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'))
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
+WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 1)
+
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 5)
+
+String ts = System.currentTimeMillis().toString()
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 'Ref' + ts)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Name_name'), 'Cust' + ts)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_email'), ('eml' + ts) + '@gmail.com')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 1_address_l'), '143 Happy Place')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 2_address_l'), 'Trafalgar North wing')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 3_address_l'), '6th Ring rd')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 4_address_l'), '5th left turn')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_suburb town or city_loca'), '5022')
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_firstpostcodematch_dropdown'))
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/btn_modal_Save'))
+
+WebUI.delay(1)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_phone_number'), '0262419241')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_pickup_location'), 'front gate guard')
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 
@@ -53,11 +86,9 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
-String ts = System.currentTimeMillis().toString()
-
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), 1)
 
-WebUI.takeScreenshot(('Test/NewReturnExistingSenderAddr' + ts) + '.png')
+WebUI.takeScreenshot(('Test/NewReturnExistingSenderAddrWDG' + ts) + '.png')
 
 WebUI.closeBrowser()
 

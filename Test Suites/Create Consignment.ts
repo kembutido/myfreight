@@ -284,7 +284,7 @@
       <guid>d80217f7-0602-439a-ad80-6360cfdc8782</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/MyFreight - New Return</testCaseId>
+      <testCaseId>Test Cases/MyFreight - New Return - existing sender address - 1 item with DG</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
@@ -333,12 +333,192 @@
          <value></value>
          <variableId>7a1017ed-ab6e-4583-aeb4-be886a1c6835</variableId>
       </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>48963173-fcdc-4e27-abe4-00ba4ec47cb6</variableId>
+      </variableLink>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>7652bfab-713b-44db-95c4-8850416a7e30</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/MyFreight - New Return - existing sender address - 1 item without DG</testCaseId>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>ecd70d27-90b8-4e4a-bb98-0f6c5f39c77e</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>daa8fc34-046f-40e8-ac9d-ec4ddfb20575</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>fcfa3052-541a-464a-bd13-8197b1976f7a</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>9e959cad-e05f-4f09-a127-631aad41702d</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>84a27646-4515-49e7-a4bc-b309e877de2b</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>efbe306a-f27f-4540-a5a6-6cfd4b3a89e7</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>e1dc07e6-a350-4c70-a63f-7c6397a962c5</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>b56e877f-1e16-4be3-9258-221a76a01f66</variableId>
+      </variableLink>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>c0177cc9-b7af-410f-9fb8-f3c0b06a6871</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/MyFreight - New Return - new sender address - 1 item with DG</testCaseId>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>9c0a63fb-afe5-402b-8382-acc02a0a0af0</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>bccc353d-54ba-42fa-bf7a-de38492c29ce</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>fca4f726-4f1b-45b6-b177-61b9bda6fcb4</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>b6909340-a4dc-4cd9-9a12-e44d8f699b02</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>9aa4a30e-9cef-4ace-8486-0f87ef8ef184</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>1a97009f-fea7-4574-8a90-5e93ad04967e</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>8c516fd2-526a-467c-bf2c-9bfb748f365c</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>84a70948-df54-45f9-b40e-bbe48553bac7</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>8811bdf2-b55e-4c81-b18f-c7c72a9e58bb</variableId>
+      </variableLink>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>14f54bf8-5f79-453d-88b4-cc418c64e389</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/MyFreight - New Return - new sender address - 1 item without DG</testCaseId>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>09953b1d-b573-4313-b202-0190d59d9a6e</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>dc6f36dd-da47-4ecd-801d-6aa4eb58c40a</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>1acf27f6-a0e5-4cff-bee5-d5764d2241cb</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>ff30e9df-bd79-4b49-8b67-75d8e863d75a</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>ebca1b39-4354-41ae-aaba-45582d4a0804</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>6a4a27f7-4a2c-46bf-a7f8-42e4d7ea54cf</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>bc182b4f-ba73-4c3d-8e04-03a3683b8771</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>111b7780-b23f-4914-bd21-476901326521</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>d15a6e90-111b-4fc5-bfda-f67b3356bd1c</variableId>
+      </variableLink>
    </testCaseLink>
    <testCaseLink>
       <guid>6cc67f1e-5965-464b-bac0-569a5e3ba9c6</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/MyFreight - New third party</testCaseId>
+      <testCaseId>Test Cases/MyFreight - New third party - existing sender address - 1 item without DG</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
