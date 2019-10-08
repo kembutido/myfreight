@@ -18,9 +18,9 @@ WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.
 
 WebUI.waitForPageLoad(1)
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'), 2)
+WebUI.scrollToElement(findTestObject('null'), 2)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
+WebUI.click(findTestObject('null'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Return'))
 

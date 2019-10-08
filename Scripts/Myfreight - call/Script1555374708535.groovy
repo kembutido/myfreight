@@ -13,28 +13,10 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.ealdama@flexisourceit.com.au', ('loginPwd') : 'Jvf9mmfhklcCEM+RmaiVtA=='], 
-    FailureHandling.STOP_ON_FAILURE)
-
-WebUI.callTestCase(findTestCase('MyFreight - Set Current Customer'), [:], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.callTestCase(findTestCase('Consignments landing page'), [:], FailureHandling.STOP_ON_FAILURE)
-
-/*WebUI.callTestCase(findTestCase('Myfreight - New Consignment - new receiver address - 1 item no DG'), [('strReference') : 'sup', ('strAddrSearchTerm') : 'new'
-        , ('Item1Quantity') : '3', ('Item1Length') : '18', ('Item1Width') : '22', ('Item1Height') : '14', ('Item1DeadWeight') : '5'], 
-    FailureHandling.STOP_ON_FAILURE)
-*/
-WebUI.callTestCase(findTestCase('Myfreight - New Consignment - existing receiver address - 1 item with DG'), [('strReference') : 'hey'
-        , ('strAddrSearchTerm') : 'Bill', ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15'
-        , ('Item1DeadWeight') : '5', ('Item1DG_UN') : '1980'], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.callTestCase(findTestCase('Myfreight - New Consignment - new receiver address - 1 item with DG'), [('strReference') : 'sup'
-        , ('strAddrSearchTerm') : 'new', ('Item1Quantity') : '3', ('Item1Length') : '18', ('Item1Width') : '22', ('Item1Height') : '14'
-        , ('Item1DeadWeight') : '5', ('Item1DG_UN') : '1980'], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.callTestCase(findTestCase('Myfreight - New Consignment - new receiver address - 1 item no DG'), [('strReference') : 'sup'
-        , ('strAddrSearchTerm') : 'new', ('Item1Quantity') : '3', ('Item1Length') : '18', ('Item1Width') : '22', ('Item1Height') : '14'
-        , ('Item1DeadWeight') : '5'], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.closeBrowser()
+for (int i = 0; i < 50; i++) {
+    WebUI.callTestCase(findTestCase('MyFreight - New Return - existing sender address - despatch email - black'), [('strReference') : 'ReturnCons'
+            , ('strAddrSearchTerm') : 'Hill', ('Item1Quantity') : '1', ('Item1ItemType') : 'Carton', ('Item1Length') : '15'
+            , ('Item1Width') : '15', ('Item1Height') : '15', ('Item1DeadWeight') : '15', ('Item1DG_UN') : '1980', ('strCustomRef') : 'ConsReturn'], 
+        FailureHandling.STOP_ON_FAILURE)
+}
 

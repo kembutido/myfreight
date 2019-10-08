@@ -284,7 +284,7 @@
       <guid>d80217f7-0602-439a-ad80-6360cfdc8782</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/MyFreight - New Return - existing sender address - 1 item with DG</testCaseId>
+      <testCaseId>Test Cases/MyFreight - New Return - existing sender address - despatch email - black</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
@@ -338,6 +338,12 @@
          <type>DEFAULT</type>
          <value></value>
          <variableId>48963173-fcdc-4e27-abe4-00ba4ec47cb6</variableId>
+      </variableLink>
+      <variableLink>
+         <testDataLinkId></testDataLinkId>
+         <type>DEFAULT</type>
+         <value></value>
+         <variableId>9b559454-4e6a-4834-bd9f-44d4f5a18f34</variableId>
       </variableLink>
    </testCaseLink>
    <testCaseLink>

@@ -3,8 +3,18 @@
    <description></description>
    <name>button_btn btn-inverse dropdown-toggle</name>
    <tag></tag>
-   <elementGuidId>17d8815c-4284-4714-86c1-f77e010b4211</elementGuidId>
-   <selectorMethod>BASIC</selectorMethod>
+   <elementGuidId>a4546a42-20bd-44dd-9c52-2bec47f49926</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//button[@class='btn btn-inverse dropdown-toggle']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
       <isSelected>true</isSelected>

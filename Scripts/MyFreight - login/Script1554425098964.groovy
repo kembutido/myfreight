@@ -19,9 +19,9 @@ WebUI.waitForPageLoad(2, FailureHandling.STOP_ON_FAILURE)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'))
 
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'), loginEmail)
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'), loginEmail2)
 
-WebUI.setEncryptedText(findTestObject('MyFreight-Users/Page_Myfreight/input_Password_password'), loginPwd)
+WebUI.setEncryptedText(findTestObject('MyFreight-Users/Page_Myfreight/input_Password_password'), loginPwd2)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Sign in'))
 
