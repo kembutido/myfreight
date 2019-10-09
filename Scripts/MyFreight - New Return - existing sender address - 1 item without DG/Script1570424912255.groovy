@@ -16,11 +16,17 @@ import internal.GlobalVariable as GlobalVariable
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
-WebUI.waitForPageLoad(1)
+WebUI.delay(1)
 
-WebUI.scrollToElement(findTestObject('null'), 2)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 2)
 
-WebUI.click(findTestObject('null'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
+
+WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Return'))
 
@@ -34,6 +40,12 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Sender'), str
 WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_phone_number'), returnPhone)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_pickup_location'), returnPickupLoc)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_email'), returnEmail)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 
@@ -55,7 +67,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
 String ts = System.currentTimeMillis().toString()
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), 1)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 1)
 
 WebUI.takeScreenshot(('Test/NewReturnExistingSenderAddrNoDG' + ts) + '.png')
 

@@ -18,9 +18,15 @@ WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.
 
 WebUI.waitForPageLoad(1)
 
-WebUI.scrollToElement(findTestObject('null'), 2)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 2)
 
-WebUI.click(findTestObject('null'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
+
+WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Return'))
 
@@ -67,6 +73,8 @@ WebUI.delay(1)
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_phone_number'), '0262419241')
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_pickup_location'), 'front gate guard')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_email'), 'happymail@gmail.io')
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 

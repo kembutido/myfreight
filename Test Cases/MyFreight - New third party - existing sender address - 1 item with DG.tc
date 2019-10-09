@@ -1,92 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
-   <description>New return consignment - existing address - no DG</description>
-   <name>MyFreight - New Return - existing sender address - 1 item with DG</name>
+   <description>New third party consignment - existing address - no DG</description>
+   <name>MyFreight - New third party - existing sender address - 1 item with DG</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>82b0d749-2755-4a5e-aaa5-346f076c08c1</testCaseGuid>
+   <testCaseGuid>5380012b-eb4e-4eee-8bcd-a92a3ae8c7f6</testCaseGuid>
    <variable>
-      <defaultValue>'ReturnCons'</defaultValue>
+      <defaultValue>'ThirdPartyCons'</defaultValue>
       <description></description>
-      <id>25a0d80f-873d-473b-ae87-9c1c025b102c</id>
+      <id>50187e6b-93cd-490e-bacd-3695b5489770</id>
       <masked>false</masked>
       <name>strReference</name>
    </variable>
    <variable>
       <defaultValue>'Hill'</defaultValue>
       <description></description>
-      <id>575f7520-3f32-45b1-acc5-07d4b7a09470</id>
+      <id>d630e9c6-7967-4312-bf23-89c80b096089</id>
       <masked>false</masked>
       <name>strAddrSearchTerm</name>
    </variable>
    <variable>
+      <defaultValue>'Hey'</defaultValue>
+      <description></description>
+      <id>f7c87fcd-53f5-42a4-b8a2-422f31c6e1c3</id>
+      <masked>false</masked>
+      <name>strAddrSearchTerm2</name>
+   </variable>
+   <variable>
       <defaultValue>'1'</defaultValue>
       <description></description>
-      <id>ffcf9356-1b4e-4c64-8202-7c34ee06458f</id>
+      <id>a34191b2-67e9-40e4-93a0-9bd19e9a330e</id>
       <masked>false</masked>
       <name>Item1Quantity</name>
    </variable>
    <variable>
       <defaultValue>'Carton'</defaultValue>
       <description></description>
-      <id>a54500b6-df5b-49a0-89f9-c0c94d105b85</id>
+      <id>3e0731e5-e791-414d-8a13-b882360adb3f</id>
       <masked>false</masked>
       <name>Item1ItemType</name>
    </variable>
    <variable>
       <defaultValue>'15'</defaultValue>
       <description></description>
-      <id>3dd8450c-ea68-4cd8-88d7-035eaeb79183</id>
+      <id>6cebbfc3-743b-4fbf-9c60-dd861e07d1f3</id>
       <masked>false</masked>
       <name>Item1Length</name>
    </variable>
    <variable>
       <defaultValue>'15'</defaultValue>
       <description></description>
-      <id>af6a3069-6dda-4d1d-b2ec-77ca75f6ecdb</id>
+      <id>6bf05798-5441-47f6-beee-11e3a065abfe</id>
       <masked>false</masked>
       <name>Item1Width</name>
    </variable>
    <variable>
       <defaultValue>'15'</defaultValue>
       <description></description>
-      <id>7df4df05-b874-44ec-9382-9f601a4691f4</id>
+      <id>11ced892-9ee1-497d-905a-772f8e34270f</id>
       <masked>false</masked>
       <name>Item1Height</name>
    </variable>
    <variable>
       <defaultValue>'15'</defaultValue>
       <description></description>
-      <id>c3f6efff-82ac-4c23-a882-12d87487adff</id>
+      <id>b4cf3562-984d-46b0-a09b-cbdbb007b44a</id>
       <masked>false</masked>
       <name>Item1DeadWeight</name>
    </variable>
    <variable>
-      <defaultValue>'1980'</defaultValue>
+      <defaultValue>'1975'</defaultValue>
       <description></description>
-      <id>099811d1-8d5f-404c-bb32-24c729e88f68</id>
+      <id>0f5af32d-f86a-4b1e-8200-d03eaa29fac0</id>
       <masked>false</masked>
       <name>Item1DG_UN</name>
-   </variable>
-   <variable>
-      <defaultValue>'0262410241'</defaultValue>
-      <description></description>
-      <id>ca7ca73d-e8a6-4b3b-ba53-20a5d0c17db4</id>
-      <masked>false</masked>
-      <name>returnPhone</name>
-   </variable>
-   <variable>
-      <defaultValue>'frontgate guard'</defaultValue>
-      <description></description>
-      <id>e8980c49-a484-425f-90ee-aa86a2ae99c7</id>
-      <masked>false</masked>
-      <name>returnPickupLoc</name>
-   </variable>
-   <variable>
-      <defaultValue>'nresa1iwdg@gmail.io'</defaultValue>
-      <description></description>
-      <id>7c998b39-55fa-4af0-8716-ab67526130a5</id>
-      <masked>false</masked>
-      <name>returnEmail</name>
    </variable>
 </TestCaseEntity>

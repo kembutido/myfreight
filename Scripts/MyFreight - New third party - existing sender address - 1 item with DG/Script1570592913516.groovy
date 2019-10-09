@@ -16,7 +16,7 @@ import internal.GlobalVariable as GlobalVariable
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
-WebUI.delay(1)
+WebUI.waitForPageLoad(1)
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 2)
 
@@ -28,7 +28,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-invers
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Return'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Third Party Pickup'))
 
 WebUI.delay(1)
 
@@ -41,11 +41,17 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_phone_number'), returnPhone)
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_RECEIVER DETAILS_Receive'), strAddrSearchTerm2)
 
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_pickup_location'), returnPickupLoc)
+WebUI.delay(1)
 
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_email'), returnEmail)
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_phone_number'), '0262419241')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_pickup_location'), 'front gate guard')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_email'), 'happymail@gmail.io')
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 
@@ -78,9 +84,9 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
 String ts = System.currentTimeMillis().toString()
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), 1)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 1)
 
-WebUI.takeScreenshot(('Test/NewReturnExistingSenderAddrWDG' + ts) + '.png')
+WebUI.takeScreenshot(('Test/NewThirdPartyExistingAddress' + ts) + '.png')
 
 WebUI.closeBrowser()
 

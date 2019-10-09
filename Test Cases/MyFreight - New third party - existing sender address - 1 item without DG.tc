@@ -6,7 +6,7 @@
    <comment></comment>
    <testCaseGuid>a266d241-fd1f-49a9-8ffa-237ee1537c2a</testCaseGuid>
    <variable>
-      <defaultValue>'ReturnCons'</defaultValue>
+      <defaultValue>'ThirdPartyCons'</defaultValue>
       <description></description>
       <id>ae6953a0-0c50-4701-b861-99e759cdc58c</id>
       <masked>false</masked>
@@ -18,6 +18,13 @@
       <id>52dba390-b4be-4c5b-ae8b-3da138186ed7</id>
       <masked>false</masked>
       <name>strAddrSearchTerm</name>
+   </variable>
+   <variable>
+      <defaultValue>'Hey'</defaultValue>
+      <description></description>
+      <id>5fb8d6f9-9e7c-4c12-b0b1-babb5f7d2ddd</id>
+      <masked>false</masked>
+      <name>strAddrSearchTerm2</name>
    </variable>
    <variable>
       <defaultValue>'1'</defaultValue>

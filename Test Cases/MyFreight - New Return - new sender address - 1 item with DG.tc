@@ -68,4 +68,25 @@
       <masked>false</masked>
       <name>Item1DG_UN</name>
    </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>a7eb233d-e5c1-4576-afc3-852ec31a86ee</id>
+      <masked>false</masked>
+      <name>returnPhone</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>fdae040a-54d4-4a09-9f23-202c1d4578f2</id>
+      <masked>false</masked>
+      <name>returnPickupLoc</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>48d1883d-fc1d-4f7a-a69d-b06abb316457</id>
+      <masked>false</masked>
+      <name>returnEmail</name>
+   </variable>
 </TestCaseEntity>

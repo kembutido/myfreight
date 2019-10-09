@@ -61,4 +61,25 @@
       <masked>false</masked>
       <name>Item1DeadWeight</name>
    </variable>
+   <variable>
+      <defaultValue>'0262410241'</defaultValue>
+      <description></description>
+      <id>df5eaa02-21db-4faf-89f4-d8cf7467502e</id>
+      <masked>false</masked>
+      <name>returnPhone</name>
+   </variable>
+   <variable>
+      <defaultValue>'Lobby bellboy'</defaultValue>
+      <description></description>
+      <id>11f432b4-45ae-44ca-aeb1-db40844b6a45</id>
+      <masked>false</masked>
+      <name>returnPickupLoc</name>
+   </variable>
+   <variable>
+      <defaultValue>'nresa1iwodg@gmail.io'</defaultValue>
+      <description></description>
+      <id>01e359a5-0e34-40b8-abad-45032130c30c</id>
+      <masked>false</masked>
+      <name>returnEmail</name>
+   </variable>
 </TestCaseEntity>
