@@ -114,6 +114,7 @@
 	<classpathentry kind="lib" path="C:/Testing/Katalon_Studio_Windows_64-6.3.3/plugins/ca.juliusdavies.not-yet-commons-ssl_0.3.11.jar"/>
 	<classpathentry kind="lib" path="C:/Testing/Katalon_Studio_Windows_64-6.3.3/plugins/com.kms.katalon.preferences_1.0.0.201908270734.jar"/>
 	<classpathentry kind="lib" path="C:/Users/dealdama/Katalon Studio/MyFreight - Consignments.prj/Drivers/ashot-1.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Testing/Katalon_Studio_Windows_64-6.3.3/configuration/plugin/install/28437/1.0.0/katalon-studio-uploadfile-plugin.jar"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

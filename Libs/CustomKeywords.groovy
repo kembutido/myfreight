@@ -10,6 +10,22 @@ import java.lang.String
 import org.openqa.selenium.WebElement
 
 
+def static "com.kms.katalon.keyword.uploadfile.UploadFile.uploadFile"(
+    	TestObject object	
+     , 	String file	) {
+    (new com.kms.katalon.keyword.uploadfile.UploadFile()).uploadFile(
+        	object
+         , 	file)
+}
+
+def static "com.kms.katalon.keyword.uploadfile.UploadFile.uploadFileUsingRobot"(
+    	TestObject object	
+     , 	String file	) {
+    (new com.kms.katalon.keyword.uploadfile.UploadFile()).uploadFileUsingRobot(
+        	object
+         , 	file)
+}
+
 def static "com.jira.components.JSelect.selectByText"(
     	TestObject o	
      , 	String optionText	) {
