@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>when 'Consignments' menu is clicked</description>
+   <name>Consignments - Landing page</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>9eab0545-e3aa-4d41-a7f8-bbb28ce5086a</testCaseGuid>
+</TestCaseEntity>

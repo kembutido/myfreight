@@ -13,12 +13,14 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-try {
-    WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), FailureHandling.OPTIONAL)
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
+        , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
-    WebUI.verifyElementText(findTestObject('MyFreight-Users/Page_Myfreight/div_There are no consignments'), 'There are no consignments to display.')
-}
-catch (Exception ex) {
-    WebUI.delay(2)
-} 
+WebUI.waitForPageLoad(2)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+
+WebUI.delay(1)
+
+WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/div_There are no consignments to display'))
 

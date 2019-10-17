@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>a_labels-to-print-link</name>
+   <name>a_complete-link</name>
    <tag></tag>
-   <elementGuidId>edfbd965-811e-46c6-aa89-8a55b27cf01b</elementGuidId>
+   <elementGuidId>f04f8d2f-d091-4e0f-a1a6-f3a58cb9bf05</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-      </entry>
-      <entry>
-         <key>CSS</key>
+         <value>//a[@class='complete-link']</value>
       </entry>
    </selectorCollection>
    <selectorMethod>XPATH</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
       <value>a</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>labels-to-print-link</value>
+      <value>complete-link</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>href</name>
       <type>Main</type>
@@ -40,20 +38,20 @@
       <matchCondition>equals</matchCondition>
       <name>ng-click</name>
       <type>Main</type>
-      <value>updateFilter('labels_to_print'); refreshMetadata()</value>
+      <value>updateFilter('complete'); refreshMetadata()</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>ng-class</name>
       <type>Main</type>
-      <value>{active: filter == 'labels_to_print' }</value>
+      <value>{active: filter == 'complete' }</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;consignments ng-scope&quot;]/div[@class=&quot;row statistics&quot;]/div[@class=&quot;span5&quot;]/a[@class=&quot;labels-to-print-link&quot;]</value>
+      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;consignments ng-scope&quot;]/div[@class=&quot;row statistics&quot;]/div[@class=&quot;span5&quot;]/a[@class=&quot;complete-link&quot;]</value>
    </webElementProperties>
 </WebElementEntity>

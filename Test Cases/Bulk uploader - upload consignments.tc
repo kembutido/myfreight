@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
-   <description>try uploading with the bulk uploader dialog / popup</description>
+   <description>try uploading with the bulk uploader dialog / popup
+does not work with Firefox 
+works with IE
+works with Chrome</description>
    <name>Bulk uploader - upload consignments</name>
    <tag></tag>
    <comment></comment>

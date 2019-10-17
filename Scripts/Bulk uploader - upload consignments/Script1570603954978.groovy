@@ -30,7 +30,7 @@ path = path.replace('/', '\\')
 CustomKeywords.'com.kms.katalon.keyword.uploadfile.UploadFile.uploadFileUsingRobot'(findTestObject('MyFreight-Users/Page_Myfreight/div_file-upload-consignments'), 
     path + 'bulk2019.csv')
 
-WebUI.delay(2)
+WebUI.delay(3)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/span_Successfully uploaded'), FailureHandling.STOP_ON_FAILURE)
 
