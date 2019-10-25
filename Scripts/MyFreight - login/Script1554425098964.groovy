@@ -29,5 +29,7 @@ WebUI.delay(1)
 
 WebUI.waitForPageLoad(2)
 
+WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 0)
 
