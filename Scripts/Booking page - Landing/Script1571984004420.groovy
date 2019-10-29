@@ -12,7 +12,6 @@ import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
@@ -33,6 +32,8 @@ WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Bookin
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/i_booking-icon-chevron-down'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/i_booking-icon-chevron-down'))
+
+WebUI.delay(3)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/label_booking-checkbox-label icon-check-empty'))
 
