@@ -14,54 +14,54 @@
       <guid>1fee84dd-e24c-456a-a989-5187aa6b1b2c</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Myfreight - New Consignment - existing receiver address 1 item no DG</testCaseId>
+      <testCaseId>Test Cases/Myfreight - New Consignment - existing receiver address - 1 item no DG</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>23f41323-517f-4fab-b04d-8ef68c45ab93</variableId>
+         <variableId>9f771955-1301-4dd3-ba3b-6c748c1ec7cb</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>b033bf31-225e-4cda-98ba-89be59cadf5f</variableId>
+         <variableId>d8840d0b-f65d-436c-90bf-73c111a85d07</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>6ed2cb49-b3ef-49d6-bc76-46ba13d45607</variableId>
+         <variableId>da3a183e-d9e0-405b-8f9e-73e53f5222ec</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>1940fd6c-13cb-4ace-8d57-a15307f9ae88</variableId>
+         <variableId>3a80ab0e-014e-4b92-b77b-9bf6ec002939</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>38d17cf5-019e-4ab1-a5a2-41a79c8280e3</variableId>
+         <variableId>57d115a0-a37f-4d2c-924c-21d22a2ae7cb</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>7434b6ac-88e8-4c44-b876-10fe70287ba9</variableId>
+         <variableId>1af523a7-8321-4bdf-9545-8540f68189be</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>4e43af07-22b4-4c45-a788-bd124f8d59d0</variableId>
+         <variableId>e4b214bb-6e05-4b8a-915c-cdbfa88eb807</variableId>
       </variableLink>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
          <value></value>
-         <variableId>061f89d4-4cd1-41ca-910a-ef9ae0c7fcf0</variableId>
+         <variableId>8ba31dc3-74ae-4cfb-af02-7f5e45bb77da</variableId>
       </variableLink>
    </testCaseLink>
    <testCaseLink>

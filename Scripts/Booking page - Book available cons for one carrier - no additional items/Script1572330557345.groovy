@@ -17,6 +17,10 @@ import internal.GlobalVariable as GlobalVariable
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
         , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
+WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), [('strReference') : 'hey', ('strAddrSearchTerm') : 'Bill'
+        , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'
+        , ('Item1ItemType') : 'Carton'], FailureHandling.STOP_ON_FAILURE)
+
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a-booking-enquiries'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a_Booking'))
@@ -33,11 +37,13 @@ WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Bookin
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/i_booking-icon-chevron-down'))
 
-WebUI.delay(1)
+WebUI.delay(3)
+
+WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/label_booking-checkbox-label icon-check-empty'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/label_booking-checkbox-label icon-check-empty'))
 
-WebUI.delay(1)
+WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/button_booking-Book'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/button_booking-Book'))
 

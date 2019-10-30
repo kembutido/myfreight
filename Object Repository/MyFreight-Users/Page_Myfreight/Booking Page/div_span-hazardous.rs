@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_span-hazardous</name>
+   <tag></tag>
+   <elementGuidId>6d0a9fac-9b4c-4668-94c2-8da683d2b09d</elementGuidId>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>span-hazardous</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;bookings ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;span24&quot;]/div[@class=&quot;carrier-service ng-scope&quot;]/div[@class=&quot;row span23 additional-item-section&quot;]/div[@class=&quot;row item-section-body&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;span23 consignment-items ng-scope&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;item span23&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;row ng-scope&quot;]/div[@class=&quot;span-hazardous&quot;]</value>
+   </webElementProperties>
+</WebElementEntity>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Booking page - Book available cons for one carrier - with additional items</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>f024b8c3-effc-4b3f-b810-c390e63def61</testCaseGuid>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>cc06ba19-c64d-4945-a5de-a75cdb1ef04a</id>
+      <masked>false</masked>
+      <name>AddlItem1Qty</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>6e01d17d-a6f0-438d-a400-d25bd922364b</id>
+      <masked>false</masked>
+      <name>AddlItem1ItemType</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>1d5dce2d-b697-4274-b436-338bf4d5356e</id>
+      <masked>false</masked>
+      <name>AddlItem1Length</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>e6bd3f85-240d-4790-b2b6-e1878a651171</id>
+      <masked>false</masked>
+      <name>AddlItem1Width</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>ed70048e-fba0-4b82-a897-1109dabc25b5</id>
+      <masked>false</masked>
+      <name>AddlItem1Height</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>3f0cf749-b4fc-4368-9984-947de9de6481</id>
+      <masked>false</masked>
+      <name>AddlItem1DeadWeight</name>
+   </variable>
+   <variable>
+      <defaultValue>''</defaultValue>
+      <description></description>
+      <id>bdc89df4-9d1a-4e0a-b3b6-c5053023f3dd</id>
+      <masked>false</masked>
+      <name>AddlItems1DG_UN</name>
+   </variable>
+</TestCaseEntity>
