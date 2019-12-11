@@ -14,6 +14,11 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
+//import com.kms.katalon.core.testobject.ResponseObject as ResponseObject
+//import com.kms.katalon.core.util.KeywordUtil as KeywordUtil
+//import com.kms.katalon.core.testobject.RestRequestObjectBuilder as RestRequestObjectBuilder
+//import com.kms.katalon.core.testobject.impl.HttpTextBodyContent as HttpTextBodyContent
+//import groovy.json.JsonSlurper as JsonSlurper
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
         , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
@@ -21,6 +26,17 @@ WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), 
         , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'
         , ('Item1ItemType') : 'Carton'], FailureHandling.STOP_ON_FAILURE)
 
+//ResponseObject ro = WS.sendRequest(findTestObject('Test Request'))
+//WS.verifyResponseStatusCode(ro, 201)
+//if (ro.statusCode == 201) {
+//    String respbodyContent = ro.getResponseBodyContent()
+//	def jsonSlurper = new JsonSlurper()
+//		def object = jsonSlurper.parseText(respbodyContent)
+//    assert object.id == '13156940'
+//		KeywordUtil log = new KeywordUtil()
+//		String id = object.id
+//		log.logInfo(id)
+//		WebUI.delay(1)
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a-booking-enquiries'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a_Booking'))
@@ -46,4 +62,6 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/label_bo
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/button_booking-Book'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/button_booking-Book'))
+
+WebUI.delay(3)
 

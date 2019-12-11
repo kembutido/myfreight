@@ -51,7 +51,14 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_DEAD WEIGH
 'wait for the carrier selection to be populated - code can be improved'
 WebUI.delay(2)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
-
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_ Print Labels'))
 WebUI.delay(1)
+
+String ts = System.currentTimeMillis().toString()
+
+WebUI.takeScreenshot(('Test/fortestdata' + ts) + '.png')
+
+WebUI.closeWindowIndex(1)
+
+
 

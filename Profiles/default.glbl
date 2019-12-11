@@ -11,7 +11,7 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'09/09/2019'</initValue>
+      <initValue>'11/06/2019'</initValue>
       <name>despatchDate</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

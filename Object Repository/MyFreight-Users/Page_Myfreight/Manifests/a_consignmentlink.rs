@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_consignmentlink</name>
+   <tag></tag>
+   <elementGuidId>6d8b854f-608e-4d2f-942c-28efa44394f8</elementGuidId>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>https://qa.teamwilberforce.com/#/consignment/13670072</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>once-text</name>
+      <type>Main</type>
+      <value>consignment.consignment_number</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>once-href</name>
+      <type>Main</type>
+      <value>consignment.url</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>JBRK000000020</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;manifests ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;span24&quot;]/div[@class=&quot;row item ng-scope&quot;]/div[@class=&quot;span24&quot;]/div[@class=&quot;row consignment ng-scope&quot;]/div[@class=&quot;offset1 span4&quot;]/a[1]</value>
+   </webElementProperties>
+</WebElementEntity>
