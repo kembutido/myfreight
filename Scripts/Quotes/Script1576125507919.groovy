@@ -13,20 +13,3 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
-        , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), [('strReference') : 'hey', ('strAddrSearchTerm') : 'Bill'
-        , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'
-        , ('Item1ItemType') : 'Carton'], FailureHandling.STOP_ON_FAILURE)
-
-WebUI.waitForPageLoad(2)
-
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
-
-WebUI.delay(1)
-
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_labels-to-print-link'))
-
-WebUI.verifyElementNotVisible(findTestObject('MyFreight-Users/Page_Myfreight/div_There are no consignments to display'))
-

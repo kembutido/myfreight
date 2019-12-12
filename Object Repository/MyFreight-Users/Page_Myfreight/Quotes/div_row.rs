@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_row</name>
+   <tag></tag>
+   <elementGuidId>50d6b279-6384-49e3-8f09-d26b00b55fac</elementGuidId>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>row</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;quotes ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;span24&quot;]/div[@class=&quot;row item ng-scope&quot;]/div[@class=&quot;span24&quot;]/div[@class=&quot;row&quot;]</value>
+   </webElementProperties>
+</WebElementEntity>
