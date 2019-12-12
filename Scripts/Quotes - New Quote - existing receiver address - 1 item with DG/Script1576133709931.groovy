@@ -14,23 +14,19 @@ import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
-
 //import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 //import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForPageLoad(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_QUOTES'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/button_btn btn-inverse dropdown-toggle'))
-
-WebUI.delay(1)
-
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_New Quote'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_New'))
 
 WebUI.delay(1)
 
@@ -72,11 +68,11 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_QUOTES'), 0)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 0)
 
 String ts = System.currentTimeMillis().toString()
 
-WebUI.takeScreenshot(('Test/Quote-existingrecvraddr' + ts) + '.png')
+WebUI.takeScreenshot(('Test/existingreceiveraddress' + ts) + '.png')
 
 WebUI.closeBrowser()
 

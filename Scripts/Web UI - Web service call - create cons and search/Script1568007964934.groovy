@@ -9,6 +9,9 @@ import com.kms.katalon.core.model.FailureHandling as FailureHandling
 import com.kms.katalon.core.testcase.TestCase as TestCase
 import com.kms.katalon.core.testdata.TestData as TestData
 import com.kms.katalon.core.testobject.TestObject as TestObject
+import com.kms.katalon.core.testobject.TestObjectProperty
+import com.kms.katalon.core.testobject.ConditionType
+import com.kms.katalon.core.testobject.RequestObject
 import com.kms.katalon.core.testobject.ResponseObject as ResponseObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
@@ -45,7 +48,8 @@ if (ro.statusCode == 201) {
     String id = object.id
 
     log.logInfo(id)
-	RequesObject reqobj = findTestObject('pdf print')
+	RequestObject reqobj =  new findTestObject('pdf print')
+	
     WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/inputsearch-consignment-field'), id //WebUI.closeBrowser()
         )
 

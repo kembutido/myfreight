@@ -19,7 +19,7 @@
    </httpHeaderProperties>
    <migratedVersion>5.4.1</migratedVersion>
    <restRequestMethod>GET</restRequestMethod>
-   <restUrl>https://qa.teamwilberforce.com/public/api/v1/consignments/13729965.pdf?Content-Type=application/json</restUrl>
+   <restUrl>https://qa.teamwilberforce.com/public/api/v1/consignments/13912506.pdf?Content-Type=application/json</restUrl>
    <serviceType>RESTful</serviceType>
    <soapBody></soapBody>
    <soapHeader></soapHeader>
