@@ -6,7 +6,7 @@
    <comment></comment>
    <testCaseGuid>cd946323-578e-41ec-8b8f-5cf4ea4d568b</testCaseGuid>
    <variable>
-      <defaultValue>'hey'</defaultValue>
+      <defaultValue>'Quote-withDG'</defaultValue>
       <description></description>
       <id>8ad4ab42-2a1c-455c-b80d-f5954f215463</id>
       <masked>false</masked>

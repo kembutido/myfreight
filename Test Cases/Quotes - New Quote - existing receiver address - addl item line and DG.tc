@@ -1,70 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
    <description>New normal consignment</description>
-   <name>Quotes - New Quote - existing receiver address - 1 item no DG</name>
+   <name>Quotes - New Quote - existing receiver address - addl item line and DG</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>24b438f7-2f3c-45c6-acfd-3288a0fdbd3b</testCaseGuid>
+   <testCaseGuid>4e03a403-400a-4e81-ba31-19b148034e0e</testCaseGuid>
    <variable>
-      <defaultValue>'Quote-NoDG'</defaultValue>
+      <defaultValue>'Quote-existingaddr-addliitem-DG'</defaultValue>
       <description></description>
-      <id>00c06435-2023-470e-b9a6-48823e0dad0c</id>
+      <id>6a5eff0a-e285-45e5-9a5d-0ba1291bf5d1</id>
       <masked>false</masked>
       <name>strReference</name>
    </variable>
    <variable>
       <defaultValue>'Bill'</defaultValue>
       <description></description>
-      <id>5b83dc43-2045-44ec-a28d-53c50d537c1f</id>
+      <id>9634efac-d875-4333-8aa8-b033d3bc3a2f</id>
       <masked>false</masked>
       <name>strAddrSearchTerm</name>
    </variable>
    <variable>
       <defaultValue>'2'</defaultValue>
       <description></description>
-      <id>45de9436-17e0-4831-a089-9d4df332d6b1</id>
+      <id>8bb3340d-9ffc-401a-a76f-7964bf90af25</id>
       <masked>false</masked>
       <name>Item1Quantity</name>
    </variable>
    <variable>
       <defaultValue>'22'</defaultValue>
       <description></description>
-      <id>7360911e-c06d-49fc-b339-522ca801cf08</id>
+      <id>60dc35aa-615a-41bd-8d8c-4b56c1b4dcc7</id>
       <masked>false</masked>
       <name>Item1Length</name>
    </variable>
    <variable>
       <defaultValue>'24'</defaultValue>
       <description></description>
-      <id>95ce6320-e7bb-4e7a-9878-05ec35839a3e</id>
+      <id>ebc0cc38-ef3f-430f-b088-d726cb53002b</id>
       <masked>false</masked>
       <name>Item1Width</name>
    </variable>
    <variable>
       <defaultValue>'15'</defaultValue>
       <description></description>
-      <id>688d1b7a-9634-4593-835f-4ad0293914d0</id>
+      <id>1a16decb-9458-47e2-9024-61ebdd5bb7fa</id>
       <masked>false</masked>
       <name>Item1Height</name>
    </variable>
    <variable>
       <defaultValue>'5'</defaultValue>
       <description></description>
-      <id>31039710-a59b-45a3-ab7d-446fbed703f6</id>
+      <id>61c05d03-ad8b-4f10-adc0-d3666472a43a</id>
       <masked>false</masked>
       <name>Item1DeadWeight</name>
    </variable>
    <variable>
       <defaultValue>'1980'</defaultValue>
       <description></description>
-      <id>a4abf15d-3d39-4040-a588-b6b0d6980527</id>
+      <id>a06d24a4-d499-44b1-8839-265f1cd7b3bb</id>
       <masked>false</masked>
       <name>Item1DG_UN</name>
    </variable>
    <variable>
       <defaultValue>'Carton'</defaultValue>
       <description></description>
-      <id>10b05e25-e7dc-40d6-998d-2965cbaa74af</id>
+      <id>28183d70-7e6c-4e30-9074-c41f1b21191b</id>
       <masked>false</masked>
       <name>Item1ItemType</name>
    </variable>

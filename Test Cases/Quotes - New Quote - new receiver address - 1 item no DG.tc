@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Quotes - New Quote - new receiver address - 1 item no DG</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e5e1e868-0c2e-4f89-8d62-d3bc6e7c6bc9</testCaseGuid>
+   <variable>
+      <defaultValue>'Quote'</defaultValue>
+      <description></description>
+      <id>26a79684-4238-4516-ad16-219d1a677e14</id>
+      <masked>false</masked>
+      <name>strReference</name>
+   </variable>
+   <variable>
+      <defaultValue>'bill'</defaultValue>
+      <description></description>
+      <id>fdbab96f-f69f-44d6-9895-902ce0e3a867</id>
+      <masked>false</masked>
+      <name>strAddrSearchTerm</name>
+   </variable>
+   <variable>
+      <defaultValue>'3'</defaultValue>
+      <description></description>
+      <id>6b33e417-d175-448d-b6a8-e2bbab128338</id>
+      <masked>false</masked>
+      <name>Item1Quantity</name>
+   </variable>
+   <variable>
+      <defaultValue>'18'</defaultValue>
+      <description></description>
+      <id>42c67bc1-5d40-4dc2-b977-73801ff8435e</id>
+      <masked>false</masked>
+      <name>Item1Length</name>
+   </variable>
+   <variable>
+      <defaultValue>'22'</defaultValue>
+      <description></description>
+      <id>d75ae4a0-83a2-469d-bb22-e62433a59ccc</id>
+      <masked>false</masked>
+      <name>Item1Width</name>
+   </variable>
+   <variable>
+      <defaultValue>'14'</defaultValue>
+      <description></description>
+      <id>c02bbeee-516c-477a-a08a-285da6b7ec72</id>
+      <masked>false</masked>
+      <name>Item1Height</name>
+   </variable>
+   <variable>
+      <defaultValue>'5'</defaultValue>
+      <description></description>
+      <id>7fa92b02-4662-48e6-8bef-26aed93cfa24</id>
+      <masked>false</masked>
+      <name>Item1DeadWeight</name>
+   </variable>
+</TestCaseEntity>

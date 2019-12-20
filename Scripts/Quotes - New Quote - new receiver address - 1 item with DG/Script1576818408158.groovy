@@ -14,31 +14,35 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
+//import ru.yandex.qatools.ashot.AShot
+//import ru.yandex.qatools.ashot.Screenshot
+//import ru.yandex.qatools.ashot.shooting.ShootingStrategies
+//import javax.imageio.ImageIO as ImageIO
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForPageLoad(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_QUOTES'))
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_New'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
 
-WebUI.acceptAlert()
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_New Quote'))
 
 WebUI.delay(1)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
 //WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'), 5)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'), 1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'))
 
 WebUI.delay(1)
 
-WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 1)
+WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 5)
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 5)
 
@@ -80,7 +84,17 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_HEIGHT'), 
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_DEAD WEIGHT'), Item1DeadWeight)
 
-WebUI.delay(3)
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dangerous-goods-toggle ng-scope'))
+
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), 1)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), Item1DG_UN)
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dg-search-list'))
+
+WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
@@ -88,9 +102,9 @@ WebUI.delay(1)
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 5)
 
-WebUI.delay(1)
-
-WebUI.takeScreenshot(('Test/newreceiveraddrnodg' + ts) + '.png')
+//Screenshot screenshot = Ashot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver)
+//ImageIO.write(screenshot.getImage(),"PNG",new File("C:\\Users\\dealdama\\Katalon Studio\\MyFreight - Consignments.prj\\Test\\test.png"))
+WebUI.takeScreenshot(('Test/newreceiveraddress-wdg' + ts) + '.png')
 
 WebUI.closeBrowser()
 

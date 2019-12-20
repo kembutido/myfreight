@@ -1,71 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TestCaseEntity>
-   <description>New normal consignment</description>
-   <name>Quotes - New Quote - existing receiver address - 1 item no DG</name>
+   <description></description>
+   <name>Quotes - New Quote - new receiver address - 1 item with DG</name>
    <tag></tag>
    <comment></comment>
-   <testCaseGuid>24b438f7-2f3c-45c6-acfd-3288a0fdbd3b</testCaseGuid>
+   <testCaseGuid>a7eead6d-2bc3-4275-967a-6b718b506548</testCaseGuid>
    <variable>
-      <defaultValue>'Quote-NoDG'</defaultValue>
+      <defaultValue>'Quote-newrcvr-withDG'</defaultValue>
       <description></description>
-      <id>00c06435-2023-470e-b9a6-48823e0dad0c</id>
+      <id>669756e2-5914-4238-b18e-334e26d31888</id>
       <masked>false</masked>
       <name>strReference</name>
    </variable>
    <variable>
-      <defaultValue>'Bill'</defaultValue>
+      <defaultValue>'new'</defaultValue>
       <description></description>
-      <id>5b83dc43-2045-44ec-a28d-53c50d537c1f</id>
+      <id>8a70057d-b6d2-48b6-9577-43da3e19c27f</id>
       <masked>false</masked>
       <name>strAddrSearchTerm</name>
    </variable>
    <variable>
-      <defaultValue>'2'</defaultValue>
+      <defaultValue>'3'</defaultValue>
       <description></description>
-      <id>45de9436-17e0-4831-a089-9d4df332d6b1</id>
+      <id>01914da0-3a64-42f8-a08f-0d79deea2dab</id>
       <masked>false</masked>
       <name>Item1Quantity</name>
    </variable>
    <variable>
-      <defaultValue>'22'</defaultValue>
+      <defaultValue>'18'</defaultValue>
       <description></description>
-      <id>7360911e-c06d-49fc-b339-522ca801cf08</id>
+      <id>054f4187-5bef-47a0-922c-f94b5c2b1bea</id>
       <masked>false</masked>
       <name>Item1Length</name>
    </variable>
    <variable>
-      <defaultValue>'24'</defaultValue>
+      <defaultValue>'22'</defaultValue>
       <description></description>
-      <id>95ce6320-e7bb-4e7a-9878-05ec35839a3e</id>
+      <id>0cffd95a-3440-4f8b-9ea9-56910e3695a0</id>
       <masked>false</masked>
       <name>Item1Width</name>
    </variable>
    <variable>
-      <defaultValue>'15'</defaultValue>
+      <defaultValue>'14'</defaultValue>
       <description></description>
-      <id>688d1b7a-9634-4593-835f-4ad0293914d0</id>
+      <id>1b57894a-8e7c-4dc9-a75a-a9b73d83d06d</id>
       <masked>false</masked>
       <name>Item1Height</name>
    </variable>
    <variable>
       <defaultValue>'5'</defaultValue>
       <description></description>
-      <id>31039710-a59b-45a3-ab7d-446fbed703f6</id>
+      <id>64bb7acc-1a59-4b37-b743-b3ef0b92fbb3</id>
       <masked>false</masked>
       <name>Item1DeadWeight</name>
    </variable>
    <variable>
       <defaultValue>'1980'</defaultValue>
       <description></description>
-      <id>a4abf15d-3d39-4040-a588-b6b0d6980527</id>
+      <id>182247bf-cc09-4e5c-8a48-88eea42796b4</id>
       <masked>false</masked>
       <name>Item1DG_UN</name>
-   </variable>
-   <variable>
-      <defaultValue>'Carton'</defaultValue>
-      <description></description>
-      <id>10b05e25-e7dc-40d6-998d-2965cbaa74af</id>
-      <masked>false</masked>
-      <name>Item1ItemType</name>
    </variable>
 </TestCaseEntity>

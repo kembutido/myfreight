@@ -12,65 +12,52 @@ import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
-import org.openqa.selenium.Keys as Keys
 
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForPageLoad(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_QUOTES'), 2)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_QUOTES'))
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_New'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
 
-WebUI.acceptAlert()
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_Third Party Quote'))
 
 WebUI.delay(1)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
 //WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'), 5)
-
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Add'))
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Sender'), strAddrSearchTerm)
 
 WebUI.delay(1)
 
-WebUI.waitForElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/modal_form'), 1)
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 5)
-
-String ts = System.currentTimeMillis().toString()
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Reference_code'), 'Ref' + ts)
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Customer Name_name'), 'Cust' + ts)
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'), 'myhome@truhome.io')
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 1_address_l'), '143 Happy Place')
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 2_address_l'), 'Trafalgar North wing')
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 3_address_l'), '6th Ring rd')
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 4_address_l'), '5th left turn')
-
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_suburb town or city_loca'), '5022')
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_RECEIVER DETAILS_Receive'), strAddrSearchTerm2)
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_firstpostcodematch_dropdown'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/btn_modal_Save'))
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_phone_number'), '0262419241')
 
-WebUI.delay(1)
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_pickup_location'), 'front gate guard')
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_return_email'), 'happymail@gmail.io')
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 
-WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), '1')
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 1)
+
+WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), Item1ItemType, false)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_LENGTH'), Item1Length)
 
@@ -80,17 +67,26 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_HEIGHT'), 
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_DEAD WEIGHT'), Item1DeadWeight)
 
-WebUI.delay(3)
+'Toggle the Hazardous flag for the first item'
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dangerous-goods-toggle ng-scope'))
+
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), 1)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), Item1DG_UN)
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dg-search-list'))
+
+WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
-WebUI.delay(1)
+String ts = System.currentTimeMillis().toString()
 
-WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 5)
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'), 1)
 
-WebUI.delay(1)
-
-WebUI.takeScreenshot(('Test/newreceiveraddrnodg' + ts) + '.png')
+WebUI.takeScreenshot(('Test/NewThirdPartyExistingAddress' + ts) + '.png')
 
 WebUI.closeBrowser()
 

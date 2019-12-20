@@ -19,13 +19,13 @@ WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.
 
 WebUI.waitForPageLoad(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_QUOTES'))
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_New'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
 
-WebUI.acceptAlert()
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_New Quote'))
 
 WebUI.delay(1)
 
@@ -90,7 +90,7 @@ WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNME
 
 WebUI.delay(1)
 
-WebUI.takeScreenshot(('Test/newreceiveraddrnodg' + ts) + '.png')
+WebUI.takeScreenshot(('Test/Quote-newreceiveraddrnodg' + ts) + '.png')
 
 WebUI.closeBrowser()
 
