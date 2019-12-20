@@ -19,12 +19,19 @@
    </httpHeaderProperties>
    <migratedVersion>5.4.1</migratedVersion>
    <restRequestMethod>GET</restRequestMethod>
-   <restUrl>https://qa.teamwilberforce.com/public/api/v1/consignments/13912506.pdf?Content-Type=application/json</restUrl>
+   <restUrl>https://qa.teamwilberforce.com/public/api/v1/consignments/${conid}.pdf?Content-Type=application/json&amp;conid=${conid}</restUrl>
    <serviceType>RESTful</serviceType>
    <soapBody></soapBody>
    <soapHeader></soapHeader>
    <soapRequestMethod></soapRequestMethod>
    <soapServiceFunction></soapServiceFunction>
+   <variables>
+      <defaultValue>'13912663'</defaultValue>
+      <description></description>
+      <id>a320352a-0e68-4e8c-b246-ced5881b3ca5</id>
+      <masked>false</masked>
+      <name>conid</name>
+   </variables>
    <verificationScript>import static org.assertj.core.api.Assertions.*
 
 import com.kms.katalon.core.testobject.RequestObject

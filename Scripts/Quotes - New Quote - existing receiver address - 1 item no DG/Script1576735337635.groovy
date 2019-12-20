@@ -26,7 +26,7 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_QUOTES'))
 
 WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/button_btn btn-inverse dropdown-toggle'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_New Quote'))
 
@@ -54,6 +54,17 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_WIDTH'), I
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_HEIGHT'), Item1Height)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_cm_DEAD WEIGHT'), Item1DeadWeight)
+
+'Toggle the Hazardous flag for the first item'
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dangerous-goods-toggle ng-scope'))
+
+WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), 1)
+
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DG_UN NUMBER'), Item1DG_UN)
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dg-search-list'))
 
 WebUI.delay(1)
 
