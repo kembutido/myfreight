@@ -6,7 +6,7 @@
    <defaultProfile>false</defaultProfile>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'tom'</initValue>
-      <name>username</name>
+      <initValue>'https://qa.teamwilberforce.com/#/login'</initValue>
+      <name>url</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

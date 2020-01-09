@@ -22,7 +22,7 @@ public class GlobalVariable {
     /**
      * <p></p>
      */
-    public static Object username
+    public static Object url
      
 
     static {
@@ -33,7 +33,7 @@ public class GlobalVariable {
     
             TestConsNum = selectedVariables['TestConsNum']
             despatchDate = selectedVariables['despatchDate']
-            username = selectedVariables['username']
+            url = selectedVariables['url']
             
         } catch (Exception e) {
             TestCaseMain.logGlobalVariableError(e)

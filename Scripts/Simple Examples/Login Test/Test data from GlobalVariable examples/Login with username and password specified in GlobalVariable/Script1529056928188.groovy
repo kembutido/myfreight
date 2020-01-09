@@ -28,7 +28,7 @@ import internal.GlobalVariable as GlobalVariable
  * When I login with valid username and password
  * Then I am at the Dashboard page
  * 
- * GlobalVariable.username: demo@katalon.com
+ * GlobalVariable.url: demo@katalon.com
  * GlobalVariable.encrypted_password: 8eml3nBz19rJ6kP8oCYK
  */
 
@@ -36,11 +36,11 @@ WebUI.waitForElementVisible(findTestObject('Test Objects/Pages/Login Page/elHead
 
 WebUI.verifyTextPresent('Log in to your account', false)
 
-WebUI.setText(findTestObject('Test Objects/Pages/Login Page/elUsername'), GlobalVariable.username)
+WebUI.setText(findTestObject('Test Objects/Pages/Login Page/elUsername'), GlobalVariable.url)
 
 WebUI.click(findTestObject('Test Objects/Pages/Login Page/elContinue'))
 
-WebUI.setText(findTestObject('Test Objects/Pages/Login Page/elEmail'), GlobalVariable.username)
+WebUI.setText(findTestObject('Test Objects/Pages/Login Page/elEmail'), GlobalVariable.url)
 
 WebUI.click(findTestObject('Test Objects/Pages/Login Page/elNext'))
 

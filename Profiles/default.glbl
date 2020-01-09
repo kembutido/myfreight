@@ -11,7 +11,12 @@
    </GlobalVariableEntity>
    <GlobalVariableEntity>
       <description></description>
-      <initValue>'11/06/2019'</initValue>
+      <initValue>findTestData('MyFreight/New Consignments')</initValue>
       <name>despatchDate</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>'https://qa.teamwilberforce.com/#/login'</initValue>
+      <name>url</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>
