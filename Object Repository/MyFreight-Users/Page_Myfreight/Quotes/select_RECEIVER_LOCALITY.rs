@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>a_Add item line</name>
+   <name>select_RECEIVER_LOCALITY</name>
    <tag></tag>
-   <elementGuidId>37a0337d-3b37-4cf6-b08a-e59ca7c32969</elementGuidId>
+   <elementGuidId>a132a0d3-2dcb-4c82-a615-d8025a15d8e6</elementGuidId>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
@@ -11,55 +11,48 @@
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>a</value>
+      <value>select</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>name</name>
+      <type>Main</type>
+      <value>RECEIVER_LOCALITY</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>btn ng-scope</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>href</name>
-      <type>Main</type>
-      <value>javascript:void(0)</value>
+      <value>ng-pristine ng-untouched ng-valid ng-empty</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-click</name>
+      <name>ng-model</name>
       <type>Main</type>
-      <value>addItem()</value>
+      <value>selected_receiver</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-controller</name>
+      <name>ng-options</name>
       <type>Main</type>
-      <value>ItemController</value>
+      <value>l.view_locality as l.view_locality for l in receiver_localities</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-switch-when</name>
+      <name>ng-change</name>
       <type>Main</type>
-      <value>true</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>true</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>text</name>
-      <type>Main</type>
-      <value>  Add item line</value>
+      <value>senderChange()</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope new-consignment-container&quot;]/form[@class=&quot;quote ng-pristine ng-valid ng-scope ng-valid-mask ng-valid-maxlength ng-valid-date ng-valid-date-disabled ng-valid-pattern&quot;]/div[@class=&quot;row section-body&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;span24 consignment-items ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;span4&quot;]/div[@class=&quot;control-group&quot;]/div[@class=&quot;controls&quot;]/a[@class=&quot;btn ng-scope&quot;]</value>
+      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope new-consignment-container&quot;]/form[@class=&quot;quote ng-pristine ng-valid ng-scope ng-valid-mask ng-valid-maxlength ng-valid-date ng-valid-date-disabled ng-valid-pattern&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;control-group text optional ng-scope&quot;]/div[@class=&quot;row section-body&quot;]/div[@class=&quot;span7&quot;]/select[@class=&quot;ng-pristine ng-untouched ng-valid ng-empty&quot;]</value>
    </webElementProperties>
 </WebElementEntity>

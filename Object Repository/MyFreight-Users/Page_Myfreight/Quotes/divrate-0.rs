@@ -1,65 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>a_Add item line</name>
+   <name>divrate-0</name>
    <tag></tag>
-   <elementGuidId>37a0337d-3b37-4cf6-b08a-e59ca7c32969</elementGuidId>
+   <elementGuidId>9b1234ac-720e-4efa-907c-df80211d3ecf</elementGuidId>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>a</value>
+      <value>div</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>ng:class</name>
+      <type>Main</type>
+      <value>{preselected: highlightPreselectedCarrierService(rate)}</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>btn ng-scope</value>
+      <value>span24 service ng-scope highlighted</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>href</name>
+      <name>id</name>
       <type>Main</type>
-      <value>javascript:void(0)</value>
+      <value>rate-0</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>ng-click</name>
       <type>Main</type>
-      <value>addItem()</value>
+      <value>selectConsignmentRate(rate)</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-controller</name>
+      <name>ng-repeat</name>
       <type>Main</type>
-      <value>ItemController</value>
+      <value>rate in rates.carriers | orderBy:rates.carriers.total_exclusive:reverse</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-switch-when</name>
+      <name>ng-hide</name>
       <type>Main</type>
-      <value>true</value>
+      <value>readonly()</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>text</name>
+      <name>isselected</name>
       <type>Main</type>
-      <value>  Add item line</value>
+      <value>isRateSelected(rate)</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>highlighter</name>
+      <type>Main</type>
+      <value>highlighted</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope new-consignment-container&quot;]/form[@class=&quot;quote ng-pristine ng-valid ng-scope ng-valid-mask ng-valid-maxlength ng-valid-date ng-valid-date-disabled ng-valid-pattern&quot;]/div[@class=&quot;row section-body&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;span24 consignment-items ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;span4&quot;]/div[@class=&quot;control-group&quot;]/div[@class=&quot;controls&quot;]/a[@class=&quot;btn ng-scope&quot;]</value>
+      <value>id(&quot;rate-0&quot;)</value>
    </webElementProperties>
 </WebElementEntity>
