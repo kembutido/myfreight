@@ -65,11 +65,16 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/div_dangerous-goods-t
 
 WebUI.delay(1)
 
+'Toggle Sender-receiver'
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/btn_sendereceivertoggle'))
+
+WebUI.delay(1)
+
 String ts = System.currentTimeMillis().toString()
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/divrate-0'), 0)
 
-WebUI.takeScreenshot(('Test/QuickQuote1-' + ts) + '.png')
+WebUI.takeScreenshot(('Test/QuickQuote2-' + ts) + '.png')
 
 WebUI.closeBrowser()
 
