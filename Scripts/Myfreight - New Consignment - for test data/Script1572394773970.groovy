@@ -53,11 +53,25 @@ WebUI.delay(2)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Save'))
 
+WebUI.delay(2)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
+
 WebUI.delay(1)
 
-//String ts = System.currentTimeMillis().toString()
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/a_labels-to-print-link active'))
 
-//WebUI.takeScreenshot(('Test/fortestdata' + ts) + '.png')
+WebUI.delay(1)
 
-//WebUI.closeWindowIndex(1)
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/div_span1 chevron'))
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/label_checkbox-label icon-check-empty'))
+
+WebUI.delay(1)
+
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/button_Print Labels'))
+
+WebUI.delay(10)
 
