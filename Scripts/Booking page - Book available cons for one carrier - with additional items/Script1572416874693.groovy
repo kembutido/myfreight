@@ -82,3 +82,9 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/button_b
 
 WebUI.delay(3)
 
+String ts = System.currentTimeMillis().toString()
+
+WebUI.takeScreenshot(('Test/bookingwithaddtlitems-' + ts) + '.png')
+
+WebUI.closeBrowser()
+
