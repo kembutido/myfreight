@@ -13,7 +13,7 @@
       <name>strReference</name>
    </variable>
    <variable>
-      <defaultValue>'Bill'</defaultValue>
+      <defaultValue>'Chat'</defaultValue>
       <description></description>
       <id>b033bf31-225e-4cda-98ba-89be59cadf5f</id>
       <masked>false</masked>
@@ -55,7 +55,7 @@
       <name>Item1DeadWeight</name>
    </variable>
    <variable>
-      <defaultValue>'Carton'</defaultValue>
+      <defaultValue>1</defaultValue>
       <description></description>
       <id>061f89d4-4cd1-41ca-910a-ef9ae0c7fcf0</id>
       <masked>false</masked>

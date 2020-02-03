@@ -13,19 +13,20 @@ import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
 
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'dsda'
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
         , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
+'create a return consignment, despatch and email, then Loop 5 times'
 for (int i = 0; i < 5; i++) {
     WebUI.delay(2)
 
     WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
 
-    WebUI.waitForPageLoad(2)
+    WebUI.delay(1)
 
     WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_btn btn-inverse dropdown-toggle'))
 
-    WebUI.waitForPageLoad(2)
+    WebUI.delay(1)
 
     WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Return'))
 
@@ -33,8 +34,7 @@ for (int i = 0; i < 5; i++) {
 
     WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_REFERENCE_REFERENCE'), strReference)
 
-    WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_CUSTOM_REFERENCE'), strCustomRef)
-
+    //WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_CUSTOM_REFERENCE'), strCustomRef)
     //WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_DESPATCH DATE_despatch_d'), GlobalVariable.despatchDate)
     WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Sender'), strAddrSearchTerm)
 

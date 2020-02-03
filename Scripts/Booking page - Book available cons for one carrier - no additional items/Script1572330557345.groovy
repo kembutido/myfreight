@@ -24,7 +24,7 @@ WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.
 
 WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), [('strReference') : 'hey', ('strAddrSearchTerm') : 'Bill'
         , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'
-        , ('Item1ItemType') : 'Carton'], FailureHandling.STOP_ON_FAILURE)
+        , ('Item1ItemType') : 1], FailureHandling.STOP_ON_FAILURE)
 
 //ResponseObject ro = WS.sendRequest(findTestObject('Test Request'))
 //WS.verifyResponseStatusCode(ro, 201)

@@ -67,8 +67,8 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/input_
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/select_ITEM_TYPE'), 1)
 
-WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/select_ITEM_TYPE'), AddlItem1ItemType, 
-    false)
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/select_ITEM_TYPE'), AddlItem1ItemType, 
+    FailureHandling.STOP_ON_FAILURE)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/input_LENGTH'), AddlItem1Length)
 

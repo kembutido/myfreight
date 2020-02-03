@@ -26,11 +26,17 @@ WebUI.delay(1)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/h3_Printer Configuration'))
 
-WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_labelprinter'), 2)
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_labelprinter'), 0)
 
-WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_manifestprinter'), 2)
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_labelprinter'), 1)
 
-WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_connoteprinter'), 2)
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_manifestprinter'), 0)
+
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_manifestprinter'), 1)
+
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_connoteprinter'), 0)
+
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/select_connoteprinter'), 1)
 
 WebUI.delay(1)
 

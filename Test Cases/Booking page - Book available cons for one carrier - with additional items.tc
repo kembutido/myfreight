@@ -13,7 +13,7 @@
       <name>AddlItem1Qty</name>
    </variable>
    <variable>
-      <defaultValue>'Carton'</defaultValue>
+      <defaultValue>1</defaultValue>
       <description></description>
       <id>6e01d17d-a6f0-438d-a400-d25bd922364b</id>
       <masked>false</masked>
