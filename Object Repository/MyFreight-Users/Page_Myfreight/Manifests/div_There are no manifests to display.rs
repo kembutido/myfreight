@@ -21,19 +21,19 @@
       <value>alert alert-info</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
       <value>
-            There are no manifests to display.
-          </value>
+      There are no manifests to display.
+    </value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;manifests ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;span24&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;alert alert-info&quot;]</value>
+      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;manifests ng-scope&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;alert alert-info&quot;]</value>
    </webElementProperties>
 </WebElementEntity>
