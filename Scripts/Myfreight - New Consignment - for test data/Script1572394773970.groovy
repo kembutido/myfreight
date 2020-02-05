@@ -33,19 +33,18 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
-if (WebUI.verifyElementNotPresent(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/h2_Merge Consignment'), 
-    10)) {
-	WebUI.delay(1)
-} else {
-	WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/button_Cancel'))
+WebUI.delay(2)
 
+if (WebUI.verifyElementNotPresent(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/h2_Merge Consignment'), 
+    5, FailureHandling.CONTINUE_ON_FAILURE)) {
+    WebUI.delay(1)
+} else {
+    WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/button_Cancel'))
 }
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 
 WebUI.scrollToElement(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), 3)
-
-WebUI.delay(10)
 
 WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/select_ItemType'), Item1ItemType, FailureHandling.STOP_ON_FAILURE)
 
@@ -81,6 +80,4 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/
 WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/button_Print Labels'))
-
-WebUI.delay(10)
 

@@ -22,9 +22,9 @@ import internal.GlobalVariable as GlobalVariable
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
         , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), [('strReference') : 'hey', ('strAddrSearchTerm') : 'Bill'
+WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), [('strReference') : 'hey', ('strAddrSearchTerm') : 'Chat'
         , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'
-        , ('Item1ItemType') : 'Carton'], FailureHandling.STOP_ON_FAILURE)
+        , ('Item1ItemType') : '1'], FailureHandling.STOP_ON_FAILURE)
 
 //ResponseObject ro = WS.sendRequest(findTestObject('Test Request'))
 //WS.verifyResponseStatusCode(ro, 201)

@@ -20,8 +20,8 @@ WebUI.callTestCase(findTestCase('Myfreight - New Consignment - for test data'), 
         , ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15', ('Item1DeadWeight') : '5'
         , ('Item1ItemType') : 1], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.switchToWindowIndex(0)
+WebUI.switchToWindowIndex(0, FailureHandling.CONTINUE_ON_FAILURE)
 
 'Browser dependent script line - only appplicable to non-IE browsers....'
-WebUI.closeWindowIndex(1)
+WebUI.closeWindowIndex(1, FailureHandling.CONTINUE_ON_FAILURE)
 
