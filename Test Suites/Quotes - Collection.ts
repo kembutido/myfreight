@@ -30,7 +30,7 @@
             <profileName>default</profileName>
             <runConfigurationId>Firefox</runConfigurationId>
          </configuration>
-         <runEnabled>false</runEnabled>
+         <runEnabled>true</runEnabled>
          <testSuiteEntity>Test Suites/Quotes</testSuiteEntity>
       </TestSuiteRunConfiguration>
    </testSuiteRunConfigurations>

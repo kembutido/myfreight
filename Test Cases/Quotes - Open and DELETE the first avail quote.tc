@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>pre-requisite: at least one quote exists under the Quotes page</description>
+   <name>Quotes - Open and DELETE the first avail quote</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>27c6b87e-abc4-4cfd-80e1-f5b4f5ebcca4</testCaseGuid>
+</TestCaseEntity>

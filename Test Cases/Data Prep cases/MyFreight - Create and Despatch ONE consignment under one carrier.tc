@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description>in preparation for testing the Manifests page</description>
+   <name>MyFreight - Create and Despatch ONE consignment under one carrier</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>863f4a9e-19b8-4fef-85ba-51ed0339a382</testCaseGuid>
+</TestCaseEntity>

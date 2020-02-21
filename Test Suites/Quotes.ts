@@ -80,7 +80,7 @@
       <guid>50e782e4-e69b-46bd-8fae-101caddbdd1d</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Quotes - New Quote - existing receiver address - 1 item no DG</testCaseId>
+      <testCaseId>Test Cases/Quotes - New Quote - existing receiver address - 1 item with DG</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
@@ -140,7 +140,7 @@
       <guid>e2ec2284-2eca-4f59-bd8a-e744b59aa7d9</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Quotes - New Quote - existing receiver address - 1 item with DG</testCaseId>
+      <testCaseId>Test Cases/Quotes - New Quote - existing receiver address - 1 item without DG</testCaseId>
       <variableLink>
          <testDataLinkId></testDataLinkId>
          <type>DEFAULT</type>
@@ -501,5 +501,11 @@
          <value></value>
          <variableId>79501f45-4c64-45bd-af6d-c039a2cba9e8</variableId>
       </variableLink>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>d43445cb-6466-4215-b6bc-372be1c8a2fa</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Quotes - Open and DELETE the first avail quote</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

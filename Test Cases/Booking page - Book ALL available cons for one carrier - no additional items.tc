@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Booking page - Book ALL available cons for one carrier - no additional items</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>78a91c7a-7f76-481e-ade3-95b82da75e02</testCaseGuid>
+</TestCaseEntity>

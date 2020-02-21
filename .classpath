@@ -132,6 +132,7 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/dealdama/Katalon Studio/MyFreight - Consignments.prj/Drivers/ashot-1.5.4.jar"/>
 	<classpathentry kind="lib" path="C:/Testing/Katalon_Studio_Windows_64-7.2.4/configuration/plugin/install/28437/1.0.0/katalon-studio-uploadfile-plugin.jar"/>
+	<classpathentry kind="lib" path="C:/Testing/Katalon_Studio_Windows_64-7.2.4/configuration/plugin/install/40904/1.0.0/katalon-studio-testingbot-plugin.jar"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

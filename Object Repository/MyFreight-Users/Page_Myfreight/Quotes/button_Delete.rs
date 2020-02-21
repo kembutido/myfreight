@@ -4,21 +4,20 @@
    <name>button_Delete</name>
    <tag></tag>
    <elementGuidId>5585174e-c8cf-408d-896c-86ad945e9f34</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//*[(text() = 'Delete' or . = 'Delete')]</value>
+      </entry>
+   </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
       <value>button</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>disabled</name>
-      <type>Main</type>
-      <value>disabled</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
