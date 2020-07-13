@@ -38,7 +38,7 @@ WebUI.delay(1)
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
 if (WebUI.verifyElementPresent(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/h2_Merge Consignment'), 0)) {
-	WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/button_Cancel'))
+    WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/button_Cancel'))
 }
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)

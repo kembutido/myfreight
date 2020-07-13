@@ -12,6 +12,9 @@ import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
 WebUI.openBrowser('https://qa.teamwilberforce.com/#/login')
 
@@ -19,6 +22,7 @@ WebUI.waitForPageLoad(2, FailureHandling.STOP_ON_FAILURE)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'))
 
+'if login is not working in QA, check if user exists in Client\'s Users page. most likely it\'s been removed by a recent Prod sync.'
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'), loginEmail)
 
 WebUI.setEncryptedText(findTestObject('MyFreight-Users/Page_Myfreight/input_Password_password'), loginPwd)

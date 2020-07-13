@@ -19,18 +19,4 @@
       <masked>false</masked>
       <name>loginPwd</name>
    </variable>
-   <variable>
-      <defaultValue>'Jvf9mmfhklcCEM+RmaiVtA=='</defaultValue>
-      <description></description>
-      <id>1b6ded44-5d96-4070-9aa7-cdedcfff2bb9</id>
-      <masked>false</masked>
-      <name>loginPwd2</name>
-   </variable>
-   <variable>
-      <defaultValue>'david.ealdama@flexisourceit.com.au'</defaultValue>
-      <description></description>
-      <id>9baf25ea-b369-46a9-aa34-cad6fc8365fa</id>
-      <masked>false</masked>
-      <name>loginEmail2</name>
-   </variable>
 </TestCaseEntity>
