@@ -13,14 +13,14 @@
       <name>strReference</name>
    </variable>
    <variable>
-      <defaultValue>'Ref1570671418373'</defaultValue>
+      <defaultValue>'hill'</defaultValue>
       <description></description>
       <id>d630e9c6-7967-4312-bf23-89c80b096089</id>
       <masked>false</masked>
       <name>strAddrSearchTerm</name>
    </variable>
    <variable>
-      <defaultValue>'Ref1570671355918'</defaultValue>
+      <defaultValue>'Bill'</defaultValue>
       <description></description>
       <id>f7c87fcd-53f5-42a4-b8a2-422f31c6e1c3</id>
       <masked>false</masked>

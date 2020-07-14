@@ -125,60 +125,6 @@
       </variableLink>
    </testCaseLink>
    <testCaseLink>
-      <guid>0caa6fd3-7b01-4de8-843c-092f0965c12d</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Myfreight - New Consignment - existing receiver address - InvalidItemTypeInput</testCaseId>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>b3cd0fad-f3dc-4add-b8ce-351e1976c415</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>289150cc-0f42-45b6-b4b4-ecc5c7182307</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>cd656959-4fa2-42a3-ad47-71663d4daa38</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>da457423-77e3-4b1a-a931-fe2934beb167</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>38d4709f-9df4-47a3-8b0d-ac200c812fcf</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>b94d6f33-6d7e-4c9f-82ad-7129baa22991</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>268e6e91-13aa-4e5a-8f26-c954cb193b1c</variableId>
-      </variableLink>
-      <variableLink>
-         <testDataLinkId></testDataLinkId>
-         <type>DEFAULT</type>
-         <value></value>
-         <variableId>605f2323-d1f6-47bc-af8c-0fd8380c3266</variableId>
-      </variableLink>
-   </testCaseLink>
-   <testCaseLink>
       <guid>abcee5a9-de21-44ec-8c81-9b5e2525cca4</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
