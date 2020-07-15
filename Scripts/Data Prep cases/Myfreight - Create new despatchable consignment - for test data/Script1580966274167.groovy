@@ -35,7 +35,7 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/a_Address_dropdown_item1'))
 
-WebUI.delay(2)
+WebUI.delay(1)
 
 if (WebUI.verifyElementNotPresent(findTestObject('MyFreight-Users/Page_Myfreight/MergeConsignment/h2_Merge Consignment'), 
     5, FailureHandling.OPTIONAL)) {
@@ -82,6 +82,8 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/
 WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/button_Print Labels'))
+
+WebUI.delay(10)
 
 'applicable for non-IE browsers, IE browsers should ignore this line'
 WebUI.closeWindowIndex(1, FailureHandling.OPTIONAL)
