@@ -27,11 +27,11 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email')
 
 WebUI.setEncryptedText(findTestObject('MyFreight-Users/Page_Myfreight/input_Password_password'), loginPwd)
 
-WebUI.verifyElementClickable(findTestObject('MyFreight-Users/Page_Myfreight/button_Sign in'))
+WebUI.delay(1)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/button_Sign in'))
+WebUI.submit(findTestObject('MyFreight-Users/Page_Myfreight/button_Sign in'))
 
-WebUI.delay(2)
+WebUI.delay(5)
 
 WebUI.waitForPageLoad(2)
 
