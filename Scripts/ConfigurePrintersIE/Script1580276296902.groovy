@@ -12,17 +12,22 @@ import com.kms.katalon.core.testobject.TestObject as TestObject
 import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import internal.GlobalVariable as GlobalVariable
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
         , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
+WebUI.delay(1)
+
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/a_icon-user dropdown-toggle'))
 
-WebUI.delay(1)
+WebUI.delay(20)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/a_Configure Printers'))
 
-WebUI.delay(1)
+WebUI.delay(10)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/ConfigurePrinters/h3_Printer Configuration'))
 

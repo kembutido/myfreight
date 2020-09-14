@@ -4,6 +4,12 @@
    <name>a_icon-user dropdown-toggle</name>
    <tag></tag>
    <elementGuidId>3cdc50cb-262f-43c5-b031-39ca6c25f068</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;navbar ng-scope&quot;]/div[@class=&quot;navbar-inner&quot;]/ul[@class=&quot;nav pull-right&quot;]/li[@class=&quot;dropdown ng-scope&quot;]/a[@class=&quot;icon-user dropdown-toggle&quot;][count(. | //a[@class = 'icon-user dropdown-toggle']) = count(//a[@class = 'icon-user dropdown-toggle'])]</value>
+      </entry>
+   </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>
@@ -28,7 +34,7 @@
       <value>javascript:void(0)</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>false</isSelected>
+      <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
