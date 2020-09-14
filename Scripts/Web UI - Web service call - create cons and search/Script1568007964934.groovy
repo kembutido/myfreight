@@ -32,7 +32,7 @@ import groovy.json.JsonSlurper as JsonSlurper
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'david.ealdama@flexisourceit.com.au', ('loginPwd') : 'Jvf9mmfhklcCEM+RmaiVtA=='], 
     FailureHandling.STOP_ON_FAILURE)
 
-ResponseObject ro = WS.sendRequest(findTestObject('Create Cons - Birkenstock'))
+ResponseObject ro = WS.sendRequest(findTestObject('Create Consignment'))
 
 //WS.verifyResponseStatusCode(ro, 201)
 if (ro.statusCode == 201) {
