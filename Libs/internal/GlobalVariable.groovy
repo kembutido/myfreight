@@ -17,11 +17,6 @@ public class GlobalVariable {
     /**
      * <p></p>
      */
-    public static Object despatchDate
-     
-    /**
-     * <p></p>
-     */
     public static Object url
      
 
@@ -32,7 +27,6 @@ public class GlobalVariable {
             selectedVariables += RunConfiguration.getOverridingParameters()
     
             TestConsNum = selectedVariables['TestConsNum']
-            despatchDate = selectedVariables['despatchDate']
             url = selectedVariables['url']
             
         } catch (Exception e) {

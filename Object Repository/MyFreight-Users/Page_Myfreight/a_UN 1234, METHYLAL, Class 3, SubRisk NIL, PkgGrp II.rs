@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>a_CONSIGNMENTS</name>
+   <name>a_UN 1234, METHYLAL, Class 3, SubRisk NIL, PkgGrp II</name>
    <tag></tag>
-   <elementGuidId>1a107b84-8370-409c-acc8-1b3668c6c1e3</elementGuidId>
+   <elementGuidId>3d23387e-fcf7-46a4-af89-8884e9c89f6e</elementGuidId>
    <selectorCollection>
       <entry>
          <key>XPATH</key>
-         <value>//body[@id='ng-app']/div/div/div/div/ul/li[2]/a</value>
+         <value>//li[@id='typeahead-519-467-option-0']/a</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>a.ng-scope</value>
       </entry>
       <entry>
          <key>BASIC</key>
-         <value>//a[@ng-click = concat('goto(' , &quot;'&quot; , 'consignments' , &quot;'&quot; , ')') and (text() = 'CONSIGNMENTS' or . = 'CONSIGNMENTS')]</value>
+         <value>//*[(text() = '
+        
+            
+                UN: 1234, METHYLAL, Class: 3, SubRisk: NIL, PkgGrp: II
+            
+        
+    ' or . = '
+        
+            
+                UN: 1234, METHYLAL, Class: 3, SubRisk: NIL, PkgGrp: II
+            
+        
+    ')]</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
-   <useRalativeImagePath>false</useRalativeImagePath>
+   <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
@@ -26,78 +42,70 @@
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>href</name>
+      <name>tabindex</name>
       <type>Main</type>
-      <value>javascript:void(0)</value>
+      <value>-1</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>ng-click</name>
       <type>Main</type>
-      <value>goto('consignments')</value>
+      <value>selectMatch($index)</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>link</value>
+      <value>ng-scope</value>
    </webElementProperties>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>text</name>
       <type>Main</type>
-      <value>CONSIGNMENTS</value>
+      <value>
+        
+            
+                UN: 1234, METHYLAL, Class: 3, SubRisk: NIL, PkgGrp: II
+            
+        
+    </value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;ng-app&quot;)/div[@class=&quot;container&quot;]/div[@class=&quot;ng-scope&quot;]/div[@class=&quot;navbar ng-scope&quot;]/div[@class=&quot;navbar-inner&quot;]/ul[@class=&quot;nav&quot;]/li[2]/a[@class=&quot;link&quot;]</value>
+      <value>id(&quot;typeahead-519-467-option-0&quot;)/a[@class=&quot;ng-scope&quot;]</value>
    </webElementProperties>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:idRelative</name>
       <type>Main</type>
-      <value>//body[@id='ng-app']/div/div/div/div/ul/li[2]/a</value>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:link</name>
-      <type>Main</type>
-      <value>//a[contains(text(),'CONSIGNMENTS')]</value>
+      <value>//li[@id='typeahead-519-467-option-0']/a</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='MANIFESTS'])[1]/preceding::a[1]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='AGG.QTY'])[1]/following::a[1]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:neighbor</name>
       <type>Main</type>
-      <value>(.//*[normalize-space(text()) and normalize-space(.)='QUOTES'])[1]/preceding::a[2]</value>
-   </webElementXpaths>
-   <webElementXpaths>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>xpath:href</name>
-      <type>Main</type>
-      <value>(//a[contains(@href, 'javascript:void(0)')])[2]</value>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='UN: 1230, METHANOL, Class: 3, SubRisk: 6.1, PkgGrp: II'])[1]/preceding::a[2]</value>
    </webElementXpaths>
    <webElementXpaths>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath:position</name>
       <type>Main</type>
-      <value>//li[2]/a</value>
+      <value>//div[2]/ul/li/a</value>
    </webElementXpaths>
 </WebElementEntity>

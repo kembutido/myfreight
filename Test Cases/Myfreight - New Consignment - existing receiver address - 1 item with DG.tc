@@ -13,7 +13,7 @@
       <name>strReference</name>
    </variable>
    <variable>
-      <defaultValue>'Bill'</defaultValue>
+      <defaultValue>'hill'</defaultValue>
       <description></description>
       <id>aa2464f7-d651-4bbc-9bdf-875a84106e1c</id>
       <masked>false</masked>

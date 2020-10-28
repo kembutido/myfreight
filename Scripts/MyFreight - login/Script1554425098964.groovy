@@ -16,7 +16,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
-WebUI.openBrowser('https://qa.teamwilberforce.com/#/login')
+WebUI.openBrowser(GlobalVariable.url)
 
 WebUI.waitForPageLoad(2, FailureHandling.STOP_ON_FAILURE)
 

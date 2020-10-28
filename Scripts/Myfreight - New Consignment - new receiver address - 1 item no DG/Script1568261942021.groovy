@@ -56,7 +56,7 @@ WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Address Line 4_address_l'), '5th left turn')
 
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_suburb town or city_loca'), '5022')
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_suburb, town or city_locality'), '5022')
 
 WebUI.delay(1)
 
