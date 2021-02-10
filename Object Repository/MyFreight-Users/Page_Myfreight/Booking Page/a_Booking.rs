@@ -4,6 +4,12 @@
    <name>a_Booking</name>
    <tag></tag>
    <elementGuidId>7cf3c652-bb34-423f-ba91-fb27bfdd8d66</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>BASIC</key>
+         <value>//a[@ng-click = concat('goto(' , &quot;'&quot; , 'bookings' , &quot;'&quot; , ')') and (text() = 'Booking' or . = 'Booking')]</value>
+      </entry>
+   </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
    <useRalativeImagePath>false</useRalativeImagePath>
    <webElementProperties>

@@ -17,7 +17,12 @@ public class GlobalVariable {
     /**
      * <p></p>
      */
-    public static Object url
+    public static Object loginurl
+     
+    /**
+     * <p></p>
+     */
+    public static Object despatchDate
      
 
     static {
@@ -27,7 +32,8 @@ public class GlobalVariable {
             selectedVariables += RunConfiguration.getOverridingParameters()
     
             TestConsNum = selectedVariables['TestConsNum']
-            url = selectedVariables['url']
+            loginurl = selectedVariables['loginurl']
+            despatchDate = selectedVariables['despatchDate']
             
         } catch (Exception e) {
             TestCaseMain.logGlobalVariableError(e)

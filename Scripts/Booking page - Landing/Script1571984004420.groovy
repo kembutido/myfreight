@@ -17,7 +17,7 @@ import internal.GlobalVariable as GlobalVariable
 WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
         , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
 
-WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a-booking-enquiries'))
+WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a_QUOTES_enquiries'))
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Booking Page/a_Booking'))
 

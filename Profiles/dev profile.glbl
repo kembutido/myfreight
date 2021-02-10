@@ -6,7 +6,17 @@
    <defaultProfile>false</defaultProfile>
    <GlobalVariableEntity>
       <description></description>
+      <initValue>''</initValue>
+      <name>TestConsNum</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
       <initValue>'https://uat.teamwilberforce.com/#/login'</initValue>
-      <name>url</name>
+      <name>loginurl</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>despatchDate</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

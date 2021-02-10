@@ -12,6 +12,11 @@
    <GlobalVariableEntity>
       <description></description>
       <initValue>'https://qa.teamwilberforce.com/#/login'</initValue>
-      <name>url</name>
+      <name>loginurl</name>
+   </GlobalVariableEntity>
+   <GlobalVariableEntity>
+      <description></description>
+      <initValue>''</initValue>
+      <name>despatchDate</name>
    </GlobalVariableEntity>
 </GlobalVariableEntities>

@@ -1,85 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <WebElementEntity>
    <description></description>
-   <name>divrate-0</name>
+   <name>a_QUOTES_enquiries</name>
    <tag></tag>
-   <elementGuidId>9b1234ac-720e-4efa-907c-df80211d3ecf</elementGuidId>
+   <elementGuidId>cf766f52-cc5f-49e1-be85-cfd2f707447e</elementGuidId>
    <selectorCollection>
       <entry>
-         <key>BASIC</key>
-         <value>//div[@ng:class = '{preselected: highlightPreselectedCarrierService(rate)}' and @id = 'rate-0']</value>
+         <key>XPATH</key>
+         <value>//a[@id='enquiries']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>#enquiries</value>
       </entry>
    </selectorCollection>
    <selectorMethod>BASIC</selectorMethod>
-   <useRalativeImagePath>false</useRalativeImagePath>
+   <useRalativeImagePath>true</useRalativeImagePath>
    <webElementProperties>
-      <isSelected>true</isSelected>
+      <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>tag</name>
       <type>Main</type>
-      <value>div</value>
+      <value>a</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng:class</name>
+      <name>href</name>
       <type>Main</type>
-      <value>{preselected: highlightPreselectedCarrierService(rate)}</value>
+      <value>javascript:void(0)</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>class</name>
       <type>Main</type>
-      <value>span24 service ng-scope highlighted</value>
+      <value>icon-question-sign dropdown-toggle</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>true</isSelected>
       <matchCondition>equals</matchCondition>
       <name>id</name>
       <type>Main</type>
-      <value>rate-0</value>
+      <value>enquiries</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-click</name>
+      <name>aria-haspopup</name>
       <type>Main</type>
-      <value>selectConsignmentRate(rate)</value>
+      <value>true</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
-      <name>ng-repeat</name>
+      <name>aria-expanded</name>
       <type>Main</type>
-      <value>rate in rates.carriers | orderBy:rates.carriers.total_exclusive:reverse</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>ng-hide</name>
-      <type>Main</type>
-      <value>readonly()</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>isselected</name>
-      <type>Main</type>
-      <value>isRateSelected(rate)</value>
-   </webElementProperties>
-   <webElementProperties>
-      <isSelected>false</isSelected>
-      <matchCondition>equals</matchCondition>
-      <name>highlighter</name>
-      <type>Main</type>
-      <value>highlighted</value>
+      <value>true</value>
    </webElementProperties>
    <webElementProperties>
       <isSelected>false</isSelected>
       <matchCondition>equals</matchCondition>
       <name>xpath</name>
       <type>Main</type>
-      <value>id(&quot;rate-0&quot;)</value>
+      <value>id(&quot;enquiries&quot;)</value>
    </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//a[@id='enquiries']</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//body[@id='ng-app']/div/div/div/div/ul[2]/li[2]/a</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>(//a[contains(@href, 'javascript:void(0)')])[5]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//ul[2]/li[2]/a</value>
+   </webElementXpaths>
 </WebElementEntity>

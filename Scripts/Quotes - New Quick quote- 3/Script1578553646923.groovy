@@ -32,19 +32,15 @@ WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/a_Quick Quote'
 
 WebUI.delay(1)
 
-WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/select_site-name ng-pristine ng-untouched ng-valid ng-not-empty'), 
-    'Birkis 4 U(BIR2)', false)
+WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/input_SENDER_POSTCODE'), '3134')
 
-WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/input_RECEIVER_POSTCODE'), '3068')
-
-WebUI.selectOptionByLabel(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/select_SENDER_LOCALITY'), 'CLIFTON HILL', 
-    false)
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/select_SENDER_LOCALITY'), '1', FailureHandling.OPTIONAL)
 
 WebUI.delay(1)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/input_RECEIVER_POSTCODE'), '3128')
 
-WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/select_RECEIVER_LOCALITY'), '0', FailureHandling.STOP_ON_FAILURE)
+WebUI.selectOptionByIndex(findTestObject('MyFreight-Users/Page_Myfreight/Quotes/select_RECEIVER_LOCALITY'), '1', FailureHandling.OPTIONAL)
 
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_QUANTITY'), Item1Quantity)
 

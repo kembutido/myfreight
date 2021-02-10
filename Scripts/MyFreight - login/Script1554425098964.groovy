@@ -16,7 +16,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import com.kms.katalon.core.testng.keyword.TestNGBuiltinKeywords as TestNGKW
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
-WebUI.openBrowser(GlobalVariable.url)
+WebUI.openBrowser(GlobalVariable.loginurl)
 
 WebUI.waitForPageLoad(2, FailureHandling.STOP_ON_FAILURE)
 
@@ -25,7 +25,7 @@ WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/input_
 'if login is not working in QA, check if user exists in Client\'s Users page. most likely it\'s been removed by a recent Prod sync.'
 WebUI.setText(findTestObject('MyFreight-Users/Page_Myfreight/input_Email_email'), loginEmail)
 
-WebUI.setEncryptedText(findTestObject('MyFreight-Users/Page_Myfreight/input_Password_password'), loginPwd)
+WebUI.setEncryptedText(findTestObject('MyFreight-Users/Page_Myfreight/input_password'), loginPwd)
 
 WebUI.delay(1)
 
