@@ -19,8 +19,8 @@ import internal.GlobalVariable as GlobalVariable
 //import com.kms.katalon.core.testobject.RestRequestObjectBuilder as RestRequestObjectBuilder
 //import com.kms.katalon.core.testobject.impl.HttpTextBodyContent as HttpTextBodyContent
 //import groovy.json.JsonSlurper as JsonSlurper
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='
-        , ('loginPwd2') : 'Jvf9mmfhklcCEM+RmaiVtA==', ('loginEmail2') : 'david.ealdama@flexisourceit.com.au'], FailureHandling.STOP_ON_FAILURE)
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'X50s0pkHYA+wk3H3pfQfVQ=='], 
+    FailureHandling.STOP_ON_FAILURE)
 
 WebUI.callTestCase(findTestCase('Data Prep cases/Myfreight - Create new despatchable consignment - for test data'), [('strReference') : 'hey'
         , ('strAddrSearchTerm') : 'Bill', ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15'
@@ -70,3 +70,4 @@ String ts = System.currentTimeMillis().toString()
 WebUI.takeScreenshot(('Test/Bookallavailconsfor1carrier-noaddlitems' + ts) + '.png')
 
 WebUI.closeBrowser()
+

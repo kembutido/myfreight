@@ -33,7 +33,7 @@ WebUI.submit(findTestObject('MyFreight-Users/Page_Myfreight/button_Sign in'))
 
 WebUI.delay(5)
 
-WebUI.waitForPageLoad(2)
+WebUI.waitForPageLoad(1)
 
 WebUI.verifyElementVisible(findTestObject('MyFreight-Users/Page_Myfreight/a_CONSIGNMENTS'))
 
