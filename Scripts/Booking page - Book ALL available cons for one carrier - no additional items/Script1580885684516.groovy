@@ -19,11 +19,11 @@ import internal.GlobalVariable as GlobalVariable
 //import com.kms.katalon.core.testobject.RestRequestObjectBuilder as RestRequestObjectBuilder
 //import com.kms.katalon.core.testobject.impl.HttpTextBodyContent as HttpTextBodyContent
 //import groovy.json.JsonSlurper as JsonSlurper
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'X50s0pkHYA+wk3H3pfQfVQ=='], 
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : '1kvRxLz89p4ZgRvJ6Tqr6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.callTestCase(findTestCase('Data Prep cases/Myfreight - Create new despatchable consignment - for test data'), [('strReference') : 'hey'
-        , ('strAddrSearchTerm') : 'Bill', ('Item1Quantity') : '2', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15'
+        , ('strAddrSearchTerm') : 'Hat', ('Item1Quantity') : '3', ('Item1Length') : '22', ('Item1Width') : '24', ('Item1Height') : '15'
         , ('Item1DeadWeight') : '5', ('Item1ItemType') : 1], FailureHandling.STOP_ON_FAILURE)
 
 //ResponseObject ro = WS.sendRequest(findTestObject('Test Request'))

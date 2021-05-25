@@ -17,7 +17,7 @@ import internal.GlobalVariable as GlobalVariable
 
 //import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 //import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : '1kvRxLz89p4ZgRvJ6Tqr6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForPageLoad(1)

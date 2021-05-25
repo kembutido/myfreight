@@ -20,7 +20,7 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 //import com.kms.katalon.core.testobject.RestRequestObjectBuilder as RestRequestObjectBuilder
 //import com.kms.katalon.core.testobject.impl.HttpTextBodyContent as HttpTextBodyContent
 //import groovy.json.JsonSlurper as JsonSlurper
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : '1kvRxLz89p4ZgRvJ6Tqr6Q=='], 
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : '5Kt/6eAdkwVnW/BayCZccw=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.callTestCase(findTestCase('Data Prep cases/Myfreight - Create new despatchable consignment - for test data'), [('strReference') : 'from Book available cons for one carrier - with additional items'

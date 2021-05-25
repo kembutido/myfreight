@@ -18,7 +18,7 @@ import org.openqa.selenium.Keys as Keys
 //import ru.yandex.qatools.ashot.Screenshot
 //import ru.yandex.qatools.ashot.shooting.ShootingStrategies
 //import javax.imageio.ImageIO as ImageIO
-WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : 'EFc/3RtcwuGANqtaSV3M6Q=='], 
+WebUI.callTestCase(findTestCase('MyFreight - login'), [('loginEmail') : 'davide.myfreight@gmail.com', ('loginPwd') : '1kvRxLz89p4ZgRvJ6Tqr6Q=='], 
     FailureHandling.STOP_ON_FAILURE)
 
 WebUI.waitForPageLoad(1)

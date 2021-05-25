@@ -83,10 +83,10 @@ WebUI.delay(1)
 
 WebUI.click(findTestObject('MyFreight-Users/Page_Myfreight/Consignments Landing/button_Print Labels'))
 
-WebUI.delay(10)
+WebUI.delay(12)
 
 'applicable for non-IE browsers, IE browsers should ignore this line'
 WebUI.closeWindowIndex(1, FailureHandling.OPTIONAL)
 
-WebUI.switchToWindowIndex(0)
+WebUI.switchToWindowIndex(0, FailureHandling.OPTIONAL)
 
