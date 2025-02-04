@@ -1,0 +1,973 @@
+{
+	"info": {
+		"_postman_id": "15ad8e82-d889-47db-8fab-7ac7e571586d",
+		"name": "Consignment creation to despatch",
+		"description": "StartFragment\n\nwhenever you test any new JSON fields (API work), from now on always test numerical fields by sending numbers, and retest by sending strings since both are valid, but need to be handled by our code. So when we change or add fields, you will need to test for both of these cases.\n\nEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AAA create consignment - outbound - QA - 2 items",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dca015fe-2b75-45bd-8170-9e96bbedbffe",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"pm.environment.set(\"considQA\", jsonData.id);\r",
+							"\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f119d786-7f6c-4be2-9052-f6ee4cd15555",
+						"exec": [
+							"var moment = require('moment');\r",
+							"var momentdate = moment().format(\"YYYY-MM-DD\");\r",
+							"var momenttimestamp = moment().format('YYYYMMDDTHH:mm:ssZ');\r",
+							"pm.globals.set(\"currentDate\", momentdate);\r",
+							"pm.globals.set(\"CurrentTimestamp\", momenttimestamp);\r",
+							"\r",
+							"//encode the current  to base64 to have a unique string everyday\r",
+							"\r",
+							"//var date64 = CryptoJS.enc.Base64.stringify(rawStr);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "657b1b9a-9088-49bf-8c5d-5baf8affdbc8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "{{UserName}}",
+						"password": "{{AuthToken}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"site_code\": \"{{sitecode}}\",\n    \"despatch_date\": \"{{currentDate}}\",\n    \"reference\": \"{{$randomBankAccountIban}}\",\n    //\"reference\": \"{{$isoTimestamp}}\",\n    //\"custom_reference\": null,\n    \"custom_reference\": \"{{customRef}}\",\n    //\"custom_reference\": \"2007 - L&SRAYMONDTERRACE\",\n    \"account_payable\": \"{{payable}}\",\n    //\"charge_account\": \"{{$randomBankAccount}}\",\n    \"charge_account\":\"{{ChargeAccount}}\",\n    //\"special_instructions\": null,\n    \"special_instructions\": \"{{$randomLoremWords}}\",\n    \"carrier_service\": \"{{carrierservice}}\",\n    //\"carrier_route\": \"BARNACLE\",\n    //\"custom_label_printer\": \"SomePrinter\",\n    \"third_party\": false,\n    //\"pickup_at\": \"2023-02-14T08:00:00.000Z\",\n    //\"deliver_by\": \"2023-02-16T08:00:00.000Z\",\n    \"sender_address\": {\n        \"name\": \"{{sitename}}\"\n //       \"code\": \"{{sitecode}}\"\n    },\n    \"receiver_address\": {\n        \"name\": \"{{$randomFullName}}\",\n        //\"name\": \"{{longname001}}\",\n        //\"code\": \"{{longname002}}-{{custPostcode}}\",\n        //\"code\": \"m6858-7969679\",\n        \"code\": \"{{$randomAdjective}}-{{custPostcode}}\",\n        //\"email\": \"{{longemail}}\",\n        \"email\": \"{{$randomEmail}}\",\n        \"phone\": \"0282410241\",\n        //        \"address_line_1\": \"1\",\n        //        \"address_line_2\": \"{{$randomStreetAddress}}\",\n        //\"address_line_1\": \"{{longstreet001}}\",\n        \"address_line_1\": \"{{$randomStreetAddress}}\",\n        //\"address_line_2\": \"{{longstreet002}}\",\n        \"address_line_2\": \"{{$randomLoremWords}}\",\n        \"address_line_3\": null,\n        \"address_line_4\": \"{{$randomProductAdjective}}\",\n        \"sublocality\": \"{{custSublocality}}\",\n        \"locality\": \"{{custLocality}}\",\n        \"postcode\": \"{{custPostcode}}\",\n        \"region\": \"{{custRegion}}\",\n        \"country\": \"{{custCountry}}\",\n        \"address_type\": \"{{rcvr-addresstype}}\"\n    },\n    \"items\": [\n        {\n            \"reference\": \"item reference 001\",\n            \"quantity\": 2,\n            \"item_type_description\": \"{{itemtypeDesc}}\",\n            \"length\": 10,\n            \"width\": 10,\n            \"height\": 10,\n            \"weight_in_kilograms\": \"{{weight_in_kilograms}}\"\n            //\"weight_in_kilograms\": 9\n            //\"weight_in_kilograms\": 2147483647\n        }\n    ]\n}"
+				},
+				"url": "https://qa.teamwilberforce.com/public/api/v1/consignments"
+			},
+			"response": []
+		},
+		{
+			"name": "B - PDF print API call - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "610ac514-761c-4e97-b99b-b1edbcae3b8b"
+					}
+				}
+			],
+			"id": "3fd2bf2a-a8ba-4054-b90a-2bfd328c5a77",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{AuthToken}}",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}.pdf"
+			},
+			"response": [
+				{
+					"id": "f357072f-010a-4784-bcb9-1cf079be8aaf",
+					"name": "2 - PDF print API call - QA",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}.pdf"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "pdf",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 20 Apr 2021 02:11:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/pdf"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.12.2"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=\"labels.pdf\""
+						},
+						{
+							"key": "Content-Transfer-Encoding",
+							"value": "binary"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=0SfdNhNBD%2FYqE6PwRYZKlGFy8jU%2BRKVdYVfAiT9ABKzFEVyCxRpf%2F29GeFXwpjBFUD0YGve0e%2FM9Rf8n4Ql%2Fxw%3D%3D; path=/"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_wilberforce_session=Qmx5cThFL0VPL0tWR1NHejdZZ2JJb0FGanlzY1ZoSUlvOFNoa0VPRVZiMHFDWDhCRDk4dzc0UktReTVwQ3h6cmVON1F5STlSVTRNcDBXb2RKZGV1ZUxkd2dJeU5aTS9kUHZkYitzTW5oVFl2SUMrL0NyQWlUNjA0cDVQSy9GUDBtVlMzZW5yMW5ucXIwRFRCc3BVQVVuN3FUMjMzclpXV2d0bjE2bkpHWWp0WUFNS3F2QmJNeVhEL0RtQTl6YkNsLS11MnRpRTAvWUtvaVR6SUY1ZEdmdUlnPT0%3D--05ac672f81c592844a5b2dcbe02f17daf289d5c1; path=/; HttpOnly"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7f853594-d084-4734-9614-cbb0b7b05a46"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "2.436812"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "%PDF-1.4\n1 0 obj\n<<\n/Title (��)\n/Creator (��\u0000w\u0000k\u0000h\u0000t\u0000m\u0000l\u0000t\u0000o\u0000p\u0000d\u0000f\u0000 \u00000\u0000.\u00001\u00002\u0000.\u00004)\n/Producer (��\u0000Q\u0000t\u0000 \u00004\u0000.\u00008\u0000.\u00007)\n/CreationDate (D:20210420121111+10'00')\n>>\nendobj\n3 0 obj\n<<\n/Type /ExtGState\n/SA true\n/SM 0.02\n/ca 1.0\n/CA 1.0\n/AIS false\n/SMask /None>>\nendobj\n4 0 obj\n[/Pattern /DeviceRGB]\nendobj\n8 0 obj\n<<\n/Type /XObject\n/Subtype /Image\n/Width 420\n/Height 120\n/BitsPerComponent 8\n/ColorSpace /DeviceRGB\n/Length 9 0 R\n/Filter /FlateDecode\n>>\nstream\nx��A\u000e\u00030\b���O��$��4���#-&��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��\u001f��S���gJ �����@�H\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z�\u000f�\u0005/+��\nendstream\nendobj\n9 0 obj\n5148\nendobj\n10 0 obj\n<<\n/Type /Catalog\n/Pages 2 0 R\n>>\nendobj\n5 0 obj\n<<\n/Type /Page\n/Parent 2 0 R\n/Contents 11 0 R\n/Resources 13 0 R\n/Annots 14 0 R\n/MediaBox [0 0 842 595]\n>>\nendobj\n13 0 obj\n<<\n/ColorSpace <<\n/PCSp 4 0 R\n/CSp /DeviceRGB\n/CSpg /DeviceGray\n>>\n/ExtGState <<\n/GSa 3 0 R\n>>\n/Pattern <<\n>>\n/Font <<\n/F6 6 0 R\n/F7 7 0 R\n>>\n/XObject <<\n/Im8 8 0 R\n>>\n>>\nendobj\n14 0 obj\n[ ]\nendobj\n11 0 obj\n<<\n/Length 12 0 R\n/Filter /FlateDecode\n>>\nstream\nx��]Ko�6\u0010��W�\\ \n9|�\u0004�\u0002��\u0014���\"\u0001z(z(��\u0016�Ͷi\u000f���DI�,t\";��0\u0001b�cR\u001cr\u001e�\fG���w��?�e�����C���+xYi\u001e~X�{\u00117�-��L\u001bӾg\u000f��\u0013{*>\u0014\u001f������F\rc���\f�+B���'��?F�G��3��W��\u001d���c!���z|�?~�?V�*I\bN·�����,~��}����\\i[�\u000bs���>y�\u001b.E�\u001bw}֕�\u0017!�e�\"���ŧ��W��Q�W�\u000eDN\u001a�\u0004���Z����ڒ���q���]��\u00137��o��A�q�d{�0/f/^[�\u0017�\u0010Y(�\u0017�\u0015ʾ[I�w���`�g|?�$m.�4������a���'&\u001a�.���c�م���G�m�w߱�υP���W��\u0012(�Pt���5iC���j(�{�\u0017o)UBz���q<��Z��\u0002��:3�ب��K��2��7���8�����sl�?��Od\u001d����,bV���Ǭ\fY\u0019����`�0\u0003�\u0003�0�ц\u0006��\u0004�,%Y�I\u001bJ\u0015(�//�\u0014\fcl��8�90�\u0005�(\u0005wr��\nR�!e������0^�EbQ��\u00106��[���(�h�d�5\b�]�n��XC[��i�a�8�>يT)�\u0013\t;� H�0ŀ��\t�M�\u001b�!�L�\u0007S\u0002��\u0001ҬFÜ�=���Ҝ�oA�0\u000b\b'��\n�/K��hS\u0012}�\u0002�V0_lZN\u0003K�*���x32�%Q�\u0000�\bnKn�k`F4\u000ej\u001f�3\u0003o�aɑ\u00189�E��p\u001e���!+��u�\u001f\u0016j��\u0006\r�F�\t�\u0000D{h\u0015Q,���ͤ@\u000b�\u000f\u0013~\"�I9E7\u000b6��[�����h�d�5\f�u\u001f�_�S�I���(�~���u\u0018\u001e��Ghb��Mס�A��83Иlz\u0016oz�2de�ʐ����L\b���C\t\\�\"V��\u0006�a�\u001b\u0018@�!��E\u0014�\u000f>d�����*\u0007�3c3�ĥ��\f\u0010����,��:\u000f�P1�\u0012\u001eJlU�ڲ�����5���7��Y����vn6�\u0004DA#$\u0011��G-\u0001\u001f�\u0018W���k�%�����f6gK7gٷ\u001f�����N��\\핶bVYu��`[1��k[wsQ�\u0001\u0017����$�vՂ��>�h3��l���{��{d~���)u��\u0013\u0018�ռ�l\u0007̝\u0010��%9*T��M���\t�\u0013x4Rpn7��Q�{!�����/�2�\"\u000fE\u0005ߘ��%��\u0012û�\u0012�\u0002��4�0xO\u001e��\"����#���,+�\u0007\u000b\u0013��ȘNd����Iix�'N����[�m\u0012�\u0001���H=O�\u000b�g}�r\u0001L\\\u0007�bJ7Pmp\u001fH�\u00050�P�gA�\u000b̈́�\u001a��^���]\u001d�\u0004�fH3\u001c�\u0001�\t�+i�\u0017�r=�\u0019^?���S�A�\u0000AF\u0000J���!�@J�)WV�n\u0019N�\u0002\u001d\u0007@K��zV\u001f\u0007g}\u0005)��kHYANo e\r)����ӓ\u0007BX�d'J��`c�8\u0014�Μ�)\u001b�<Z,|\u001d(\u0016\u001d�wc�\t����;6\u001f\n3I(�X`�X@QJp� �X01?x\r��c�Y����\u0016�\u0003z/�\u0016p�\u0013��E�@J\u0005�\u0006Ţ�hu�Bl!\n\u0007���$��⇅,�\u0000WH\u0001�\fZ����$��`\u001e\u0012k\rg�賂�L��_\u0005]�����,u`c\u0004[Mi�⏠����\u001a�z�5��\u0007z�\u0004\u0005�-\u0001t�\u001aX8k<�\u0014�\r����s�Qe��io���\u0010'�G%�M��\tG{0vL$<�u`���tJ�\u0016N��t\u0010|HTbu�pn��7�\u001b^�)�H�\u001d7���3,�s6\u0003����\b�Śp� 9\u0012��<�e��m�MU�5 \b�1��X\u000e�L�Z���\u0004Iګ�XN�'E;nr\u001d�|:��W|�\u0018�RX˫�\u001cR�\u000f�iU��_\u0006��6\"ª��G�\u001e�ӟ�\u001f�\u000e�Y�C&2\u001b&�0da8\u0007a8�#��%�\u0007ç��\u0016\u0001�/`ܔ\u001f���\u001a�lV��9��\u001c~H��.)�\u001eNta����u���\n�u�MT��`�g�\u0014�:\u0003\u001dOv\r\u0002�ɢ����oQVίp����)R�YP�9\u000b6�>��y?���yԤ���\u000f)���RΙ\u001b�\u00036p\u0011Y�\"q\u0016�\u0001=9�\u001aϟ�\t��V03;�\u001az�\u001f\u0019�{�\r��i�{�|ѳ�%�u�m�!��)r/V)�4e%\u001b�E)�⮲��W\u000fӎ�Q��Bڃ\\�\"ޮs�����.x�����\u001e]��T\u000bX\u0017��3���V�\u0014<\u0003H�A%�V�7B��\u0005��5\"�Q8�P�\u000f�G��\nendstream\nendobj\n12 0 obj\n1905\nendobj\n15 0 obj\n<< /Type /FontDescriptor\n/FontName /QPAAAA+Arial-BoldMT\n/Flags 4 \n/FontBBox [-627.929687 -376.464843 2033.69140 1047.85156 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 104.980468 \n/FontFile2 16 0 R\n>>\nendobj\n16 0 obj\n<<\n/Length1 12648 \n/Length 19 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|Tչ?�Ν�\u0010���6\t[n\u00162Yg�L&\u000b[�\n!$!+D�p3��\\�%�B\f ����\u0015\u0011|\u0005\\jժX}.\u0015�\r�O�吝Z�ֺ<+�jkmU*����s�L&���^3�;�=�;����s� �\b�(�\u001di\u0010j봔�M��\u0004#���\u0019r�\u000e�ܺ�1�?@Ȱ�!�\u0003�ǚ�\u0011Jp�X�\u0003\u0006�\u0001�w�s������\u0012���Ex~�鱋��\u0007_G(�zx\u001et�W\f�r�\b��ó�\u0016]�/d�w\b%�\"4�\raͫܓH����֊\u0010��~k~�\u0006��(-7U�s�Gh����E�[���A\u0002\u0012�Ǵ�(�ت_�\u001fZ����8�ሓZ\"X��\be\u00182\fs��\u0011��\u0004��EZt\u0001\t�iP�@\u001f\u001f�=����!���~l9�\u001c�N���!��Ɣd�~��1S��O�*��K�V�Zmz壴]����-8s�2���df�`�r��5��z���g��\u0004�2��\u001fI\u00038\u0010�`�*�vtSn�\u001cġ��s|\u001c蟆L`A�1%1^���4�\u0018�+ʍT�!�\b��RbY\"\u0007��p��]q\u001d�~�ׯ�y���Xs�gMO�3YK�Lƙ\u0018�M7�iO�\u001eQ����\u001d����'��G�|��3��ʸ���O\u00172һ��ø]\u0006�\u0018�\u0007��q󴯐��c+����(\u0007Ӵ�|�\u0004��\u001c��\u001e�F�\u0014Q\u001b�\u001a��Y\u0006l�����ܖO\u001e}T�Ly\u0000����xl�W�o���\u000be*��v\bD\u000e]�22\f:���j��(玽�jG�\u0007|��\r����5D�YX�>���.\u0011b\u0007q1��i�9���%�c#w�K����\u0014pR�\u001a���D�F�����ࣣ���<\\�����\u0016�a���k9!�.Xt\u0010!]\u001a��A�\n��I��\fl8����X��T>U�V�[�=�I�|�u#Յ�䂵����T'�!#\u0019�����\u0007�V����\u0017\u0016\u0002\u000f�\u0014�\u000bx�P��A��4�\u0006�q\u0003���S�;�\u0007\u000f\u0012l\u000e\u0003�g�95�3#�0_=�1�nP�X\t�\u0013_)\u001b�B��۩rCNe��\u0003����p\u000e\u0016�\n�\u0012��)O(�� ����_\u000fV\u0006��\u0005E\u000bx\u0011m�a}\u0002ʠ�\u0004�Y�Ijjge\u0019\f\u00065�h\u0001�d\u001d�o���+{�KJ�������\u001f�77+\u0003�-Kl�iO�d�<\u000f�Y���<>9�:FYgL)-�i�Y�It���O��\u0019(�j+\rk�ocb�FՒ\u0015�ZF�MYG8ϟ��5�����\u0017�X��7��\u0002�ep�[����g��\u0016g?rN{ʔ7 ]u��Ι�u��*���\u0013E\u0005\t���ք��&KQ\f�\u0001���\u001f�CfWA>�!��\u0012�\u0005\u001f[\u000e�m%Ph�9�Dr\u0012�t\u0002�,���\u0014\u000bi�m��[�d��l{�/}�qM�\u0015\u001b��I���R�HZ�hˎ&Ka�o�p\f͛۸xێ���o<�ߞyC]=^8�ݚ�=�`��b���~�j\u001d�t6v\u0018:CYV�-�b��W��۷��)+߱\rl����S3��4D91��ZRnǖ�q\f^��{8_9�<��Ny\u001b\u0012ՠ��\u0018�8H�%\u0017\u001e#��\u0000���f#3�Z�9}���\u0006��X��B`p\u0012Åpe�u�4峩y�u�\u000b\u0016���\u001fض\u0005����;��������\n������V�+*�:**��ٝy��myp\u000b�z�+��ًz\u001fދox��5}c���\u0019\u0000�]}mu\r��$/����\u0017$&\u0019�`G$�\u0016*rrf\u0018 �h�V3�\b������������W7-1\u0017��o\\��A�Źg�+XVX0��T��8�����\\�Ӆ�\u000b�jO��ifKs�ZGwO�im�Viͺ���)�^��vJa����)<\u000e>�\\1%�bn�����\t�\u001d�\u001f�G��(\u0011e��e4q��@z�)gN\u0012��\fƎ���[�v�(>z�n�uM}\u0003\u0016��ݮeM\u00187-s�����}��jl8~˟?�����������G���M:D���w@?4\u0012�\u0012!\u000bB[\u0011h4�T@�*�p�r\u001eg){�r����ꚶ�ִZ�Xl���\u0004��Ǹ�ה��\u0012�\r���a<���xS\u0003{O\u000ex��2I~\u0010�<�C���iHX*��D拑�\u001a�V�\u0002\u000f(�%_���O���\u0006\u0017ij\u0016��\u0016\u0015�4�\u0017t�����\u001d�cm��уo�#7��(O_ٰ\u0018ggc�hMu]����\u001bҠ��Hv��d�c�Q��΀o�f��+/kX׻b����)�|�M�ge�/̰�u�(�\u00139>��;��F�,�S��\\�[�\u001b0J�^�T�\u0007cҨqFr��\u000bv�%cokj�T���\u001f�e}\u0005H�\u0006$n�}1�v*\u0003�\u0011\u0003يu\u0010��D�\nE\u0005�C�\u0002��x����v�|l���E\tضdӚ�E��vH��מ\n~v#�w���١C�R�{�˿�m\u0003^�v�g\u001dm�u9R� �\u00170�E1�\tNP\u0006�\r\u0014\u0012k)�\n�W9����W��j^�\u0011\u0013h�}uM˲�\u001c�4n�}֒Y3s�jj\u001fR����ddYm5����.�\u001a4d��\u001f�'��:� �&\r ��\u0007P×(�+)m�|A54��me�d�T8��>�v?���}����}R�Q��d�=O���[\u001e�3��1x�cݍ\u00071��\"Y�\u0004j�\fZ��B�k*WŃ\u001f\u001a�U3�ъ���y�Cʛ�\u001e��\u001b�\u0018��\u0015X\u001a/�嗞X��4G\u0013\u0017���qj|\u0014���s�\u001dk�paA�Cϵ�湛�\u000bp_y �]\t�\r�\u001aJ\rј{�|t)�Y����������\u0019�iQ�3�zW�lqcN��9��vȩ���+\tiӍ���\n\nq��l\t��\u000b��\u000b��\u0006u��\u001b��4܄/S\u000e㫕_)_���%ިl\t��o�U�#�\u0007���8\rő�e͌␵\u001f�%'ϝwYEwv6�\u0007���Ը��*�?�����\\\u0001:S�wѕ�\u0003*\u001c\u0019\t�\t\u0015+4ώl޼��S��\u001f��<�#��e୷�<�,��\u0005x�?\u0000�����`�S�\u0013\u0003�ll�L�\u0001{\u0018�Et'\u0010݋�KVv;�<���,~������gp)��\u001e|�;���s���\u0006��w~8ܻ�p�ٳ�Q��\u000bg_|\u0001;�޶c���\u000bp�ݲ\u0015twB���\n�Ȱ���1p���\u0019+�\u0018Y\u0005�r�fe�e'�ډ�o;��N�\u0016L��m\u0016��h\u0015��\u001f_]P�\u000f\u001f�Q8��>|#\u0017?6|�2wg�\u001d'��p[;�<\u0004��\u0007:'�\u0014\u000f�'E�Q�+c\u0017��9\u0017�$����}\n�Ƀ\u0007\u001b9����c+���\u0013ӌ�Dl�jn��\u0007\u001e�ه'���Y���\u0003����~X��)t��v��\u0007��Zݷ����U�Uu\rp�~�W?x���&��l��z\u0001޼��\u0005�1'�v��q\u0000p�nN���J\u0010�\u0000�uFv4��\u000e\u001e5������{��@�\u0019���.ZRU����n�).�\u0016sO�\u0011�6%������q�i��\u000f�i�+��`�X\u0007\u0015��*\u00112j�/\u000f6�ΤS\u001b<�7@!t�\u0013H-&�ʎ�0�k��s{\\��I�[O���Ƕ�����t�\u0002�*�)\u001dހ���ġō\u0018�5\f\r.�m4U&��H.��;�S�\u001f��7x�\u0003���c��\\���6{��U?��v�۲\u001c���z�r�\n1��tB��,�\u000e\u0016�{�\r��>��$�'�<%��䙦�B\u001b�7��\u0016,.�L���a0��[��TT�5\\\u0017<ȕ�e.���3��\u001a�\u000e~���o�3��\u0001*Ŵ*U5�Ô�\u001bprH��\u001d��V��wz������}u�}y�L҆g����R�ʹi�҅�2[2�|��{����dU�M�^��f����Ň\u0015�k<j.��VfVm�\u000f�c`W1dD<�U�N�\u0015�\u0014f�V;$50�}�f�\u0012�\u0018O7TV؝�spbr�rⲭ������<�\u0004s�JO��g�y���V���~����RЙW�q�LKzJbB���{������J\u0016df�\u001b3g'�*-kZv�\r��{W�}��*!c�IT=�dh4�W�wlx�$���/p�rB���#p�X�=F�\u000bor'����>�\u0011wP{3�.�0&��Y#;1��ϲYms\fܦ�:>9a�iij����\u000bg̎��c\u0007�#̻J��$cl܌7��57���0~��W�P�\u0012��\u000b@�ը}\u001a�?t\u0002�\u0019��N���\u0000+�Soƹܻ��/4�w)r\n͟���\u0011�ǹ�\u001bAxu\t>��|���\bn#����\u0011�o��8W{��F2�\nN�6�ۙ�7�R��\n\tdJ\u0004�z�W�$5h�pj̼��+\u0016.��pݦ�\u000f���\u0005�\\����Ϋ�냿ܶ\u001d��ꫨ\\�xp7t��3�\u000b�?�a�{����3\u0010_��\u00054΀�}Y(k&zk8�¿`��Ԥ�ٚ4�\u0016\u001c\u001f[Uվb�\\\\U�Qޜ�?\u001f\u0017\u00146-��E+�����6�t��+W�4\u001f8��\u0017��]�ᨨĵ5\u001b._�\u0000'�Ac+[�TT�qI�«��Z�v9����X۷���\u0018���}\u0015������i�`?�L�\u001b\u000f*���\n���F�PiEu�h���Q�>��7�T\u0007C�\u000fY���ƃ�\u0003��\u001c�Op����\u0017 k�E\u0007��F�pݤ�A��B��\u0005t\u0004���\u000f =�YA���\u0003�8�j4��n�ჱ\u0014�v�u\u0010ƻ�j�k/�\b�u�*�\u000bs]�|\b�~�\u000f�g�n��B[��\u0018Ƨ��t�\u0003�7\u0013]@Up��/ɨ\u001b\u001dE��\u0017����w\u001c��x\u0011��N�\u001f���s\"��{IS�\u0019�\u001cҼ��;���>��Z���֮�n�>���n��E�M��>Zߣ�K����(MTBTATeԆ��TLQ)�&�˞.���7!��\u0015z�P�h���\u001c�����\u001a�\u0012�O�y���5��(U�\u0011�u(U��h=zNW��(�����)��ػ\u0019\u001d͟��\t=\u0015�Ǖ2:\u0006\r����X�#��3:\u000e���:�˶i=��H;�\u000bFs�Oh`�\u0006\u0015&�3�G�\tՌ֢�����\u0001��h=�Op3:\n%&�0z\njH�gt4'N{��SQI���1Țr\u001b�c5�%���8dN!��a^\u0003��\u0019c\u0019ͣ�FLi�;M���h\u001e�\u0018gPZ\u0007�:�\u0002F�(�XBi=�����\u0010\u000bc\u001d��`<�hg4�R�+(=��W�����\u001a_�V��j|UZ��J��Ui5�*��W�����\u001a_�V��j|UZ��J��%t4�j3�\tV\u001eJO��\u0004�aF�h�q/�c(&\u000f3�`�\u0013J��x��W���L�P:��y��D�ʟH1���\u0004��(�D�\u0019g4��o�N���4F�HHU�B�S�\u0018\r��E�N����&��)=��@��ѐ\u0003�C��E�ic4�G�u:���h�%��I\u000e���hȁ�C��'���d4��z��ET�/\u0018M�<C�\b��\"����+*¯�\b��\b����Ą�҅F�0�� \u0012�\u001d�\u0005�\u0002�:(݂<�\r��q\t�\u000e��@��\b�2�\u0010`�\t��@��q��)�\u0012�L@�0�D�0�\u000fƚ�[�W���S\fo�*UJGk`�\u0013�;`�\u0010�৫:@�\u000f./�\b�\u0001j�\u001b�$�\n[�\u0005�\u0002p�L��/\u0003B\u0002� �D7*�ZȌH5ٙ,\u0011Fԕ.*�x�\u0000�]T�\f3~����\b�~��G=�ӵ~:�R�7��Cm��/�T6��N��Qmd��\u000f�o��\u0000�&P\r�V�T�\u001f���y��v0�\u0012��PY��и���3D��\"s1�\u001fdJ\u0014\u0015\u0019�U�v6\u0012�H�XMd����K\u0011u���R�\u001d.�*��N�odZe�)�Sќ@a\u00108�4ut\u0002W���a�Ȕ?@�&��\u0019��}sN�*�\u0017��̹��\t\u0019^г�Y+2��4�\u0005��!�\u0006��!:��\u001f�\u0019�Ő�8!�j���\u001b���\fmU�D-�4Vjv\b\u0014C;�_�QsR�aZgj6��JՓ��Ù%��\u0015,2.j\r�M5n>V�ΰ\u001d.�4�������\"��LG?�\u0010�H\u000fL�M\tm��\u0010�$��a\u000f\u0007in\u000b4\u0007����h��i4��Q'���Nj�0\\M>�e\u0013�H�uш�h\u0013]�ZM����D���\u0007(ZôJF�^�t��#t^�Hx�\u000eRC*�~�>dqH�0�!\u0017��!�̗�չ��VK;�\u0000��0M�.K�d%�\u0005�\u000b2\b�^Z\tj\u0005�EH)\nKi�ܞ\u0018��溗վ����p���}_��\u0010�\u0012�q\u0013�J��\r{�����\u0002ʡ�Z��\u0006�\u0007i��P#�飈;�43j\u0005�.�A\u001a�\u0003�\b�\u0006�d}#ܗ��\u0006\u0018�;��Űs4����v�X�/���K�����hh\\�X��0��D=\\����y\u0000\u0003/�\u0010\u0007�\u000e�\u0013����꧳��\u001f\b봇���]����\u0012�\u0010ҥ&z��+d֟}�\fQ)R��\u0012l{�6�I6���\u001f��T���@&�e#�N(����㥽��z� ��o�+T�\u00041)B�DǸT�\u0000�/����\u000b�V��ȸ��o���z5\u0019)��_�\u0015�j\u000e�Q�1Ez�\u0011A����c���t�i�#z��%��؉&�rԝB�\u0016\rSd��%�z���\u000b,\u0017�\u0011}4��T�\u0000EZ�ر�\u0011���0�7\"o'�\tߍ\u0014��E���3I�\b��z\u001a��n\u0012��\u0013�\u001e�U�L�\"N�;���vEf��uo\u0015���Y~Lt��9�]\u001eM�G\u0013���ȅ�yd��iP�F=[�iT�\u0017��{\u0011�\u0013��\u001ez�\u0019`}u#=���ȓ��G?$O�I��7&��!y��QEk�tl�2/��P�ċ�\u001e����@�R\r��\u0016�-�؉�\u000f{eH\u0002�ej`�\b\t���2T\u0001;�\u0000�\u0012x*�w�2��\u0011y��F͌�\u0018fK`���\u0015�\n\u0017YU�l�~B.\"�A�%à�\u0002�\u0011�1��}r��i���}�P��:G�y��2�Ħ\u000eڡ�=����<�\u0014O�S�I�tF�\u0011��ľA���]�\u0013�?g���@�\u0005�~�!H�,t��Y��'�a���\u0011z\u0006Py���М�|\f��\u001a\u001d�\u0006E�$�#t9$��\u000fs~\u0018\u0012�<�a�W��\u001e�0촛�z�/~\u000f��\b\u0013:=�\u0000\u0019�\tMnXWRUU\\\u0004�R�P�t\n\u001d���\u0013:$���(\r�y�~�E�xG\u0005�\b�`\\\u001e\u0014\u0006$�<�.\u0014j���\u0014��%�0��x%�\u0011p�n��\u0017�\u000e�+������>��\u0010�\u0002̍\n�AA\u0006-�^i@�K>���\u0013D�� ����!�L��\u0016�\u0001�$��~\u0007,�`�3@V\u0013�)�\u000eX/�1�1�����\u0012pہ\bxG�\u0002�ĳQ����+�~\u0017L�\u0005�\u0000��#�|�A0��0\u0018p:����z�\u0007���O]��G�R$\u0012$8>�E�d7��zփX\u0011�\u0007@��Z6 �C\u001e2?��C��\u001c\u0006D<�Q�\f4ʢ�\u00048\u0004�\u0004عe;����\u0012��K�D�[&`\t�\u0015��Kr�\n��\u000f��$2\\����gy�c�찢_\u0012\u0002>i@ES�\u0010 �\u0006�\u0004a�\u0003.�Dp���C�u�\u0004q��\nI�|\u0000\u0019�#xt�C�&�\r�%��P\u0005\r�\u000fȾa�8JT��ni�7,\u000e�i�2\u0000&�e\u001f\u0011L؇�\u001e��J3�ru��Z��90�\u0007\u0016��-5W�\n�-���!\u0001ʣ,E�����w\u000b]^��K��'>W�7C��\u0012d\u001c�*`��\u0014��~!G�j\u0011�\u0006\u0007��4��F\u001c�fnm�jjl���jjk\u0015�\u001a�eMu\r��\rB�⎆���֮����.\u0007\u0004#�5\t\f\u0011\f��~\u001a��=P{�!�8�\u0018�zH�\u0013��G�QO����\u001c\u0005�\u0002�\u0001��\u0015�R4�!+d�g`\u0017���D��,��2�\b���'�\u0007+���!���$� �\u0012��W��!;\u0006\u0001�\t�H�=C\u0012e��\u0011^\u0007\u0001���\u000f�A4��:�p��\u000b\u0019\u0005�\u001f�\"��䨰Qt\u0006�~�K�\u0007y\u0015��,t�i����\u0000�Xp�(D�7,��A�~��\u0002��9J֊\u0003\u00032�1䎗��B2��Ҟp�QN�%\u0013�@\t�\u001b�x���ԦYL\u0007=#�3�~��s\u0010= K��\u0005�\r�C��G\u00055�\u0019B�\u0015Q<�\u0006'�#=oC@�Q5�-���<�2�)���\t8\u0007 W7�҈��.q��A$%�\u001b\u0003\u0013�1�#�E۱�?\u0011c�Ȭ\u001e�f����\u0002�-� �#��\u0012���\u001a�Hȭ,��\u0013*J*��ˊ��L�n��⒒�2�WX+��r[��*6���\u000fϵXFFF̮P��\u001eWdMHB�W\u001c!X@\t�Q ���\u000f\u0015�\n]�\u0003-��\u0014�W�ˢ�)�����UY�-�-\u000e��iq����nq��D�'�d��`Dr¨��Kȓ��H�'�\\�Jz��W0qҌ\u001f\u0005p,l�\u001fO\u001a\u001d���ȑF�sSĘf��)�s�g���7j�/Ѷ\f(���Cg\u0003�f\u0017��^�U��\u0010M��c�^����\u001f�x�\\\u000f]\u00119��~o��L�Y�~�\bЃ����|���,�����<��/�+�E�\u0002�������\u001b�l&߸\u0004�'��?խ��\u0003\u001b���,8jMF��~<�\u001f��S\u0015\nendstream\nendobj\n19 0 obj\n7137\nendobj\n17 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /Arial-BoldMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 15 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 552 552 276 552 552 276 330 716 826 606 606 662 662 662 716 662 936 552 716 606 552 552 386 330 606 606 606 552 552 552 276 552 772 606 276 772 606 606 606 882 552 772 330 276 606 716 276 552 552 ]\n]\n>>\nendobj\n18 0 obj\n<< /Length 707 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0031> [<0032> <0030> <002F> <0034> <0031> <0020> <003A> <0041> <004D> <0054> <0046> <0045> <0058> <0050> <0052> <0053> <0057> <0036> <0042> <006F> <0079> <0065> <0072> <002D> <005A> <0062> <006E> <0063> <0061> <006B> <002C> <0037> <004F> <0064> <0069> <0047> <0075> <0067> <0068> <006D> <0073> <0077> <0074> <002E> <004C> <0048> <0049> <0035> <0033> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n7 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /Arial-BoldMT\n/Encoding /Identity-H\n/DescendantFonts [17 0 R]\n/ToUnicode 18 0 R>>\nendobj\n20 0 obj\n<< /Type /FontDescriptor\n/FontName /QUAAAA+ArialMT\n/Flags 4 \n/FontBBox [-664.550781 -324.707031 2028.32031 1037.10937 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 73.2421875 \n/FontFile2 21 0 R\n>>\nendobj\n21 0 obj\n<<\n/Length1 12360 \n/Length 24 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|\u0014U���\u0002\u0002H���j\u0012\u0012\u0002I��N:!!$�\"�NH�\t9P���.�>r�!\u0010B¥��'*ǎ�\u0000��U�9訣���ǌ�̎����tg�ݑtg����\u0000\u001c�ٝ4U��;���}���0Bh\u0002ځd\b5��\u0016L��`\u0013�\u001c����췽��\u0002����;\u001c<g���/F(q\u0007�\u00159``��S���\u0013��p\u0005��\u0018J�\u0014�\u0003�o8=\u0016��\u0017z\u001a\u0011J:\u0005�\u001b]\\�\u0017\u0015�:��g�3��\\�ϰ�\f����)\bˆ�!�@Hq�B�\u0010�-~��D6f�\u0004\u0005���3�O�еCD\u0005�;�\u0019=n\u000f�@�����p3֩��#\u0015\b����5\f1RA\u0018ː\n!�Z�^\b7��h��=7V�@\u0017\u0011+\u000eD\"~�3E��m�\u0005\u000f�J�2M����Q�a(2\u0014�\nRSRU�@\u0005S�JxLѥ\u0018��#�ˏ���n>�Ј;�\u001e����\u001c9R���3\u001f~����b\\\\\u0018��9���0�_oݎ�\u001b\u001e��O�@W�w�+9���on\u001e�{�S�\u000e�����\u0010=��\u001f�\u0012�\u0003⒌u\u0018?p(�1S��wI0w\u0017X3_1�&\"�S�Z�N��^�1�/��\u0015�\u0017wʯ��V���\u000eĠs�l�<C�<�P�,��܅\u000b\u0017d�\u0017.��w�\u0002�\r!�U�o\u001a��)�E\u0006�Q��1��\r����ԙ�x=V<\u0019n(�\u0001\u0012��p]�]�1����B�'\u0017Y�\u0004�j��d�aP��\u0001��Ы_aMSm�z<�w��\u0019��\u0018�ݶ�\b?4�h�&b��\b�\u0007#\u0016i�5��_��ا���\u001a������!\u001bD\u0012�!>\u001f*�A�(\u0013�a\fE\u000bIPR��HD2i�\f�Ĩ���R�,���c�+'O��uu��O�y���V��7\\��\u00077\u001c,+�\u0007o|��[�W��\u000b�3�:�O\u001e:۵\u000ec�z�Գ�oo�\u001d�y;�������7�\u000e��?�Պ�P*�a\u001a��!%�~�\u0019�Gڂ̌D\u0006�(\u0000-��\u0016�C[�~��XOgG�R�\u0006�\u000b�M���x\u0014��n��n2�o�V5�6��{tm\u001b������v�\u001f\u000e\u001d��m�m���#=}}}؁��\u001e,�\u0001�A��U�\u0005�0YC\u0001J>�z\t��\u0012bE�Џ\\5f`R�[����6S�qˀ�\u0011���m�ooْ����gǵ�sO��Xfٰa��\u0001�m�����}������S����ן؛[�\u0007�9�����`&�P�\f�eJU��\u0003'{����EW��UVl��+���[���c�>8��_?��Q��6��\\��\tJ���y\u0006pUa��*Uf\"�_Vd �Kam{:�����Յ�:�����|�z����M\u0003��۽\u001b�\u000f����;��i�j같;qGg\u0007��*Oa�9\u0015��ƃ{�x�У\u0018o�B��\u001e\u001fWt\u0001֒�B��\u0002)rQ7e.�\u0014H�\u0014\u0011��\u001b���]�;��%�����V���qɍ��\u00055�\u000b�j㦦S�S�&�m��z�\u000b���ij�-�1\u000b��=��&���m[\u0016�\u0003�������Q\u0001���IH1�#������\u0007��*9\t��2d����\u0010��GV�w_�����q��Ғ�z��\u000e��\u0019�QZ>�lj��a�7�n��TO�<)���)�\u0017<�\\�\f\u0017\u0017\t���9x�}AZ�iOceEffҔ�3\u0017�'����\u0012�w���&c!���\u0015���~}qEu�\u0001�5[���p�ve^\u001e��^��\u0017��>�\r�Xq;�\rV�F�P�V�S\u001bԺ�45���\u0014f�,c���(%\u0015����c��\t�IYs�ݣƘ���?�X\u000e`�3|�@�&cJ��\u0018��_\r^�\u0007^�M�\"Vep�z��ou�J#�a�!\b\"X�f4���?\u000e�ݷ��_\u000e\r��'uv�1�Ն>`��\u0018�\u000eokm���';�\u000e]��8ᖛo<\u001c�N=�캫q�\u001e�2XmǸ��H?\u0006u�4�e.Z\u001c�\u000b����&1MFd\u0012���՚�h\u00105ǘ}/���e�ʿݐe2���|{Q���\u001c����c��Wgf�6\u001e\u000f�)F3�,|�э�9\u0019i���f�?PW3wN�*\u0014����Y�eu��*�r\"��\u0003΄�D\u000fpn�TRQ̤&\u0013W?r�=8ifUEoú�%���4���;\u000el�XX��d��IxA�\u0006�1\u001b�\u001b\u0004~/�_\u0013�9�\u001c�K�LV\u000f\u001e_V�_޵�|Ŋ2m^�<y�1�����e�\u0005��7�B��=\u0004��g46\"\u000f]$�����C\u0012:Y=t<���&�ᤑ�\u0014}��@�I�q�C\u000b�\r%\r��!?��U\\����W�\u001az\n�6�.�\u0013�M��x���S�$\u0002)\u001d��������`�\u001e\\R\u0012��;�q�\u000f�*���kjǸ�e�ƺZ<����q��xҩ�;++�v�;{���3���\u00063�� �\u001e\n\u000br\rH��\u0016A]���X$\u001e0�E�Z�$��B\tmC'KV�;�\u001d�\"=^Z��|mw�J�������\r���\u0003k;Â��}�Y�j�����\u0001(S\u0019\u000bKC\u0017e'_��6�^�Y1��$\u001e\u001d��\u0001�&�\u001eU\u000f�(F��\u0005݆a���GNr�\u001d\u001e\u0019\u0019����\u0017��\u0019\u0017?�UՐ+�`�\u001aiĳI\u0017�mԅ��\u0006I���/~p`���`�O�����\u0018\u001e�����kp���I�\u00197���\u000f�^\u000b�VT��^��l�7_���V\u001e�]\u0007u�K�d�T�%�R�\u0014?R�\u0013���`\")5%��Ec��S�u���m�\"�(����W�\b�B���ھ[Nl�R]�\u0018�ֶ�����K\f����eU�[�\u001f}yp���ߝ殭[��aKK��\u000bui)\u0005��E�ͼۼ� \u001f\u000e]�m��������5\u0005z}ѢҮu���QR�q�Ҡ��\u0016 �s�&A\u001f�u���I�\u0006�L��������΅���n����\u0019\u0006�#f<\u00045�\u0013b�BS\u0011J��'M��%jd��2F�&���OCw\u001e{\u001fs{�fn\u0001�(~*\\�t�#O�\u001d�\u000fR��y�9pH��4����cw˖��R��tA�O������')�a5�\\\u001c뵠a#\u0012�D�\u0010��\u0007<�%=�\u001ag�\u001d\n1K�\u000e���\u0005I�C�\u0018�Lx8���\u0003\u000f��cc\u0012r\n��\u000bcr2�\u000e!�\u0007ΥZH�!�\u0007�2-n��\u0013�ɺ�qӪ��%\u0018��_\t\u000f�-O�i��6\u0014\f��*F��|]�:�S;\u0006p�\f㺚\u001d�U\u0015)S\"5��:SD��\f�bD������z֮�X8��l�ںy�\u0014����\u0011ks[Z�\f�g�\rAi]��v��Г$k�^|\u0002Q\u0003�5�\u0014�o\u0007�Iq��G��m�_Ӛ�uU�H´bCss]��9x䮑����5�\u0000s8�����EY�\u0017���eJH�1Z\u000e�\u001f��Z.�<���\b��\nZ��\u0015�\b��sp�#W�Tm�ZV��\u0019�_l0ffa����U+[�n�&'G}vrI�c��\u0010�������qU�\u0012}�ź�u�\u001b/����D�_�,-5#?#������4k^jrz��r���\\-$�!m��Ą4��\u0005˖ww5�Y���Flx0�\u0011\u001e@\u0017H�����\u0014i3��¢����ٳe\u0017.l��[h�Q��\u000e�\u001f�^{\u0001�\tj;֩��\u0002\u0018s�����\r�q~���o��k���|������\\׭\u0018\u001d{��]\u0003kZq]���\u0017���G��Z�W��A�ID�#����_!�@�|�<�\u0016��_N��<�\u001d�9E��\nI>0���}�ي)�O�\u0017��G����5�^��0KM�\u0016m�\u001a�\u001d�\u00140M䠎uxG���m��\u0012��>��\u0016/ɮ�\\o�\u001f�\t/�Y\\\u000f-ނ�\u0015GÿƮk2�rr������7�\u000fC_\u0000�R�5��-���k�_�Xۙ�\u0007핬E���\u0019�\rɉ8\\\u0013��\u0013\u0012��)��5��Κ\u0001�\u0001�U=T�h����b���\u0018�\u001d�����\f\t8�������|�|��d��LՌ��/���o���t�G�Y���Dv\u0006^Ȯޯ��^<��*A���J\u0016)\u0012Le���\u001cvA\u000e>�b�<�ν����'ςc\u0006v=\u000b�����������}�S���Cő\f��\u0003�� �>Ҿ_zjJ�\u0012y�n\u001f���޹�sms�V]C��\u0004��n\\U-\b�u�#�`�L\u001fo5�Ngݵr%��W硫\u001f�q{U5�V\u000flmn�8�n��l���\u0002�X��\u001d�-�N���F��k�_���\u001e\u001c���\u001fCY�\bڒ��4��B\u0012n\u001dsq�R��z�fo^@�e����gjm�\r��$xkA�\u0002\u0003��k5�O�g�;>����\u0013��Z�ѐ\u0011V���� �db.�^�o�Pٔ\u0019P%��\u001d\u0015�m�{\u0018�\u0013�G�\u001b}\u0010H�bw,�Բ)h\\�n{�h{ۣx�tm����F\u0000�V��\u0015s��3ni��B��\u001d]��X(�9���Λ�q}ÉЭ�#}ee��\u001a�7��\u0007�Z�\ru&X?\u001f�h\u0005h*���+�u�$G��\u0007�'*c\u0005���,\u0013\u001b��!�qsa\u0011����A�/r\r��\u000e�y��[x�J3���d�^��jl���8#}��֝&\u0013n[�kG�I6{�q��{�.��{l���r8������y�Ϯ7o�&Ǌ\u0015+*6X��VTu���+WBElmٹ���d�ꄢ%\u0016\u0019���O��j�\u001eV�ngv��з_C���wCg�nc>�\",�}.�_�7!�%\u0015.T�ʗ��Z-�V\u0019�JHY3�e\r��Э����C\u000fwuuu<p����yݪ���4�\u0005]��{6���i���v�8�����Y~\n�>�A+qu�ه����\u0013�]���u7�y��j!��\u0015+������\u0015�\u0018\u0017�\u0016c5�����7�:������~к�o<\u0014\u0016�V�#��\"��\u001eUy�\u0011UMC�w�ߡꡜ���J\u0018R��l\fTF��\u000b��)\u001fD�)ڑR���~e\t����\r�2�8Bú��{\u0015�M����|\f�D�A4\b�Cr�֐o�\u0012\u001a�k\u0018�j�\u000e�g)��CTV;:\u000e�D��{�h\u0000��܃�\u001f<\u001f\u0001�y0Du\u0010�$ka�Y\u0018o��cXs\u0012�GAW����\u0003]]`S2�Dv�\r݀\u001eAo�Oq&ވ\u001f��`�L5s��X6Of�헝��/O�������\"E��h��Cq��%�7J�r@y��U�\u0007ʯT��-�#�㪿M�>!k�~B߄�'\\�h��G�$�����je�\bI�az�ѕ�p�D3h��#���k \u001fEZ\u001e�F�f(�,�J4U9O�U�\u0005e�DO@\u0019��\u0012=\u0011�rR�'��SɄN@�Z���lS\u000fI�\u0014��k����M�6j�uW�H4��o$�A��\u0012-C��\u000b$Z\u001e�F�&O��h%��$Z���\u001d\u0012=\u0001%&N�艨&%]�'1�UoJt\u0002�O\u0011$z2ҥ�!�Sd]�_��H�B�,��@��)\u0017)�\u0000zZj\u0002��d<u6�Ut<��\u0013(m��D)F\"-�H��\u0018��\u0018#��ǭ\u0011c$�b�DZ��H�1\u0012i1F\"-�H��\u0018��\u0018#�\u0016c$�b�\b=)��\u0004jK\u001d�'ǍO�����4bK��҉@OO\rR:)n}2�#�)q�3��!JϦ�D�s��̏����[(���'(�C�\t=!N�\tq�&ǍO��bB�ȋxdC\u001c��7�\u001e�˄\u001c�6\"\u000fr�\u0015�V���A>�ɝ�q��`a�\t��@U�q���)7�\u0019�ZaƉ��5~\u0018��oQ^>��%p��HT\u0001\u001d��\u001dN�n�=v�!@w�\u0000??\\>�\u0003w+��\rs<Ը�&>���*N�$�\u0017�C,� �\tG7t\u001aD\n��$�ċ�\u0011q��r$\u00168@{\u0017�(�L��vPY��\u0001I��Zh�{\u0003t�M��o���� H�x)o���j���\fYo�ߢ�A*��\u0012�\u0012(�\u0000̻�s/�퐤��Z\u000f�%ʎ�;)��\u0011\u000b<���|]\u0000x��+\u0002|��-�H�z��*�\u0012\u000f���z�I�\u0013M\t:\\Ү�\u0004\u000b��#I\u0015$Kɜ�͘\u0017l��p\u0013Gc~\u0015$�z$K\u0004�>H�bQ�S�:�vߏ�H�����9\u0017�\u0017��\u00039�$m9��\u0016�iV�}�gV*�NG���0#H1$k�\u0010{\u0011#\u001e��a�G��!��\u001c���\u000e���\"�/Ш9�\u001a/�3\u0011�n�S�$\u001e�B\u0014Y,��I�qQm\b6Ÿ��LvF�pѧ\u0018z\u0003��\u001b�e�Y$\u0019f�!H=m�\u0004�<�\f�\u0011�\u0012l[�\u0016�(�Y��>�[?�]�F�\u001e�:�]�w�K��l�K(��#q�E#¡k�~Qk��BgcH\u0013�[���4K��VDd���t����I2H\u000e�^\f��\u0011�#ܽ\u0014C.ZC#�i���K/�\u001a�wv�\u0012ݥ�]�\u0017���V\u0016Ý��x#���惘GYq������\u0019�s���.�}S4��ך/��.UB^�o�:%rm��Ek�~\u0016ePyF�7�l\u001bEn�c\u0004�~�m��M�\u001aa�\tN�Z���\"B7�(�_\u000b�\u0006:^\u0003#�p'9P\u0007^�������\u0014x�'�����=�f���b�Rlc�p��3�\u0003>�Qt8��=��\u001f�������`T�%ZCE�\u0005��X��� \u0015*V��:!H��/�\u000e;��Gk/�m�$�T�\u001e�f����(3�\u0003��`�7Z\u0005y)��h��h�\nHu�&����\u0015�v�1>�K�Z\\)�*�`�L+���Y��[��}\u0011ʤV]�)��_��+%Gj(��\u001c�h8�ꔼ�j�ߓ���w����+b�K�L|戧\u0004G5�RϒsK����1g%,��jhD.�~+��\u0010wZ��:���j_\u001cnc=�\u000f{�h��#��\\¯��\u0013�f|5����J\u000f�\u0015�L�z��wD�\u0011��G�K�ܢ�Ŭ�J��U�K1�C\u0016��QOm�2r�\u001e��m��\t�ֈ}��F�}Y\f|��;ƙ�硕�*��\u001eڃ���.�ǣ\u001f�'�$/�\u001a���\u0011~W�Q�V�3�P�W�q$b�e���C�Ƽ|��K��K5�n9\u0000'd�\u00039e*a4\u0007���\u0018�\u0001�C\u0016���\u0003�\u001bz��\u0010y�lC���y0�\u000f3z�6 \u001d\\dW\u0011*�w\u0013r\u0011�\u000eړxA^.|z�GK��K3�B+��;'\bUM��7�\u000b�\u0014\u0014�jKtj�\u0015Z<C\u001b�>�#u�$?œ�Gg\u0004\u001a�V���\r�*�fE��L�\\��\u0005�r�\u001e�\u0015��*��=�)J�~B\u001b]�ϕ�K{\u0000q-�O�\u0012�˽\f�Qަ~/o�,<�\u0000kr�,�\u000fr\u0001\u0018b�<>���\u0005\u0004���:-Z��\u000bp?�(�0c[=� \u0019��nؗ_R��\u0003�\u0002-[�t�-��\u0011�-������*�;��\b\u0013_?��`\u0013�\u000b6���\u0005�;���\t����*N�I��ǳ���s\u000b�\u0000kqp>�\u0012�\r��`�\u0001\u0007�fa����X\u0001�x}����~���g9�����`\u0005���f\u0003A7��\n\u0001\u0007l�a�c%�\t��@\u0006��@��X��w\u0007\u0004\u001eV[�\b���,u����q`^��s\u0001\u0017L�\r� ��'��\u001e\u001b�IU�\u0005�N �� ��\u0001!��\u001a�\u0007���@����\u0004\t��H�}.�MW�<��-\u0007�[� �M5�\n��C�{\u001d\u0002X���^����\u000b=<]@�̱Np\u0007���wn�\u0002�9��\u00077�-<\b\u0011�-\u0010g�|\u001f\u0018���,�� ;\t\u000f���\rH��K�,��̳A?o\u0015��o\u000e\u0012e�\u0016���\u0001��#\u0018\u0015\b\bn;1��C�\u0003�l\u0012&?���\b\u001e]���Vp\u0003k>`�\u0016�\u0006ۭ������\b�������\u0017T�%VP1 �\tc����<��6�ե�i-�=��|K�a\u001fAm����]d\u0014,>\u000f�Q\u0016]e4ѯ�Y�\u000fb��|���?�|��\u000e �\u0001o\u0014S����]�\u0005�\f�dd�l6-U�w��^\u0007,�66��k�*M�M�lS-�P_U��Z�Vֵ��\u0018k\u001aMS&M�dr@(\"�&a!��8�:@�\u0010�\u00072�c�q^G?�C�O�d�g�=A��B\u0010\n�\u0005�V�>�\u0004\u0000��\u001a0!\u0000�a9g��<A���m\u000e\u000e��1�ԃ��K�!��%\u0010�!�<����\u0004\u0000\u001b6�}L/\u0012v���K(,�� ��xs0\u0000�AM\u000fda�A���R\u0000��+��\tB�\u001e�\u0019�̀J�\u000f��߭e��\u0014��\u0011+�&)8�\u0012\u001c���\u0016�&X���\u0005/�)B�^�j\u0015H�\u00019>Z��ɰ���V�˔r\n.�\u0018\u0004B�^�o�_\u00046�0\u001d��\u0002f�f��w\u00109�Kt�\u000b�\r�C����\bx�C�\n����Ō#\u0015os��S1P+-��-Y������\u000eO�i\u0005��\b|�X�0���H�P5���\u0018�\u0011Ԣ��\u0012�Ř\u0018�IZ۾�-U9�A�\u0015\u0012#��\u0005��\u0005m��l\u000e��Xo�b\r��9y����\u0013�V�`^~�^\u000fw���\u001a�\nK\nK�Lr\u0004\u0002ޥ�����ZW$�\u0016�+>'x����\u0012_@\n�R���c�\fm���\u0002�M��'X\u0004�m�hn���*.�;�s\u001d\u0001�3�\u0015 �#=��_ϑ:�%���\r��\u0013F�\u001f�B�r%?���\fy�k0i@ܴхW@<\u0005\u000e���G�\nD�[i�HZ\"ҴXew�\u001e�=-{\u0016�s�Q٩8^\u001cm\f\"Ͽ���Kd�p���������:�2���j��\"Z�vā��c2D[<�#���g�\u0007B�\u0003�~p�\nendstream\nendobj\n24 0 obj\n7170\nendobj\n22 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /ArialMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 20 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 716 276 716 276 826 662 606 772 552 552 552 552 716 552 276 552 716 276 330 552 496 552 220 220 552 662 496 662 276 662 662 662 552 552 496 276 716 552 606 662 936 662 276 552 552 716 276 826 552 662 772 ]\n]\n>>\nendobj\n23 0 obj\n<< /Length 721 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0033> [<0043> <002F> <004E> <003A> <004D> <0059> <0046> <004F> <0030> <0032> <0037> <0035> <0044> <0061> <0074> <0065> <0052> <0066> <0072> <006E> <0063> <0070> <006C> <0069> <006F> <0053> <0076> <0041> <0020> <0045> <0058> <0050> <0068> <0075> <0073> <002C> <0055> <004C> <0054> <0042> <0057> <0056> <0049> <0033> <0031> <0048> <002E> <006D> <0038> <004B> <0047> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n6 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /ArialMT\n/Encoding /Identity-H\n/DescendantFonts [22 0 R]\n/ToUnicode 23 0 R>>\nendobj\n2 0 obj\n<<\n/Type /Pages\n/Kids \n[\n5 0 R\n]\n/Count 1\n/ProcSet [/PDF /Text /ImageB /ImageC]\n>>\nendobj\nxref\n0 25\n0000000000 65535 f \n0000000009 00000 n \n0000025696 00000 n \n0000000163 00000 n \n0000000258 00000 n \n0000005684 00000 n \n0000025563 00000 n \n0000016697 00000 n \n0000000295 00000 n \n0000005614 00000 n \n0000005634 00000 n \n0000006012 00000 n \n0000007993 00000 n \n0000005805 00000 n \n0000005992 00000 n \n0000008014 00000 n \n0000008276 00000 n \n0000015526 00000 n \n0000015938 00000 n \n0000015505 00000 n \n0000016835 00000 n \n0000017092 00000 n \n0000024375 00000 n \n0000024790 00000 n \n0000024354 00000 n \ntrailer\n<<\n/Size 25\n/Info 1 0 R\n/Root 10 0 R\n>>\nstartxref\n25794\n%%EOF\n"
+				}
+			]
+		},
+		{
+			"name": "I - PDF Connote print API call - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "610ac514-761c-4e97-b99b-b1edbcae3b8b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "d312210d-acdd-439e-ad48-6b611f51fe88",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{AuthToken}}",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/connote/{{considQA}}"
+			},
+			"response": [
+				{
+					"id": "16426b76-196c-4d75-a078-4ecae40993c9",
+					"name": "2 - PDF print API call - QA",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}.pdf"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "pdf",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 20 Apr 2021 02:11:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/pdf"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.12.2"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=\"labels.pdf\""
+						},
+						{
+							"key": "Content-Transfer-Encoding",
+							"value": "binary"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=0SfdNhNBD%2FYqE6PwRYZKlGFy8jU%2BRKVdYVfAiT9ABKzFEVyCxRpf%2F29GeFXwpjBFUD0YGve0e%2FM9Rf8n4Ql%2Fxw%3D%3D; path=/"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_wilberforce_session=Qmx5cThFL0VPL0tWR1NHejdZZ2JJb0FGanlzY1ZoSUlvOFNoa0VPRVZiMHFDWDhCRDk4dzc0UktReTVwQ3h6cmVON1F5STlSVTRNcDBXb2RKZGV1ZUxkd2dJeU5aTS9kUHZkYitzTW5oVFl2SUMrL0NyQWlUNjA0cDVQSy9GUDBtVlMzZW5yMW5ucXIwRFRCc3BVQVVuN3FUMjMzclpXV2d0bjE2bkpHWWp0WUFNS3F2QmJNeVhEL0RtQTl6YkNsLS11MnRpRTAvWUtvaVR6SUY1ZEdmdUlnPT0%3D--05ac672f81c592844a5b2dcbe02f17daf289d5c1; path=/; HttpOnly"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7f853594-d084-4734-9614-cbb0b7b05a46"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "2.436812"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "%PDF-1.4\n1 0 obj\n<<\n/Title (��)\n/Creator (��\u0000w\u0000k\u0000h\u0000t\u0000m\u0000l\u0000t\u0000o\u0000p\u0000d\u0000f\u0000 \u00000\u0000.\u00001\u00002\u0000.\u00004)\n/Producer (��\u0000Q\u0000t\u0000 \u00004\u0000.\u00008\u0000.\u00007)\n/CreationDate (D:20210420121111+10'00')\n>>\nendobj\n3 0 obj\n<<\n/Type /ExtGState\n/SA true\n/SM 0.02\n/ca 1.0\n/CA 1.0\n/AIS false\n/SMask /None>>\nendobj\n4 0 obj\n[/Pattern /DeviceRGB]\nendobj\n8 0 obj\n<<\n/Type /XObject\n/Subtype /Image\n/Width 420\n/Height 120\n/BitsPerComponent 8\n/ColorSpace /DeviceRGB\n/Length 9 0 R\n/Filter /FlateDecode\n>>\nstream\nx��A\u000e\u00030\b���O��$��4���#-&��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��\u001f��S���gJ �����@�H\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z�\u000f�\u0005/+��\nendstream\nendobj\n9 0 obj\n5148\nendobj\n10 0 obj\n<<\n/Type /Catalog\n/Pages 2 0 R\n>>\nendobj\n5 0 obj\n<<\n/Type /Page\n/Parent 2 0 R\n/Contents 11 0 R\n/Resources 13 0 R\n/Annots 14 0 R\n/MediaBox [0 0 842 595]\n>>\nendobj\n13 0 obj\n<<\n/ColorSpace <<\n/PCSp 4 0 R\n/CSp /DeviceRGB\n/CSpg /DeviceGray\n>>\n/ExtGState <<\n/GSa 3 0 R\n>>\n/Pattern <<\n>>\n/Font <<\n/F6 6 0 R\n/F7 7 0 R\n>>\n/XObject <<\n/Im8 8 0 R\n>>\n>>\nendobj\n14 0 obj\n[ ]\nendobj\n11 0 obj\n<<\n/Length 12 0 R\n/Filter /FlateDecode\n>>\nstream\nx��]Ko�6\u0010��W�\\ \n9|�\u0004�\u0002��\u0014���\"\u0001z(z(��\u0016�Ͷi\u000f���DI�,t\";��0\u0001b�cR\u001cr\u001e�\fG���w��?�e�����C���+xYi\u001e~X�{\u00117�-��L\u001bӾg\u000f��\u0013{*>\u0014\u001f������F\rc���\f�+B���'��?F�G��3��W��\u001d���c!���z|�?~�?V�*I\bN·�����,~��}����\\i[�\u000bs���>y�\u001b.E�\u001bw}֕�\u0017!�e�\"���ŧ��W��Q�W�\u000eDN\u001a�\u0004���Z����ڒ���q���]��\u00137��o��A�q�d{�0/f/^[�\u0017�\u0010Y(�\u0017�\u0015ʾ[I�w���`�g|?�$m.�4������a���'&\u001a�.���c�م���G�m�w߱�υP���W��\u0012(�Pt���5iC���j(�{�\u0017o)UBz���q<��Z��\u0002��:3�ب��K��2��7���8�����sl�?��Od\u001d����,bV���Ǭ\fY\u0019����`�0\u0003�\u0003�0�ц\u0006��\u0004�,%Y�I\u001bJ\u0015(�//�\u0014\fcl��8�90�\u0005�(\u0005wr��\nR�!e������0^�EbQ��\u00106��[���(�h�d�5\b�]�n��XC[��i�a�8�>يT)�\u0013\t;� H�0ŀ��\t�M�\u001b�!�L�\u0007S\u0002��\u0001ҬFÜ�=���Ҝ�oA�0\u000b\b'��\n�/K��hS\u0012}�\u0002�V0_lZN\u0003K�*���x32�%Q�\u0000�\bnKn�k`F4\u000ej\u001f�3\u0003o�aɑ\u00189�E��p\u001e���!+��u�\u001f\u0016j��\u0006\r�F�\t�\u0000D{h\u0015Q,���ͤ@\u000b�\u000f\u0013~\"�I9E7\u000b6��[�����h�d�5\f�u\u001f�_�S�I���(�~���u\u0018\u001e��Ghb��Mס�A��83Иlz\u0016oz�2de�ʐ����L\b���C\t\\�\"V��\u0006�a�\u001b\u0018@�!��E\u0014�\u000f>d�����*\u0007�3c3�ĥ��\f\u0010����,��:\u000f�P1�\u0012\u001eJlU�ڲ�����5���7��Y����vn6�\u0004DA#$\u0011��G-\u0001\u001f�\u0018W���k�%�����f6gK7gٷ\u001f�����N��\\핶bVYu��`[1��k[wsQ�\u0001\u0017����$�vՂ��>�h3��l���{��{d~���)u��\u0013\u0018�ռ�l\u0007̝\u0010��%9*T��M���\t�\u0013x4Rpn7��Q�{!�����/�2�\"\u000fE\u0005ߘ��%��\u0012û�\u0012�\u0002��4�0xO\u001e��\"����#���,+�\u0007\u000b\u0013��ȘNd����Iix�'N����[�m\u0012�\u0001���H=O�\u000b�g}�r\u0001L\\\u0007�bJ7Pmp\u001fH�\u00050�P�gA�\u000b̈́�\u001a��^���]\u001d�\u0004�fH3\u001c�\u0001�\t�+i�\u0017�r=�\u0019^?���S�A�\u0000AF\u0000J���!�@J�)WV�n\u0019N�\u0002\u001d\u0007@K��zV\u001f\u0007g}\u0005)��kHYANo e\r)����ӓ\u0007BX�d'J��`c�8\u0014�Μ�)\u001b�<Z,|\u001d(\u0016\u001d�wc�\t����;6\u001f\n3I(�X`�X@QJp� �X01?x\r��c�Y����\u0016�\u0003z/�\u0016p�\u0013��E�@J\u0005�\u0006Ţ�hu�Bl!\n\u0007���$��⇅,�\u0000WH\u0001�\fZ����$��`\u001e\u0012k\rg�賂�L��_\u0005]�����,u`c\u0004[Mi�⏠����\u001a�z�5��\u0007z�\u0004\u0005�-\u0001t�\u001aX8k<�\u0014�\r����s�Qe��io���\u0010'�G%�M��\tG{0vL$<�u`���tJ�\u0016N��t\u0010|HTbu�pn��7�\u001b^�)�H�\u001d7���3,�s6\u0003����\b�Śp� 9\u0012��<�e��m�MU�5 \b�1��X\u000e�L�Z���\u0004Iګ�XN�'E;nr\u001d�|:��W|�\u0018�RX˫�\u001cR�\u000f�iU��_\u0006��6\"ª��G�\u001e�ӟ�\u001f�\u000e�Y�C&2\u001b&�0da8\u0007a8�#��%�\u0007ç��\u0016\u0001�/`ܔ\u001f���\u001a�lV��9��\u001c~H��.)�\u001eNta����u���\n�u�MT��`�g�\u0014�:\u0003\u001dOv\r\u0002�ɢ����oQVίp����)R�YP�9\u000b6�>��y?���yԤ���\u000f)���RΙ\u001b�\u00036p\u0011Y�\"q\u0016�\u0001=9�\u001aϟ�\t��V03;�\u001az�\u001f\u0019�{�\r��i�{�|ѳ�%�u�m�!��)r/V)�4e%\u001b�E)�⮲��W\u000fӎ�Q��Bڃ\\�\"ޮs�����.x�����\u001e]��T\u000bX\u0017��3���V�\u0014<\u0003H�A%�V�7B��\u0005��5\"�Q8�P�\u000f�G��\nendstream\nendobj\n12 0 obj\n1905\nendobj\n15 0 obj\n<< /Type /FontDescriptor\n/FontName /QPAAAA+Arial-BoldMT\n/Flags 4 \n/FontBBox [-627.929687 -376.464843 2033.69140 1047.85156 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 104.980468 \n/FontFile2 16 0 R\n>>\nendobj\n16 0 obj\n<<\n/Length1 12648 \n/Length 19 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|Tչ?�Ν�\u0010���6\t[n\u00162Yg�L&\u000b[�\n!$!+D�p3��\\�%�B\f ����\u0015\u0011|\u0005\\jժX}.\u0015�\r�O�吝Z�ֺ<+�jkmU*����s�L&���^3�;�=�;����s� �\b�(�\u001di\u0010j봔�M��\u0004#���\u0019r�\u000e�ܺ�1�?@Ȱ�!�\u0003�ǚ�\u0011Jp�X�\u0003\u0006�\u0001�w�s������\u0012���Ex~�鱋��\u0007_G(�zx\u001et�W\f�r�\b��ó�\u0016]�/d�w\b%�\"4�\raͫܓH����֊\u0010��~k~�\u0006��(-7U�s�Gh����E�[���A\u0002\u0012�Ǵ�(�ت_�\u001fZ����8�ሓZ\"X��\be\u00182\fs��\u0011��\u0004��EZt\u0001\t�iP�@\u001f\u001f�=����!���~l9�\u001c�N���!��Ɣd�~��1S��O�*��K�V�Zmz壴]����-8s�2���df�`�r��5��z���g��\u0004�2��\u001fI\u00038\u0010�`�*�vtSn�\u001cġ��s|\u001c蟆L`A�1%1^���4�\u0018�+ʍT�!�\b��RbY\"\u0007��p��]q\u001d�~�ׯ�y���Xs�gMO�3YK�Lƙ\u0018�M7�iO�\u001eQ����\u001d����'��G�|��3��ʸ���O\u00172һ��ø]\u0006�\u0018�\u0007��q󴯐��c+����(\u0007Ӵ�|�\u0004��\u001c��\u001e�F�\u0014Q\u001b�\u001a��Y\u0006l�����ܖO\u001e}T�Ly\u0000����xl�W�o���\u000be*��v\bD\u000e]�22\f:���j��(玽�jG�\u0007|��\r����5D�YX�>���.\u0011b\u0007q1��i�9���%�c#w�K����\u0014pR�\u001a���D�F�����ࣣ���<\\�����\u0016�a���k9!�.Xt\u0010!]\u001a��A�\n��I��\fl8����X��T>U�V�[�=�I�|�u#Յ�䂵����T'�!#\u0019�����\u0007�V����\u0017\u0016\u0002\u000f�\u0014�\u000bx�P��A��4�\u0006�q\u0003���S�;�\u0007\u000f\u0012l\u000e\u0003�g�95�3#�0_=�1�nP�X\t�\u0013_)\u001b�B��۩rCNe��\u0003����p\u000e\u0016�\n�\u0012��)O(�� ����_\u000fV\u0006��\u0005E\u000bx\u0011m�a}\u0002ʠ�\u0004�Y�Ijjge\u0019\f\u00065�h\u0001�d\u001d�o���+{�KJ�������\u001f�77+\u0003�-Kl�iO�d�<\u000f�Y���<>9�:FYgL)-�i�Y�It���O��\u0019(�j+\rk�ocb�FՒ\u0015�ZF�MYG8ϟ��5�����\u0017�X��7��\u0002�ep�[����g��\u0016g?rN{ʔ7 ]u��Ι�u��*���\u0013E\u0005\t���ք��&KQ\f�\u0001���\u001f�CfWA>�!��\u0012�\u0005\u001f[\u000e�m%Ph�9�Dr\u0012�t\u0002�,���\u0014\u000bi�m��[�d��l{�/}�qM�\u0015\u001b��I���R�HZ�hˎ&Ka�o�p\f͛۸xێ���o<�ߞyC]=^8�ݚ�=�`��b���~�j\u001d�t6v\u0018:CYV�-�b��W��۷��)+߱\rl����S3��4D91��ZRnǖ�q\f^��{8_9�<��Ny\u001b\u0012ՠ��\u0018�8H�%\u0017\u001e#��\u0000���f#3�Z�9}���\u0006��X��B`p\u0012Åpe�u�4峩y�u�\u000b\u0016���\u001fض\u0005����;��������\n������V�+*�:**��ٝy��myp\u000b�z�+��ًz\u001fދox��5}c���\u0019\u0000�]}mu\r��$/����\u0017$&\u0019�`G$�\u0016*rrf\u0018 �h�V3�\b������������W7-1\u0017��o\\��A�Źg�+XVX0��T��8�����\\�Ӆ�\u000b�jO��ifKs�ZGwO�im�Viͺ���)�^��vJa����)<\u000e>�\\1%�bn�����\t�\u001d�\u001f�G��(\u0011e��e4q��@z�)gN\u0012��\fƎ���[�v�(>z�n�uM}\u0003\u0016��ݮeM\u00187-s�����}��jl8~˟?�����������G���M:D���w@?4\u0012�\u0012!\u000bB[\u0011h4�T@�*�p�r\u001eg){�r����ꚶ�ִZ�Xl���\u0004��Ǹ�ה��\u0012�\r���a<���xS\u0003{O\u000ex��2I~\u0010�<�C���iHX*��D拑�\u001a�V�\u0002\u000f(�%_���O���\u0006\u0017ij\u0016��\u0016\u0015�4�\u0017t�����\u001d�cm��уo�#7��(O_ٰ\u0018ggc�hMu]����\u001bҠ��Hv��d�c�Q��΀o�f��+/kX׻b����)�|�M�ge�/̰�u�(�\u00139>��;��F�,�S��\\�[�\u001b0J�^�T�\u0007cҨqFr��\u000bv�%cokj�T���\u001f�e}\u0005H�\u0006$n�}1�v*\u0003�\u0011\u0003يu\u0010��D�\nE\u0005�C�\u0002��x����v�|l���E\tضdӚ�E��vH��מ\n~v#�w���١C�R�{�˿�m\u0003^�v�g\u001dm�u9R� �\u00170�E1�\tNP\u0006�\r\u0014\u0012k)�\n�W9����W��j^�\u0011\u0013h�}uM˲�\u001c�4n�}֒Y3s�jj\u001fR����ddYm5����.�\u001a4d��\u001f�'��:� �&\r ��\u0007P×(�+)m�|A54��me�d�T8��>�v?���}����}R�Q��d�=O���[\u001e�3��1x�cݍ\u00071��\"Y�\u0004j�\fZ��B�k*WŃ\u001f\u001a�U3�ъ���y�Cʛ�\u001e��\u001b�\u0018��\u0015X\u001a/�嗞X��4G\u0013\u0017���qj|\u0014���s�\u001dk�paA�Cϵ�湛�\u000bp_y �]\t�\r�\u001aJ\rј{�|t)�Y����������\u0019�iQ�3�zW�lqcN��9��vȩ���+\tiӍ���\n\nq��l\t��\u000b��\u000b��\u0006u��\u001b��4܄/S\u000e㫕_)_���%ިl\t��o�U�#�\u0007���8\rő�e͌␵\u001f�%'ϝwYEwv6�\u0007���Ը��*�?�����\\\u0001:S�wѕ�\u0003*\u001c\u0019\t�\t\u0015+4ώl޼��S��\u001f��<�#��e୷�<�,��\u0005x�?\u0000�����`�S�\u0013\u0003�ll�L�\u0001{\u0018�Et'\u0010݋�KVv;�<���,~������gp)��\u001e|�;���s���\u0006��w~8ܻ�p�ٳ�Q��\u000bg_|\u0001;�޶c���\u000bp�ݲ\u0015twB���\n�Ȱ���1p���\u0019+�\u0018Y\u0005�r�fe�e'�ډ�o;��N�\u0016L��m\u0016��h\u0015��\u001f_]P�\u000f\u001f�Q8��>|#\u0017?6|�2wg�\u001d'��p[;�<\u0004��\u0007:'�\u0014\u000f�'E�Q�+c\u0017��9\u0017�$����}\n�Ƀ\u0007\u001b9����c+���\u0013ӌ�Dl�jn��\u0007\u001e�ه'���Y���\u0003����~X��)t��v��\u0007��Zݷ����U�Uu\rp�~�W?x���&��l��z\u0001޼��\u0005�1'�v��q\u0000p�nN���J\u0010�\u0000�uFv4��\u000e\u001e5������{��@�\u0019���.ZRU����n�).�\u0016sO�\u0011�6%������q�i��\u000f�i�+��`�X\u0007\u0015��*\u00112j�/\u000f6�ΤS\u001b<�7@!t�\u0013H-&�ʎ�0�k��s{\\��I�[O���Ƕ�����t�\u0002�*�)\u001dހ���ġō\u0018�5\f\r.�m4U&��H.��;�S�\u001f��7x�\u0003���c��\\���6{��U?��v�۲\u001c���z�r�\n1��tB��,�\u000e\u0016�{�\r��>��$�'�<%��䙦�B\u001b�7��\u0016,.�L���a0��[��TT�5\\\u0017<ȕ�e.���3��\u001a�\u000e~���o�3��\u0001*Ŵ*U5�Ô�\u001bprH��\u001d��V��wz������}u�}y�L҆g����R�ʹi�҅�2[2�|��{����dU�M�^��f����Ň\u0015�k<j.��VfVm�\u000f�c`W1dD<�U�N�\u0015�\u0014f�V;$50�}�f�\u0012�\u0018O7TV؝�spbr�rⲭ������<�\u0004s�JO��g�y���V���~����RЙW�q�LKzJbB���{������J\u0016df�\u001b3g'�*-kZv�\r��{W�}��*!c�IT=�dh4�W�wlx�$���/p�rB���#p�X�=F�\u000bor'����>�\u0011wP{3�.�0&��Y#;1��ϲYms\fܦ�:>9a�iij����\u000bg̎��c\u0007�#̻J��$cl܌7��57���0~��W�P�\u0012��\u000b@�ը}\u001a�?t\u0002�\u0019��N���\u0000+�Soƹܻ��/4�w)r\n͟���\u0011�ǹ�\u001bAxu\t>��|���\bn#����\u0011�o��8W{��F2�\nN�6�ۙ�7�R��\n\tdJ\u0004�z�W�$5h�pj̼��+\u0016.��pݦ�\u000f���\u0005�\\����Ϋ�냿ܶ\u001d��ꫨ\\�xp7t��3�\u000b�?�a�{����3\u0010_��\u00054΀�}Y(k&zk8�¿`��Ԥ�ٚ4�\u0016\u001c\u001f[Uվb�\\\\U�Qޜ�?\u001f\u0017\u00146-��E+�����6�t��+W�4\u001f8��\u0017��]�ᨨĵ5\u001b._�\u0000'�Ac+[�TT�qI�«��Z�v9����X۷���\u0018���}\u0015������i�`?�L�\u001b\u000f*���\n���F�PiEu�h���Q�>��7�T\u0007C�\u000fY���ƃ�\u0003��\u001c�Op����\u0017 k�E\u0007��F�pݤ�A��B��\u0005t\u0004���\u000f =�YA���\u0003�8�j4��n�ჱ\u0014�v�u\u0010ƻ�j�k/�\b�u�*�\u000bs]�|\b�~�\u000f�g�n��B[��\u0018Ƨ��t�\u0003�7\u0013]@Up��/ɨ\u001b\u001dE��\u0017����w\u001c��x\u0011��N�\u001f���s\"��{IS�\u0019�\u001cҼ��;���>��Z���֮�n�>���n��E�M��>Zߣ�K����(MTBTATeԆ��TLQ)�&�˞.���7!��\u0015z�P�h���\u001c�����\u001a�\u0012�O�y���5��(U�\u0011�u(U��h=zNW��(�����)��ػ\u0019\u001d͟��\t=\u0015�Ǖ2:\u0006\r����X�#��3:\u000e���:�˶i=��H;�\u000bFs�Oh`�\u0006\u0015&�3�G�\tՌ֢�����\u0001��h=�Op3:\n%&�0z\njH�gt4'N{��SQI���1Țr\u001b�c5�%���8dN!��a^\u0003��\u0019c\u0019ͣ�FLi�;M���h\u001e�\u0018gPZ\u0007�:�\u0002F�(�XBi=�����\u0010\u000bc\u001d��`<�hg4�R�+(=��W�����\u001a_�V��j|UZ��J��Ui5�*��W�����\u001a_�V��j|UZ��J��%t4�j3�\tV\u001eJO��\u0004�aF�h�q/�c(&\u000f3�`�\u0013J��x��W���L�P:��y��D�ʟH1���\u0004��(�D�\u0019g4��o�N���4F�HHU�B�S�\u0018\r��E�N����&��)=��@��ѐ\u0003�C��E�ic4�G�u:���h�%��I\u000e���hȁ�C��'���d4��z��ET�/\u0018M�<C�\b��\"����+*¯�\b��\b����Ą�҅F�0�� \u0012�\u001d�\u0005�\u0002�:(݂<�\r��q\t�\u000e��@��\b�2�\u0010`�\t��@��q��)�\u0012�L@�0�D�0�\u000fƚ�[�W���S\fo�*UJGk`�\u0013�;`�\u0010�৫:@�\u000f./�\b�\u0001j�\u001b�$�\n[�\u0005�\u0002p�L��/\u0003B\u0002� �D7*�ZȌH5ٙ,\u0011Fԕ.*�x�\u0000�]T�\f3~����\b�~��G=�ӵ~:�R�7��Cm��/�T6��N��Qmd��\u000f�o��\u0000�&P\r�V�T�\u001f���y��v0�\u0012��PY��и���3D��\"s1�\u001fdJ\u0014\u0015\u0019�U�v6\u0012�H�XMd����K\u0011u���R�\u001d.�*��N�odZe�)�Sќ@a\u00108�4ut\u0002W���a�Ȕ?@�&��\u0019��}sN�*�\u0017��̹��\t\u0019^г�Y+2��4�\u0005��!�\u0006��!:��\u001f�\u0019�Ő�8!�j���\u001b���\fmU�D-�4Vjv\b\u0014C;�_�QsR�aZgj6��JՓ��Ù%��\u0015,2.j\r�M5n>V�ΰ\u001d.�4�������\"��LG?�\u0010�H\u000fL�M\tm��\u0010�$��a\u000f\u0007in\u000b4\u0007����h��i4��Q'���Nj�0\\M>�e\u0013�H�uш�h\u0013]�ZM����D���\u0007(ZôJF�^�t��#t^�Hx�\u000eRC*�~�>dqH�0�!\u0017��!�̗�չ��VK;�\u0000��0M�.K�d%�\u0005�\u000b2\b�^Z\tj\u0005�EH)\nKi�ܞ\u0018��溗վ����p���}_��\u0010�\u0012�q\u0013�J��\r{�����\u0002ʡ�Z��\u0006�\u0007i��P#�飈;�43j\u0005�.�A\u001a�\u0003�\b�\u0006�d}#ܗ��\u0006\u0018�;��Űs4����v�X�/���K�����hh\\�X��0��D=\\����y\u0000\u0003/�\u0010\u0007�\u000e�\u0013����꧳��\u001f\b봇���]����\u0012�\u0010ҥ&z��+d֟}�\fQ)R��\u0012l{�6�I6���\u001f��T���@&�e#�N(����㥽��z� ��o�+T�\u00041)B�DǸT�\u0000�/����\u000b�V��ȸ��o���z5\u0019)��_�\u0015�j\u000e�Q�1Ez�\u0011A����c���t�i�#z��%��؉&�rԝB�\u0016\rSd��%�z���\u000b,\u0017�\u0011}4��T�\u0000EZ�ر�\u0011���0�7\"o'�\tߍ\u0014��E���3I�\b��z\u001a��n\u0012��\u0013�\u001e�U�L�\"N�;���vEf��uo\u0015���Y~Lt��9�]\u001eM�G\u0013���ȅ�yd��iP�F=[�iT�\u0017��{\u0011�\u0013��\u001ez�\u0019`}u#=���ȓ��G?$O�I��7&��!y��QEk�tl�2/��P�ċ�\u001e����@�R\r��\u0016�-�؉�\u000f{eH\u0002�ej`�\b\t���2T\u0001;�\u0000�\u0012x*�w�2��\u0011y��F͌�\u0018fK`���\u0015�\n\u0017YU�l�~B.\"�A�%à�\u0002�\u0011�1��}r��i���}�P��:G�y��2�Ħ\u000eڡ�=����<�\u0014O�S�I�tF�\u0011��ľA���]�\u0013�?g���@�\u0005�~�!H�,t��Y��'�a���\u0011z\u0006Py���М�|\f��\u001a\u001d�\u0006E�$�#t9$��\u000fs~\u0018\u0012�<�a�W��\u001e�0촛�z�/~\u000f��\b\u0013:=�\u0000\u0019�\tMnXWRUU\\\u0004�R�P�t\n\u001d���\u0013:$���(\r�y�~�E�xG\u0005�\b�`\\\u001e\u0014\u0006$�<�.\u0014j���\u0014��%�0��x%�\u0011p�n��\u0017�\u000e�+������>��\u0010�\u0002̍\n�AA\u0006-�^i@�K>���\u0013D�� ����!�L��\u0016�\u0001�$��~\u0007,�`�3@V\u0013�)�\u000eX/�1�1�����\u0012pہ\bxG�\u0002�ĳQ����+�~\u0017L�\u0005�\u0000��#�|�A0��0\u0018p:����z�\u0007���O]��G�R$\u0012$8>�E�d7��zփX\u0011�\u0007@��Z6 �C\u001e2?��C��\u001c\u0006D<�Q�\f4ʢ�\u00048\u0004�\u0004عe;����\u0012��K�D�[&`\t�\u0015��Kr�\n��\u000f��$2\\����gy�c�찢_\u0012\u0002>i@ES�\u0010 �\u0006�\u0004a�\u0003.�Dp���C�u�\u0004q��\nI�|\u0000\u0019�#xt�C�&�\r�%��P\u0005\r�\u000fȾa�8JT��ni�7,\u000e�i�2\u0000&�e\u001f\u0011L؇�\u001e��J3�ru��Z��90�\u0007\u0016��-5W�\n�-���!\u0001ʣ,E�����w\u000b]^��K��'>W�7C��\u0012d\u001c�*`��\u0014��~!G�j\u0011�\u0006\u0007��4��F\u001c�fnm�jjl���jjk\u0015�\u001a�eMu\r��\rB�⎆���֮����.\u0007\u0004#�5\t\f\u0011\f��~\u001a��=P{�!�8�\u0018�zH�\u0013��G�QO����\u001c\u0005�\u0002�\u0001��\u0015�R4�!+d�g`\u0017���D��,��2�\b���'�\u0007+���!���$� �\u0012��W��!;\u0006\u0001�\t�H�=C\u0012e��\u0011^\u0007\u0001���\u000f�A4��:�p��\u000b\u0019\u0005�\u001f�\"��䨰Qt\u0006�~�K�\u0007y\u0015��,t�i����\u0000�Xp�(D�7,��A�~��\u0002��9J֊\u0003\u00032�1䎗��B2��Ҟp�QN�%\u0013�@\t�\u001b�x���ԦYL\u0007=#�3�~��s\u0010= K��\u0005�\r�C��G\u00055�\u0019B�\u0015Q<�\u0006'�#=oC@�Q5�-���<�2�)���\t8\u0007 W7�҈��.q��A$%�\u001b\u0003\u0013�1�#�E۱�?\u0011c�Ȭ\u001e�f����\u0002�-� �#��\u0012���\u001a�Hȭ,��\u0013*J*��ˊ��L�n��⒒�2�WX+��r[��*6���\u000fϵXFFF̮P��\u001eWdMHB�W\u001c!X@\t�Q ���\u000f\u0015�\n]�\u0003-��\u0014�W�ˢ�)�����UY�-�-\u000e��iq����nq��D�'�d��`Dr¨��Kȓ��H�'�\\�Jz��W0qҌ\u001f\u0005p,l�\u001fO\u001a\u001d���ȑF�sSĘf��)�s�g���7j�/Ѷ\f(���Cg\u0003�f\u0017��^�U��\u0010M��c�^����\u001f�x�\\\u000f]\u00119��~o��L�Y�~�\bЃ����|���,�����<��/�+�E�\u0002�������\u001b�l&߸\u0004�'��?խ��\u0003\u001b���,8jMF��~<�\u001f��S\u0015\nendstream\nendobj\n19 0 obj\n7137\nendobj\n17 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /Arial-BoldMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 15 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 552 552 276 552 552 276 330 716 826 606 606 662 662 662 716 662 936 552 716 606 552 552 386 330 606 606 606 552 552 552 276 552 772 606 276 772 606 606 606 882 552 772 330 276 606 716 276 552 552 ]\n]\n>>\nendobj\n18 0 obj\n<< /Length 707 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0031> [<0032> <0030> <002F> <0034> <0031> <0020> <003A> <0041> <004D> <0054> <0046> <0045> <0058> <0050> <0052> <0053> <0057> <0036> <0042> <006F> <0079> <0065> <0072> <002D> <005A> <0062> <006E> <0063> <0061> <006B> <002C> <0037> <004F> <0064> <0069> <0047> <0075> <0067> <0068> <006D> <0073> <0077> <0074> <002E> <004C> <0048> <0049> <0035> <0033> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n7 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /Arial-BoldMT\n/Encoding /Identity-H\n/DescendantFonts [17 0 R]\n/ToUnicode 18 0 R>>\nendobj\n20 0 obj\n<< /Type /FontDescriptor\n/FontName /QUAAAA+ArialMT\n/Flags 4 \n/FontBBox [-664.550781 -324.707031 2028.32031 1037.10937 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 73.2421875 \n/FontFile2 21 0 R\n>>\nendobj\n21 0 obj\n<<\n/Length1 12360 \n/Length 24 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|\u0014U���\u0002\u0002H���j\u0012\u0012\u0002I��N:!!$�\"�NH�\t9P���.�>r�!\u0010B¥��'*ǎ�\u0000��U�9訣���ǌ�̎����tg�ݑtg����\u0000\u001c�ٝ4U��;���}���0Bh\u0002ځd\b5��\u0016L��`\u0013�\u001c����췽��\u0002����;\u001c<g���/F(q\u0007�\u00159``��S���\u0013��p\u0005��\u0018J�\u0014�\u0003�o8=\u0016��\u0017z\u001a\u0011J:\u0005�\u001b]\\�\u0017\u0015�:��g�3��\\�ϰ�\f����)\bˆ�!�@Hq�B�\u0010�-~��D6f�\u0004\u0005���3�O�еCD\u0005�;�\u0019=n\u000f�@�����p3֩��#\u0015\b����5\f1RA\u0018ː\n!�Z�^\b7��h��=7V�@\u0017\u0011+\u000eD\"~�3E��m�\u0005\u000f�J�2M����Q�a(2\u0014�\nRSRU�@\u0005S�JxLѥ\u0018��#�ˏ���n>�Ј;�\u001e����\u001c9R���3\u001f~����b\\\\\u0018��9���0�_oݎ�\u001b\u001e��O�@W�w�+9���on\u001e�{�S�\u000e�����\u0010=��\u001f�\u0012�\u0003⒌u\u0018?p(�1S��wI0w\u0017X3_1�&\"�S�Z�N��^�1�/��\u0015�\u0017wʯ��V���\u000eĠs�l�<C�<�P�,��܅\u000b\u0017d�\u0017.��w�\u0002�\r!�U�o\u001a��)�E\u0006�Q��1��\r����ԙ�x=V<\u0019n(�\u0001\u0012��p]�]�1����B�'\u0017Y�\u0004�j��d�aP��\u0001��Ы_aMSm�z<�w��\u0019��\u0018�ݶ�\b?4�h�&b��\b�\u0007#\u0016i�5��_��ا���\u001a������!\u001bD\u0012�!>\u001f*�A�(\u0013�a\fE\u000bIPR��HD2i�\f�Ĩ���R�,���c�+'O��uu��O�y���V��7\\��\u00077\u001c,+�\u0007o|��[�W��\u000b�3�:�O\u001e:۵\u000ec�z�Գ�oo�\u001d�y;�������7�\u000e��?�Պ�P*�a\u001a��!%�~�\u0019�Gڂ̌D\u0006�(\u0000-��\u0016�C[�~��XOgG�R�\u0006�\u000b�M���x\u0014��n��n2�o�V5�6��{tm\u001b������v�\u001f\u000e\u001d��m�m���#=}}}؁��\u001e,�\u0001�A��U�\u0005�0YC\u0001J>�z\t��\u0012bE�Џ\\5f`R�[����6S�qˀ�\u0011���m�ooْ����gǵ�sO��Xfٰa��\u0001�m�����}������S����ן؛[�\u0007�9�����`&�P�\f�eJU��\u0003'{����EW��UVl��+���[���c�>8��_?��Q��6��\\��\tJ���y\u0006pUa��*Uf\"�_Vd �Kam{:�����Յ�:�����|�z����M\u0003��۽\u001b�\u000f����;��i�j같;qGg\u0007��*Oa�9\u0015��ƃ{�x�У\u0018o�B��\u001e\u001fWt\u0001֒�B��\u0002)rQ7e.�\u0014H�\u0014\u0011��\u001b���]�;��%�����V���qɍ��\u00055�\u000b�j㦦S�S�&�m��z�\u000b���ij�-�1\u000b��=��&���m[\u0016�\u0003�������Q\u0001���IH1�#������\u0007��*9\t��2d����\u0010��GV�w_�����q��Ғ�z��\u000e��\u0019�QZ>�lj��a�7�n��TO�<)���)�\u0017<�\\�\f\u0017\u0017\t���9x�}AZ�iOceEffҔ�3\u0017�'����\u0012�w���&c!���\u0015���~}qEu�\u0001�5[���p�ve^\u001e��^��\u0017��>�\r�Xq;�\rV�F�P�V�S\u001bԺ�45���\u0014f�,c���(%\u0015����c��\t�IYs�ݣƘ���?�X\u000e`�3|�@�&cJ��\u0018��_\r^�\u0007^�M�\"Vep�z��ou�J#�a�!\b\"X�f4���?\u000e�ݷ��_\u000e\r��'uv�1�Ն>`��\u0018�\u000eokm���';�\u000e]��8ᖛo<\u001c�N=�캫q�\u001e�2XmǸ��H?\u0006u�4�e.Z\u001c�\u000b����&1MFd\u0012���՚�h\u00105ǘ}/���e�ʿݐe2���|{Q���\u001c����c��Wgf�6\u001e\u000f�)F3�,|�э�9\u0019i���f�?PW3wN�*\u0014����Y�eu��*�r\"��\u0003΄�D\u000fpn�TRQ̤&\u0013W?r�=8ifUEoú�%���4���;\u000el�XX��d��IxA�\u0006�1\u001b�\u001b\u0004~/�_\u0013�9�\u001c�K�LV\u000f\u001e_V�_޵�|Ŋ2m^�<y�1�����e�\u0005��7�B��=\u0004��g46\"\u000f]$�����C\u0012:Y=t<���&�ᤑ�\u0014}��@�I�q�C\u000b�\r%\r��!?��U\\����W�\u001az\n�6�.�\u0013�M��x���S�$\u0002)\u001d��������`�\u001e\\R\u0012��;�q�\u000f�*���kjǸ�e�ƺZ<����q��xҩ�;++�v�;{���3���\u00063�� �\u001e\n\u000br\rH��\u0016A]���X$\u001e0�E�Z�$��B\tmC'KV�;�\u001d�\"=^Z��|mw�J�������\r���\u0003k;Â��}�Y�j�����\u0001(S\u0019\u000bKC\u0017e'_��6�^�Y1��$\u001e\u001d��\u0001�&�\u001eU\u000f�(F��\u0005݆a���GNr�\u001d\u001e\u0019\u0019����\u0017��\u0019\u0017?�UՐ+�`�\u001aiĳI\u0017�mԅ��\u0006I���/~p`���`�O�����\u0018\u001e�����kp���I�\u00197���\u000f�^\u000b�VT��^��l�7_���V\u001e�]\u0007u�K�d�T�%�R�\u0014?R�\u0013���`\")5%��Ec��S�u���m�\"�(����W�\b�B���ھ[Nl�R]�\u0018�ֶ�����K\f����eU�[�\u001f}yp���ߝ殭[��aKK��\u000bui)\u0005��E�ͼۼ� \u001f\u000e]�m��������5\u0005z}ѢҮu���QR�q�Ҡ��\u0016 �s�&A\u001f�u���I�\u0006�L��������΅���n����\u0019\u0006�#f<\u00045�\u0013b�BS\u0011J��'M��%jd��2F�&���OCw\u001e{\u001fs{�fn\u0001�(~*\\�t�#O�\u001d�\u000fR��y�9pH��4����cw˖��R��tA�O������')�a5�\\\u001c뵠a#\u0012�D�\u0010��\u0007<�%=�\u001ag�\u001d\n1K�\u000e���\u0005I�C�\u0018�Lx8���\u0003\u000f��cc\u0012r\n��\u000bcr2�\u000e!�\u0007ΥZH�!�\u0007�2-n��\u0013�ɺ�qӪ��%\u0018��_\t\u000f�-O�i��6\u0014\f��*F��|]�:�S;\u0006p�\f㺚\u001d�U\u0015)S\"5��:SD��\f�bD������z֮�X8��l�ںy�\u0014����\u0011ks[Z�\f�g�\rAi]��v��Г$k�^|\u0002Q\u0003�5�\u0014�o\u0007�Iq��G��m�_Ӛ�uU�H´bCss]��9x䮑����5�\u0000s8�����EY�\u0017���eJH�1Z\u000e�\u001f��Z.�<���\b��\nZ��\u0015�\b��sp�#W�Tm�ZV��\u0019�_l0ffa����U+[�n�&'G}vrI�c��\u0010�������qU�\u0012}�ź�u�\u001b/����D�_�,-5#?#������4k^jrz��r���\\-$�!m��Ą4��\u0005˖ww5�Y���Flx0�\u0011\u001e@\u0017H�����\u0014i3��¢����ٳe\u0017.l��[h�Q��\u000e�\u001f�^{\u0001�\tj;֩��\u0002\u0018s�����\r�q~���o��k���|������\\׭\u0018\u001d{��]\u0003kZq]���\u0017���G��Z�W��A�ID�#����_!�@�|�<�\u0016��_N��<�\u001d�9E��\nI>0���}�ي)�O�\u0017��G����5�^��0KM�\u0016m�\u001a�\u001d�\u00140M䠎uxG���m��\u0012��>��\u0016/ɮ�\\o�\u001f�\t/�Y\\\u000f-ނ�\u0015GÿƮk2�rr������7�\u000fC_\u0000�R�5��-���k�_�Xۙ�\u0007핬E���\u0019�\rɉ8\\\u0013��\u0013\u0012��)��5��Κ\u0001�\u0001�U=T�h����b���\u0018�\u001d�����\f\t8�������|�|��d��LՌ��/���o���t�G�Y���Dv\u0006^Ȯޯ��^<��*A���J\u0016)\u0012Le���\u001cvA\u000e>�b�<�ν����'ςc\u0006v=\u000b�����������}�S���Cő\f��\u0003�� �>Ҿ_zjJ�\u0012y�n\u001f���޹�sms�V]C��\u0004��n\\U-\b�u�#�`�L\u001fo5�Ngݵr%��W硫\u001f�q{U5�V\u000flmn�8�n��l���\u0002�X��\u001d�-�N���F��k�_���\u001e\u001c���\u001fCY�\bڒ��4��B\u0012n\u001dsq�R��z�fo^@�e����gjm�\r��$xkA�\u0002\u0003��k5�O�g�;>����\u0013��Z�ѐ\u0011V���� �db.�^�o�Pٔ\u0019P%��\u001d\u0015�m�{\u0018�\u0013�G�\u001b}\u0010H�bw,�Բ)h\\�n{�h{ۣx�tm����F\u0000�V��\u0015s��3ni��B��\u001d]��X(�9���Λ�q}ÉЭ�#}ee��\u001a�7��\u0007�Z�\ru&X?\u001f�h\u0005h*���+�u�$G��\u0007�'*c\u0005���,\u0013\u001b��!�qsa\u0011����A�/r\r��\u000e�y��[x�J3���d�^��jl���8#}��֝&\u0013n[�kG�I6{�q��{�.��{l���r8������y�Ϯ7o�&Ǌ\u0015+*6X��VTu���+WBElmٹ���d�ꄢ%\u0016\u0019���O��j�\u001eV�ngv��з_C���wCg�nc>�\",�}.�_�7!�%\u0015.T�ʗ��Z-�V\u0019�JHY3�e\r��Э����C\u000fwuuu<p����yݪ���4�\u0005]��{6���i���v�8�����Y~\n�>�A+qu�ه����\u0013�]���u7�y��j!��\u0015+������\u0015�\u0018\u0017�\u0016c5�����7�:������~к�o<\u0014\u0016�V�#��\"��\u001eUy�\u0011UMC�w�ߡꡜ���J\u0018R��l\fTF��\u000b��)\u001fD�)ڑR���~e\t����\r�2�8Bú��{\u0015�M����|\f�D�A4\b�Cr�֐o�\u0012\u001a�k\u0018�j�\u000e�g)��CTV;:\u000e�D��{�h\u0000��܃�\u001f<\u001f\u0001�y0Du\u0010�$ka�Y\u0018o��cXs\u0012�GAW����\u0003]]`S2�Dv�\r݀\u001eAo�Oq&ވ\u001f��`�L5s��X6Of�헝��/O�������\"E��h��Cq��%�7J�r@y��U�\u0007ʯT��-�#�㪿M�>!k�~B߄�'\\�h��G�$�����je�\bI�az�ѕ�p�D3h��#���k \u001fEZ\u001e�F�f(�,�J4U9O�U�\u0005e�DO@\u0019��\u0012=\u0011�rR�'��SɄN@�Z���lS\u000fI�\u0014��k����M�6j�uW�H4��o$�A��\u0012-C��\u000b$Z\u001e�F�&O��h%��$Z���\u001d\u0012=\u0001%&N�艨&%]�'1�UoJt\u0002�O\u0011$z2ҥ�!�Sd]�_��H�B�,��@��)\u0017)�\u0000zZj\u0002��d<u6�Ut<��\u0013(m��D)F\"-�H��\u0018��\u0018#��ǭ\u0011c$�b�DZ��H�1\u0012i1F\"-�H��\u0018��\u0018#�\u0016c$�b�\b=)��\u0004jK\u001d�'ǍO�����4bK��҉@OO\rR:)n}2�#�)q�3��!JϦ�D�s��̏����[(���'(�C�\t=!N�\tq�&ǍO��bB�ȋxdC\u001c��7�\u001e�˄\u001c�6\"\u000fr�\u0015�V���A>�ɝ�q��`a�\t��@U�q���)7�\u0019�ZaƉ��5~\u0018��oQ^>��%p��HT\u0001\u001d��\u001dN�n�=v�!@w�\u0000??\\>�\u0003w+��\rs<Ը�&>���*N�$�\u0017�C,� �\tG7t\u001aD\n��$�ċ�\u0011q��r$\u00168@{\u0017�(�L��vPY��\u0001I��Zh�{\u0003t�M��o���� H�x)o���j���\fYo�ߢ�A*��\u0012�\u0012(�\u0000̻�s/�퐤��Z\u000f�%ʎ�;)��\u0011\u000b<���|]\u0000x��+\u0002|��-�H�z��*�\u0012\u000f���z�I�\u0013M\t:\\Ү�\u0004\u000b��#I\u0015$Kɜ�͘\u0017l��p\u0013Gc~\u0015$�z$K\u0004�>H�bQ�S�:�vߏ�H�����9\u0017�\u0017��\u00039�$m9��\u0016�iV�}�gV*�NG���0#H1$k�\u0010{\u0011#\u001e��a�G��!��\u001c���\u000e���\"�/Ш9�\u001a/�3\u0011�n�S�$\u001e�B\u0014Y,��I�qQm\b6Ÿ��LvF�pѧ\u0018z\u0003��\u001b�e�Y$\u0019f�!H=m�\u0004�<�\f�\u0011�\u0012l[�\u0016�(�Y��>�[?�]�F�\u001e�:�]�w�K��l�K(��#q�E#¡k�~Qk��BgcH\u0013�[���4K��VDd���t����I2H\u000e�^\f��\u0011�#ܽ\u0014C.ZC#�i���K/�\u001a�wv�\u0012ݥ�]�\u0017���V\u0016Ý��x#���惘GYq������\u0019�s���.�}S4��ך/��.UB^�o�:%rm��Ek�~\u0016ePyF�7�l\u001bEn�c\u0004�~�m��M�\u001aa�\tN�Z���\"B7�(�_\u000b�\u0006:^\u0003#�p'9P\u0007^�������\u0014x�'�����=�f���b�Rlc�p��3�\u0003>�Qt8��=��\u001f�������`T�%ZCE�\u0005��X��� \u0015*V��:!H��/�\u000e;��Gk/�m�$�T�\u001e�f����(3�\u0003��`�7Z\u0005y)��h��h�\nHu�&����\u0015�v�1>�K�Z\\)�*�`�L+���Y��[��}\u0011ʤV]�)��_��+%Gj(��\u001c�h8�ꔼ�j�ߓ���w����+b�K�L|戧\u0004G5�RϒsK����1g%,��jhD.�~+��\u0010wZ��:���j_\u001cnc=�\u000f{�h��#��\\¯��\u0013�f|5����J\u000f�\u0015�L�z��wD�\u0011��G�K�ܢ�Ŭ�J��U�K1�C\u0016��QOm�2r�\u001e��m��\t�ֈ}��F�}Y\f|��;ƙ�硕�*��\u001eڃ���.�ǣ\u001f�'�$/�\u001a���\u0011~W�Q�V�3�P�W�q$b�e���C�Ƽ|��K��K5�n9\u0000'd�\u00039e*a4\u0007���\u0018�\u0001�C\u0016���\u0003�\u001bz��\u0010y�lC���y0�\u000f3z�6 \u001d\\dW\u0011*�w\u0013r\u0011�\u000eړxA^.|z�GK��K3�B+��;'\bUM��7�\u000b�\u0014\u0014�jKtj�\u0015Z<C\u001b�>�#u�$?œ�Gg\u0004\u001a�V���\r�*�fE��L�\\��\u0005�r�\u001e�\u0015��*��=�)J�~B\u001b]�ϕ�K{\u0000q-�O�\u0012�˽\f�Qަ~/o�,<�\u0000kr�,�\u000fr\u0001\u0018b�<>���\u0005\u0004���:-Z��\u000bp?�(�0c[=� \u0019��nؗ_R��\u0003�\u0002-[�t�-��\u0011�-������*�;��\b\u0013_?��`\u0013�\u000b6���\u0005�;���\t����*N�I��ǳ���s\u000b�\u0000kqp>�\u0012�\r��`�\u0001\u0007�fa����X\u0001�x}����~���g9�����`\u0005���f\u0003A7��\n\u0001\u0007l�a�c%�\t��@\u0006��@��X��w\u0007\u0004\u001eV[�\b���,u����q`^��s\u0001\u0017L�\r� ��'��\u001e\u001b�IU�\u0005�N �� ��\u0001!��\u001a�\u0007���@����\u0004\t��H�}.�MW�<��-\u0007�[� �M5�\n��C�{\u001d\u0002X���^����\u000b=<]@�̱Np\u0007���wn�\u0002�9��\u00077�-<\b\u0011�-\u0010g�|\u001f\u0018���,�� ;\t\u000f���\rH��K�,��̳A?o\u0015��o\u000e\u0012e�\u0016���\u0001��#\u0018\u0015\b\bn;1��C�\u0003�l\u0012&?���\b\u001e]���Vp\u0003k>`�\u0016�\u0006ۭ������\b�������\u0017T�%VP1 �\tc����<��6�ե�i-�=��|K�a\u001fAm����]d\u0014,>\u000f�Q\u0016]e4ѯ�Y�\u000fb��|���?�|��\u000e �\u0001o\u0014S����]�\u0005�\f�dd�l6-U�w��^\u0007,�66��k�*M�M�lS-�P_U��Z�Vֵ��\u0018k\u001aMS&M�dr@(\"�&a!��8�:@�\u0010�\u00072�c�q^G?�C�O�d�g�=A��B\u0010\n�\u0005�V�>�\u0004\u0000��\u001a0!\u0000�a9g��<A���m\u000e\u000e��1�ԃ��K�!��%\u0010�!�<����\u0004\u0000\u001b6�}L/\u0012v���K(,�� ��xs0\u0000�AM\u000fda�A���R\u0000��+��\tB�\u001e�\u0019�̀J�\u000f��߭e��\u0014��\u0011+�&)8�\u0012\u001c���\u0016�&X���\u0005/�)B�^�j\u0015H�\u00019>Z��ɰ���V�˔r\n.�\u0018\u0004B�^�o�_\u00046�0\u001d��\u0002f�f��w\u00109�Kt�\u000b�\r�C����\bx�C�\n����Ō#\u0015os��S1P+-��-Y������\u000eO�i\u0005��\b|�X�0���H�P5���\u0018�\u0011Ԣ��\u0012�Ř\u0018�IZ۾�-U9�A�\u0015\u0012#��\u0005��\u0005m��l\u000e��Xo�b\r��9y����\u0013�V�`^~�^\u000fw���\u001a�\nK\nK�Lr\u0004\u0002ޥ�����ZW$�\u0016�+>'x����\u0012_@\n�R���c�\fm���\u0002�M��'X\u0004�m�hn���*.�;�s\u001d\u0001�3�\u0015 �#=��_ϑ:�%���\r��\u0013F�\u001f�B�r%?���\fy�k0i@ܴхW@<\u0005\u000e���G�\nD�[i�HZ\"ҴXew�\u001e�=-{\u0016�s�Q٩8^\u001cm\f\"Ͽ���Kd�p���������:�2���j��\"Z�vā��c2D[<�#���g�\u0007B�\u0003�~p�\nendstream\nendobj\n24 0 obj\n7170\nendobj\n22 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /ArialMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 20 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 716 276 716 276 826 662 606 772 552 552 552 552 716 552 276 552 716 276 330 552 496 552 220 220 552 662 496 662 276 662 662 662 552 552 496 276 716 552 606 662 936 662 276 552 552 716 276 826 552 662 772 ]\n]\n>>\nendobj\n23 0 obj\n<< /Length 721 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0033> [<0043> <002F> <004E> <003A> <004D> <0059> <0046> <004F> <0030> <0032> <0037> <0035> <0044> <0061> <0074> <0065> <0052> <0066> <0072> <006E> <0063> <0070> <006C> <0069> <006F> <0053> <0076> <0041> <0020> <0045> <0058> <0050> <0068> <0075> <0073> <002C> <0055> <004C> <0054> <0042> <0057> <0056> <0049> <0033> <0031> <0048> <002E> <006D> <0038> <004B> <0047> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n6 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /ArialMT\n/Encoding /Identity-H\n/DescendantFonts [22 0 R]\n/ToUnicode 23 0 R>>\nendobj\n2 0 obj\n<<\n/Type /Pages\n/Kids \n[\n5 0 R\n]\n/Count 1\n/ProcSet [/PDF /Text /ImageB /ImageC]\n>>\nendobj\nxref\n0 25\n0000000000 65535 f \n0000000009 00000 n \n0000025696 00000 n \n0000000163 00000 n \n0000000258 00000 n \n0000005684 00000 n \n0000025563 00000 n \n0000016697 00000 n \n0000000295 00000 n \n0000005614 00000 n \n0000005634 00000 n \n0000006012 00000 n \n0000007993 00000 n \n0000005805 00000 n \n0000005992 00000 n \n0000008014 00000 n \n0000008276 00000 n \n0000015526 00000 n \n0000015938 00000 n \n0000015505 00000 n \n0000016835 00000 n \n0000017092 00000 n \n0000024375 00000 n \n0000024790 00000 n \n0000024354 00000 n \ntrailer\n<<\n/Size 25\n/Info 1 0 R\n/Root 10 0 R\n>>\nstartxref\n25794\n%%EOF\n"
+				}
+			]
+		},
+		{
+			"name": "I - PDF Connote print API call - QA coventry api user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "610ac514-761c-4e97-b99b-b1edbcae3b8b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "609b0d34-ab24-429d-9d3c-778c26c230b3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "yxtZ7rzs5EN6UH5sxMAP",
+						"username": "api@cgl.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/connote/{{considQA}}"
+			},
+			"response": [
+				{
+					"id": "e830f8bd-3bb6-40c3-9d4a-ed87676d7451",
+					"name": "2 - PDF print API call - QA",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}.pdf"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "pdf",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 20 Apr 2021 02:11:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/pdf"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.12.2"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=\"labels.pdf\""
+						},
+						{
+							"key": "Content-Transfer-Encoding",
+							"value": "binary"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=0SfdNhNBD%2FYqE6PwRYZKlGFy8jU%2BRKVdYVfAiT9ABKzFEVyCxRpf%2F29GeFXwpjBFUD0YGve0e%2FM9Rf8n4Ql%2Fxw%3D%3D; path=/"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_wilberforce_session=Qmx5cThFL0VPL0tWR1NHejdZZ2JJb0FGanlzY1ZoSUlvOFNoa0VPRVZiMHFDWDhCRDk4dzc0UktReTVwQ3h6cmVON1F5STlSVTRNcDBXb2RKZGV1ZUxkd2dJeU5aTS9kUHZkYitzTW5oVFl2SUMrL0NyQWlUNjA0cDVQSy9GUDBtVlMzZW5yMW5ucXIwRFRCc3BVQVVuN3FUMjMzclpXV2d0bjE2bkpHWWp0WUFNS3F2QmJNeVhEL0RtQTl6YkNsLS11MnRpRTAvWUtvaVR6SUY1ZEdmdUlnPT0%3D--05ac672f81c592844a5b2dcbe02f17daf289d5c1; path=/; HttpOnly"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7f853594-d084-4734-9614-cbb0b7b05a46"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "2.436812"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "%PDF-1.4\n1 0 obj\n<<\n/Title (��)\n/Creator (��\u0000w\u0000k\u0000h\u0000t\u0000m\u0000l\u0000t\u0000o\u0000p\u0000d\u0000f\u0000 \u00000\u0000.\u00001\u00002\u0000.\u00004)\n/Producer (��\u0000Q\u0000t\u0000 \u00004\u0000.\u00008\u0000.\u00007)\n/CreationDate (D:20210420121111+10'00')\n>>\nendobj\n3 0 obj\n<<\n/Type /ExtGState\n/SA true\n/SM 0.02\n/ca 1.0\n/CA 1.0\n/AIS false\n/SMask /None>>\nendobj\n4 0 obj\n[/Pattern /DeviceRGB]\nendobj\n8 0 obj\n<<\n/Type /XObject\n/Subtype /Image\n/Width 420\n/Height 120\n/BitsPerComponent 8\n/ColorSpace /DeviceRGB\n/Length 9 0 R\n/Filter /FlateDecode\n>>\nstream\nx��A\u000e\u00030\b���O��$��4���#-&��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��\u001f��S���gJ �����@�H\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z�\u000f�\u0005/+��\nendstream\nendobj\n9 0 obj\n5148\nendobj\n10 0 obj\n<<\n/Type /Catalog\n/Pages 2 0 R\n>>\nendobj\n5 0 obj\n<<\n/Type /Page\n/Parent 2 0 R\n/Contents 11 0 R\n/Resources 13 0 R\n/Annots 14 0 R\n/MediaBox [0 0 842 595]\n>>\nendobj\n13 0 obj\n<<\n/ColorSpace <<\n/PCSp 4 0 R\n/CSp /DeviceRGB\n/CSpg /DeviceGray\n>>\n/ExtGState <<\n/GSa 3 0 R\n>>\n/Pattern <<\n>>\n/Font <<\n/F6 6 0 R\n/F7 7 0 R\n>>\n/XObject <<\n/Im8 8 0 R\n>>\n>>\nendobj\n14 0 obj\n[ ]\nendobj\n11 0 obj\n<<\n/Length 12 0 R\n/Filter /FlateDecode\n>>\nstream\nx��]Ko�6\u0010��W�\\ \n9|�\u0004�\u0002��\u0014���\"\u0001z(z(��\u0016�Ͷi\u000f���DI�,t\";��0\u0001b�cR\u001cr\u001e�\fG���w��?�e�����C���+xYi\u001e~X�{\u00117�-��L\u001bӾg\u000f��\u0013{*>\u0014\u001f������F\rc���\f�+B���'��?F�G��3��W��\u001d���c!���z|�?~�?V�*I\bN·�����,~��}����\\i[�\u000bs���>y�\u001b.E�\u001bw}֕�\u0017!�e�\"���ŧ��W��Q�W�\u000eDN\u001a�\u0004���Z����ڒ���q���]��\u00137��o��A�q�d{�0/f/^[�\u0017�\u0010Y(�\u0017�\u0015ʾ[I�w���`�g|?�$m.�4������a���'&\u001a�.���c�م���G�m�w߱�υP���W��\u0012(�Pt���5iC���j(�{�\u0017o)UBz���q<��Z��\u0002��:3�ب��K��2��7���8�����sl�?��Od\u001d����,bV���Ǭ\fY\u0019����`�0\u0003�\u0003�0�ц\u0006��\u0004�,%Y�I\u001bJ\u0015(�//�\u0014\fcl��8�90�\u0005�(\u0005wr��\nR�!e������0^�EbQ��\u00106��[���(�h�d�5\b�]�n��XC[��i�a�8�>يT)�\u0013\t;� H�0ŀ��\t�M�\u001b�!�L�\u0007S\u0002��\u0001ҬFÜ�=���Ҝ�oA�0\u000b\b'��\n�/K��hS\u0012}�\u0002�V0_lZN\u0003K�*���x32�%Q�\u0000�\bnKn�k`F4\u000ej\u001f�3\u0003o�aɑ\u00189�E��p\u001e���!+��u�\u001f\u0016j��\u0006\r�F�\t�\u0000D{h\u0015Q,���ͤ@\u000b�\u000f\u0013~\"�I9E7\u000b6��[�����h�d�5\f�u\u001f�_�S�I���(�~���u\u0018\u001e��Ghb��Mס�A��83Иlz\u0016oz�2de�ʐ����L\b���C\t\\�\"V��\u0006�a�\u001b\u0018@�!��E\u0014�\u000f>d�����*\u0007�3c3�ĥ��\f\u0010����,��:\u000f�P1�\u0012\u001eJlU�ڲ�����5���7��Y����vn6�\u0004DA#$\u0011��G-\u0001\u001f�\u0018W���k�%�����f6gK7gٷ\u001f�����N��\\핶bVYu��`[1��k[wsQ�\u0001\u0017����$�vՂ��>�h3��l���{��{d~���)u��\u0013\u0018�ռ�l\u0007̝\u0010��%9*T��M���\t�\u0013x4Rpn7��Q�{!�����/�2�\"\u000fE\u0005ߘ��%��\u0012û�\u0012�\u0002��4�0xO\u001e��\"����#���,+�\u0007\u000b\u0013��ȘNd����Iix�'N����[�m\u0012�\u0001���H=O�\u000b�g}�r\u0001L\\\u0007�bJ7Pmp\u001fH�\u00050�P�gA�\u000b̈́�\u001a��^���]\u001d�\u0004�fH3\u001c�\u0001�\t�+i�\u0017�r=�\u0019^?���S�A�\u0000AF\u0000J���!�@J�)WV�n\u0019N�\u0002\u001d\u0007@K��zV\u001f\u0007g}\u0005)��kHYANo e\r)����ӓ\u0007BX�d'J��`c�8\u0014�Μ�)\u001b�<Z,|\u001d(\u0016\u001d�wc�\t����;6\u001f\n3I(�X`�X@QJp� �X01?x\r��c�Y����\u0016�\u0003z/�\u0016p�\u0013��E�@J\u0005�\u0006Ţ�hu�Bl!\n\u0007���$��⇅,�\u0000WH\u0001�\fZ����$��`\u001e\u0012k\rg�賂�L��_\u0005]�����,u`c\u0004[Mi�⏠����\u001a�z�5��\u0007z�\u0004\u0005�-\u0001t�\u001aX8k<�\u0014�\r����s�Qe��io���\u0010'�G%�M��\tG{0vL$<�u`���tJ�\u0016N��t\u0010|HTbu�pn��7�\u001b^�)�H�\u001d7���3,�s6\u0003����\b�Śp� 9\u0012��<�e��m�MU�5 \b�1��X\u000e�L�Z���\u0004Iګ�XN�'E;nr\u001d�|:��W|�\u0018�RX˫�\u001cR�\u000f�iU��_\u0006��6\"ª��G�\u001e�ӟ�\u001f�\u000e�Y�C&2\u001b&�0da8\u0007a8�#��%�\u0007ç��\u0016\u0001�/`ܔ\u001f���\u001a�lV��9��\u001c~H��.)�\u001eNta����u���\n�u�MT��`�g�\u0014�:\u0003\u001dOv\r\u0002�ɢ����oQVίp����)R�YP�9\u000b6�>��y?���yԤ���\u000f)���RΙ\u001b�\u00036p\u0011Y�\"q\u0016�\u0001=9�\u001aϟ�\t��V03;�\u001az�\u001f\u0019�{�\r��i�{�|ѳ�%�u�m�!��)r/V)�4e%\u001b�E)�⮲��W\u000fӎ�Q��Bڃ\\�\"ޮs�����.x�����\u001e]��T\u000bX\u0017��3���V�\u0014<\u0003H�A%�V�7B��\u0005��5\"�Q8�P�\u000f�G��\nendstream\nendobj\n12 0 obj\n1905\nendobj\n15 0 obj\n<< /Type /FontDescriptor\n/FontName /QPAAAA+Arial-BoldMT\n/Flags 4 \n/FontBBox [-627.929687 -376.464843 2033.69140 1047.85156 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 104.980468 \n/FontFile2 16 0 R\n>>\nendobj\n16 0 obj\n<<\n/Length1 12648 \n/Length 19 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|Tչ?�Ν�\u0010���6\t[n\u00162Yg�L&\u000b[�\n!$!+D�p3��\\�%�B\f ����\u0015\u0011|\u0005\\jժX}.\u0015�\r�O�吝Z�ֺ<+�jkmU*����s�L&���^3�;�=�;����s� �\b�(�\u001di\u0010j봔�M��\u0004#���\u0019r�\u000e�ܺ�1�?@Ȱ�!�\u0003�ǚ�\u0011Jp�X�\u0003\u0006�\u0001�w�s������\u0012���Ex~�鱋��\u0007_G(�zx\u001et�W\f�r�\b��ó�\u0016]�/d�w\b%�\"4�\raͫܓH����֊\u0010��~k~�\u0006��(-7U�s�Gh����E�[���A\u0002\u0012�Ǵ�(�ت_�\u001fZ����8�ሓZ\"X��\be\u00182\fs��\u0011��\u0004��EZt\u0001\t�iP�@\u001f\u001f�=����!���~l9�\u001c�N���!��Ɣd�~��1S��O�*��K�V�Zmz壴]����-8s�2���df�`�r��5��z���g��\u0004�2��\u001fI\u00038\u0010�`�*�vtSn�\u001cġ��s|\u001c蟆L`A�1%1^���4�\u0018�+ʍT�!�\b��RbY\"\u0007��p��]q\u001d�~�ׯ�y���Xs�gMO�3YK�Lƙ\u0018�M7�iO�\u001eQ����\u001d����'��G�|��3��ʸ���O\u00172һ��ø]\u0006�\u0018�\u0007��q󴯐��c+����(\u0007Ӵ�|�\u0004��\u001c��\u001e�F�\u0014Q\u001b�\u001a��Y\u0006l�����ܖO\u001e}T�Ly\u0000����xl�W�o���\u000be*��v\bD\u000e]�22\f:���j��(玽�jG�\u0007|��\r����5D�YX�>���.\u0011b\u0007q1��i�9���%�c#w�K����\u0014pR�\u001a���D�F�����ࣣ���<\\�����\u0016�a���k9!�.Xt\u0010!]\u001a��A�\n��I��\fl8����X��T>U�V�[�=�I�|�u#Յ�䂵����T'�!#\u0019�����\u0007�V����\u0017\u0016\u0002\u000f�\u0014�\u000bx�P��A��4�\u0006�q\u0003���S�;�\u0007\u000f\u0012l\u000e\u0003�g�95�3#�0_=�1�nP�X\t�\u0013_)\u001b�B��۩rCNe��\u0003����p\u000e\u0016�\n�\u0012��)O(�� ����_\u000fV\u0006��\u0005E\u000bx\u0011m�a}\u0002ʠ�\u0004�Y�Ijjge\u0019\f\u00065�h\u0001�d\u001d�o���+{�KJ�������\u001f�77+\u0003�-Kl�iO�d�<\u000f�Y���<>9�:FYgL)-�i�Y�It���O��\u0019(�j+\rk�ocb�FՒ\u0015�ZF�MYG8ϟ��5�����\u0017�X��7��\u0002�ep�[����g��\u0016g?rN{ʔ7 ]u��Ι�u��*���\u0013E\u0005\t���ք��&KQ\f�\u0001���\u001f�CfWA>�!��\u0012�\u0005\u001f[\u000e�m%Ph�9�Dr\u0012�t\u0002�,���\u0014\u000bi�m��[�d��l{�/}�qM�\u0015\u001b��I���R�HZ�hˎ&Ka�o�p\f͛۸xێ���o<�ߞyC]=^8�ݚ�=�`��b���~�j\u001d�t6v\u0018:CYV�-�b��W��۷��)+߱\rl����S3��4D91��ZRnǖ�q\f^��{8_9�<��Ny\u001b\u0012ՠ��\u0018�8H�%\u0017\u001e#��\u0000���f#3�Z�9}���\u0006��X��B`p\u0012Åpe�u�4峩y�u�\u000b\u0016���\u001fض\u0005����;��������\n������V�+*�:**��ٝy��myp\u000b�z�+��ًz\u001fދox��5}c���\u0019\u0000�]}mu\r��$/����\u0017$&\u0019�`G$�\u0016*rrf\u0018 �h�V3�\b������������W7-1\u0017��o\\��A�Źg�+XVX0��T��8�����\\�Ӆ�\u000b�jO��ifKs�ZGwO�im�Viͺ���)�^��vJa����)<\u000e>�\\1%�bn�����\t�\u001d�\u001f�G��(\u0011e��e4q��@z�)gN\u0012��\fƎ���[�v�(>z�n�uM}\u0003\u0016��ݮeM\u00187-s�����}��jl8~˟?�����������G���M:D���w@?4\u0012�\u0012!\u000bB[\u0011h4�T@�*�p�r\u001eg){�r����ꚶ�ִZ�Xl���\u0004��Ǹ�ה��\u0012�\r���a<���xS\u0003{O\u000ex��2I~\u0010�<�C���iHX*��D拑�\u001a�V�\u0002\u000f(�%_���O���\u0006\u0017ij\u0016��\u0016\u0015�4�\u0017t�����\u001d�cm��уo�#7��(O_ٰ\u0018ggc�hMu]����\u001bҠ��Hv��d�c�Q��΀o�f��+/kX׻b����)�|�M�ge�/̰�u�(�\u00139>��;��F�,�S��\\�[�\u001b0J�^�T�\u0007cҨqFr��\u000bv�%cokj�T���\u001f�e}\u0005H�\u0006$n�}1�v*\u0003�\u0011\u0003يu\u0010��D�\nE\u0005�C�\u0002��x����v�|l���E\tضdӚ�E��vH��מ\n~v#�w���١C�R�{�˿�m\u0003^�v�g\u001dm�u9R� �\u00170�E1�\tNP\u0006�\r\u0014\u0012k)�\n�W9����W��j^�\u0011\u0013h�}uM˲�\u001c�4n�}֒Y3s�jj\u001fR����ddYm5����.�\u001a4d��\u001f�'��:� �&\r ��\u0007P×(�+)m�|A54��me�d�T8��>�v?���}����}R�Q��d�=O���[\u001e�3��1x�cݍ\u00071��\"Y�\u0004j�\fZ��B�k*WŃ\u001f\u001a�U3�ъ���y�Cʛ�\u001e��\u001b�\u0018��\u0015X\u001a/�嗞X��4G\u0013\u0017���qj|\u0014���s�\u001dk�paA�Cϵ�湛�\u000bp_y �]\t�\r�\u001aJ\rј{�|t)�Y����������\u0019�iQ�3�zW�lqcN��9��vȩ���+\tiӍ���\n\nq��l\t��\u000b��\u000b��\u0006u��\u001b��4܄/S\u000e㫕_)_���%ިl\t��o�U�#�\u0007���8\rő�e͌␵\u001f�%'ϝwYEwv6�\u0007���Ը��*�?�����\\\u0001:S�wѕ�\u0003*\u001c\u0019\t�\t\u0015+4ώl޼��S��\u001f��<�#��e୷�<�,��\u0005x�?\u0000�����`�S�\u0013\u0003�ll�L�\u0001{\u0018�Et'\u0010݋�KVv;�<���,~������gp)��\u001e|�;���s���\u0006��w~8ܻ�p�ٳ�Q��\u000bg_|\u0001;�޶c���\u000bp�ݲ\u0015twB���\n�Ȱ���1p���\u0019+�\u0018Y\u0005�r�fe�e'�ډ�o;��N�\u0016L��m\u0016��h\u0015��\u001f_]P�\u000f\u001f�Q8��>|#\u0017?6|�2wg�\u001d'��p[;�<\u0004��\u0007:'�\u0014\u000f�'E�Q�+c\u0017��9\u0017�$����}\n�Ƀ\u0007\u001b9����c+���\u0013ӌ�Dl�jn��\u0007\u001e�ه'���Y���\u0003����~X��)t��v��\u0007��Zݷ����U�Uu\rp�~�W?x���&��l��z\u0001޼��\u0005�1'�v��q\u0000p�nN���J\u0010�\u0000�uFv4��\u000e\u001e5������{��@�\u0019���.ZRU����n�).�\u0016sO�\u0011�6%������q�i��\u000f�i�+��`�X\u0007\u0015��*\u00112j�/\u000f6�ΤS\u001b<�7@!t�\u0013H-&�ʎ�0�k��s{\\��I�[O���Ƕ�����t�\u0002�*�)\u001dހ���ġō\u0018�5\f\r.�m4U&��H.��;�S�\u001f��7x�\u0003���c��\\���6{��U?��v�۲\u001c���z�r�\n1��tB��,�\u000e\u0016�{�\r��>��$�'�<%��䙦�B\u001b�7��\u0016,.�L���a0��[��TT�5\\\u0017<ȕ�e.���3��\u001a�\u000e~���o�3��\u0001*Ŵ*U5�Ô�\u001bprH��\u001d��V��wz������}u�}y�L҆g����R�ʹi�҅�2[2�|��{����dU�M�^��f����Ň\u0015�k<j.��VfVm�\u000f�c`W1dD<�U�N�\u0015�\u0014f�V;$50�}�f�\u0012�\u0018O7TV؝�spbr�rⲭ������<�\u0004s�JO��g�y���V���~����RЙW�q�LKzJbB���{������J\u0016df�\u001b3g'�*-kZv�\r��{W�}��*!c�IT=�dh4�W�wlx�$���/p�rB���#p�X�=F�\u000bor'����>�\u0011wP{3�.�0&��Y#;1��ϲYms\fܦ�:>9a�iij����\u000bg̎��c\u0007�#̻J��$cl܌7��57���0~��W�P�\u0012��\u000b@�ը}\u001a�?t\u0002�\u0019��N���\u0000+�Soƹܻ��/4�w)r\n͟���\u0011�ǹ�\u001bAxu\t>��|���\bn#����\u0011�o��8W{��F2�\nN�6�ۙ�7�R��\n\tdJ\u0004�z�W�$5h�pj̼��+\u0016.��pݦ�\u000f���\u0005�\\����Ϋ�냿ܶ\u001d��ꫨ\\�xp7t��3�\u000b�?�a�{����3\u0010_��\u00054΀�}Y(k&zk8�¿`��Ԥ�ٚ4�\u0016\u001c\u001f[Uվb�\\\\U�Qޜ�?\u001f\u0017\u00146-��E+�����6�t��+W�4\u001f8��\u0017��]�ᨨĵ5\u001b._�\u0000'�Ac+[�TT�qI�«��Z�v9����X۷���\u0018���}\u0015������i�`?�L�\u001b\u000f*���\n���F�PiEu�h���Q�>��7�T\u0007C�\u000fY���ƃ�\u0003��\u001c�Op����\u0017 k�E\u0007��F�pݤ�A��B��\u0005t\u0004���\u000f =�YA���\u0003�8�j4��n�ჱ\u0014�v�u\u0010ƻ�j�k/�\b�u�*�\u000bs]�|\b�~�\u000f�g�n��B[��\u0018Ƨ��t�\u0003�7\u0013]@Up��/ɨ\u001b\u001dE��\u0017����w\u001c��x\u0011��N�\u001f���s\"��{IS�\u0019�\u001cҼ��;���>��Z���֮�n�>���n��E�M��>Zߣ�K����(MTBTATeԆ��TLQ)�&�˞.���7!��\u0015z�P�h���\u001c�����\u001a�\u0012�O�y���5��(U�\u0011�u(U��h=zNW��(�����)��ػ\u0019\u001d͟��\t=\u0015�Ǖ2:\u0006\r����X�#��3:\u000e���:�˶i=��H;�\u000bFs�Oh`�\u0006\u0015&�3�G�\tՌ֢�����\u0001��h=�Op3:\n%&�0z\njH�gt4'N{��SQI���1Țr\u001b�c5�%���8dN!��a^\u0003��\u0019c\u0019ͣ�FLi�;M���h\u001e�\u0018gPZ\u0007�:�\u0002F�(�XBi=�����\u0010\u000bc\u001d��`<�hg4�R�+(=��W�����\u001a_�V��j|UZ��J��Ui5�*��W�����\u001a_�V��j|UZ��J��%t4�j3�\tV\u001eJO��\u0004�aF�h�q/�c(&\u000f3�`�\u0013J��x��W���L�P:��y��D�ʟH1���\u0004��(�D�\u0019g4��o�N���4F�HHU�B�S�\u0018\r��E�N����&��)=��@��ѐ\u0003�C��E�ic4�G�u:���h�%��I\u000e���hȁ�C��'���d4��z��ET�/\u0018M�<C�\b��\"����+*¯�\b��\b����Ą�҅F�0�� \u0012�\u001d�\u0005�\u0002�:(݂<�\r��q\t�\u000e��@��\b�2�\u0010`�\t��@��q��)�\u0012�L@�0�D�0�\u000fƚ�[�W���S\fo�*UJGk`�\u0013�;`�\u0010�৫:@�\u000f./�\b�\u0001j�\u001b�$�\n[�\u0005�\u0002p�L��/\u0003B\u0002� �D7*�ZȌH5ٙ,\u0011Fԕ.*�x�\u0000�]T�\f3~����\b�~��G=�ӵ~:�R�7��Cm��/�T6��N��Qmd��\u000f�o��\u0000�&P\r�V�T�\u001f���y��v0�\u0012��PY��и���3D��\"s1�\u001fdJ\u0014\u0015\u0019�U�v6\u0012�H�XMd����K\u0011u���R�\u001d.�*��N�odZe�)�Sќ@a\u00108�4ut\u0002W���a�Ȕ?@�&��\u0019��}sN�*�\u0017��̹��\t\u0019^г�Y+2��4�\u0005��!�\u0006��!:��\u001f�\u0019�Ő�8!�j���\u001b���\fmU�D-�4Vjv\b\u0014C;�_�QsR�aZgj6��JՓ��Ù%��\u0015,2.j\r�M5n>V�ΰ\u001d.�4�������\"��LG?�\u0010�H\u000fL�M\tm��\u0010�$��a\u000f\u0007in\u000b4\u0007����h��i4��Q'���Nj�0\\M>�e\u0013�H�uш�h\u0013]�ZM����D���\u0007(ZôJF�^�t��#t^�Hx�\u000eRC*�~�>dqH�0�!\u0017��!�̗�չ��VK;�\u0000��0M�.K�d%�\u0005�\u000b2\b�^Z\tj\u0005�EH)\nKi�ܞ\u0018��溗վ����p���}_��\u0010�\u0012�q\u0013�J��\r{�����\u0002ʡ�Z��\u0006�\u0007i��P#�飈;�43j\u0005�.�A\u001a�\u0003�\b�\u0006�d}#ܗ��\u0006\u0018�;��Űs4����v�X�/���K�����hh\\�X��0��D=\\����y\u0000\u0003/�\u0010\u0007�\u000e�\u0013����꧳��\u001f\b봇���]����\u0012�\u0010ҥ&z��+d֟}�\fQ)R��\u0012l{�6�I6���\u001f��T���@&�e#�N(����㥽��z� ��o�+T�\u00041)B�DǸT�\u0000�/����\u000b�V��ȸ��o���z5\u0019)��_�\u0015�j\u000e�Q�1Ez�\u0011A����c���t�i�#z��%��؉&�rԝB�\u0016\rSd��%�z���\u000b,\u0017�\u0011}4��T�\u0000EZ�ر�\u0011���0�7\"o'�\tߍ\u0014��E���3I�\b��z\u001a��n\u0012��\u0013�\u001e�U�L�\"N�;���vEf��uo\u0015���Y~Lt��9�]\u001eM�G\u0013���ȅ�yd��iP�F=[�iT�\u0017��{\u0011�\u0013��\u001ez�\u0019`}u#=���ȓ��G?$O�I��7&��!y��QEk�tl�2/��P�ċ�\u001e����@�R\r��\u0016�-�؉�\u000f{eH\u0002�ej`�\b\t���2T\u0001;�\u0000�\u0012x*�w�2��\u0011y��F͌�\u0018fK`���\u0015�\n\u0017YU�l�~B.\"�A�%à�\u0002�\u0011�1��}r��i���}�P��:G�y��2�Ħ\u000eڡ�=����<�\u0014O�S�I�tF�\u0011��ľA���]�\u0013�?g���@�\u0005�~�!H�,t��Y��'�a���\u0011z\u0006Py���М�|\f��\u001a\u001d�\u0006E�$�#t9$��\u000fs~\u0018\u0012�<�a�W��\u001e�0촛�z�/~\u000f��\b\u0013:=�\u0000\u0019�\tMnXWRUU\\\u0004�R�P�t\n\u001d���\u0013:$���(\r�y�~�E�xG\u0005�\b�`\\\u001e\u0014\u0006$�<�.\u0014j���\u0014��%�0��x%�\u0011p�n��\u0017�\u000e�+������>��\u0010�\u0002̍\n�AA\u0006-�^i@�K>���\u0013D�� ����!�L��\u0016�\u0001�$��~\u0007,�`�3@V\u0013�)�\u000eX/�1�1�����\u0012pہ\bxG�\u0002�ĳQ����+�~\u0017L�\u0005�\u0000��#�|�A0��0\u0018p:����z�\u0007���O]��G�R$\u0012$8>�E�d7��zփX\u0011�\u0007@��Z6 �C\u001e2?��C��\u001c\u0006D<�Q�\f4ʢ�\u00048\u0004�\u0004عe;����\u0012��K�D�[&`\t�\u0015��Kr�\n��\u000f��$2\\����gy�c�찢_\u0012\u0002>i@ES�\u0010 �\u0006�\u0004a�\u0003.�Dp���C�u�\u0004q��\nI�|\u0000\u0019�#xt�C�&�\r�%��P\u0005\r�\u000fȾa�8JT��ni�7,\u000e�i�2\u0000&�e\u001f\u0011L؇�\u001e��J3�ru��Z��90�\u0007\u0016��-5W�\n�-���!\u0001ʣ,E�����w\u000b]^��K��'>W�7C��\u0012d\u001c�*`��\u0014��~!G�j\u0011�\u0006\u0007��4��F\u001c�fnm�jjl���jjk\u0015�\u001a�eMu\r��\rB�⎆���֮����.\u0007\u0004#�5\t\f\u0011\f��~\u001a��=P{�!�8�\u0018�zH�\u0013��G�QO����\u001c\u0005�\u0002�\u0001��\u0015�R4�!+d�g`\u0017���D��,��2�\b���'�\u0007+���!���$� �\u0012��W��!;\u0006\u0001�\t�H�=C\u0012e��\u0011^\u0007\u0001���\u000f�A4��:�p��\u000b\u0019\u0005�\u001f�\"��䨰Qt\u0006�~�K�\u0007y\u0015��,t�i����\u0000�Xp�(D�7,��A�~��\u0002��9J֊\u0003\u00032�1䎗��B2��Ҟp�QN�%\u0013�@\t�\u001b�x���ԦYL\u0007=#�3�~��s\u0010= K��\u0005�\r�C��G\u00055�\u0019B�\u0015Q<�\u0006'�#=oC@�Q5�-���<�2�)���\t8\u0007 W7�҈��.q��A$%�\u001b\u0003\u0013�1�#�E۱�?\u0011c�Ȭ\u001e�f����\u0002�-� �#��\u0012���\u001a�Hȭ,��\u0013*J*��ˊ��L�n��⒒�2�WX+��r[��*6���\u000fϵXFFF̮P��\u001eWdMHB�W\u001c!X@\t�Q ���\u000f\u0015�\n]�\u0003-��\u0014�W�ˢ�)�����UY�-�-\u000e��iq����nq��D�'�d��`Dr¨��Kȓ��H�'�\\�Jz��W0qҌ\u001f\u0005p,l�\u001fO\u001a\u001d���ȑF�sSĘf��)�s�g���7j�/Ѷ\f(���Cg\u0003�f\u0017��^�U��\u0010M��c�^����\u001f�x�\\\u000f]\u00119��~o��L�Y�~�\bЃ����|���,�����<��/�+�E�\u0002�������\u001b�l&߸\u0004�'��?խ��\u0003\u001b���,8jMF��~<�\u001f��S\u0015\nendstream\nendobj\n19 0 obj\n7137\nendobj\n17 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /Arial-BoldMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 15 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 552 552 276 552 552 276 330 716 826 606 606 662 662 662 716 662 936 552 716 606 552 552 386 330 606 606 606 552 552 552 276 552 772 606 276 772 606 606 606 882 552 772 330 276 606 716 276 552 552 ]\n]\n>>\nendobj\n18 0 obj\n<< /Length 707 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0031> [<0032> <0030> <002F> <0034> <0031> <0020> <003A> <0041> <004D> <0054> <0046> <0045> <0058> <0050> <0052> <0053> <0057> <0036> <0042> <006F> <0079> <0065> <0072> <002D> <005A> <0062> <006E> <0063> <0061> <006B> <002C> <0037> <004F> <0064> <0069> <0047> <0075> <0067> <0068> <006D> <0073> <0077> <0074> <002E> <004C> <0048> <0049> <0035> <0033> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n7 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /Arial-BoldMT\n/Encoding /Identity-H\n/DescendantFonts [17 0 R]\n/ToUnicode 18 0 R>>\nendobj\n20 0 obj\n<< /Type /FontDescriptor\n/FontName /QUAAAA+ArialMT\n/Flags 4 \n/FontBBox [-664.550781 -324.707031 2028.32031 1037.10937 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 73.2421875 \n/FontFile2 21 0 R\n>>\nendobj\n21 0 obj\n<<\n/Length1 12360 \n/Length 24 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|\u0014U���\u0002\u0002H���j\u0012\u0012\u0002I��N:!!$�\"�NH�\t9P���.�>r�!\u0010B¥��'*ǎ�\u0000��U�9訣���ǌ�̎����tg�ݑtg����\u0000\u001c�ٝ4U��;���}���0Bh\u0002ځd\b5��\u0016L��`\u0013�\u001c����췽��\u0002����;\u001c<g���/F(q\u0007�\u00159``��S���\u0013��p\u0005��\u0018J�\u0014�\u0003�o8=\u0016��\u0017z\u001a\u0011J:\u0005�\u001b]\\�\u0017\u0015�:��g�3��\\�ϰ�\f����)\bˆ�!�@Hq�B�\u0010�-~��D6f�\u0004\u0005���3�O�еCD\u0005�;�\u0019=n\u000f�@�����p3֩��#\u0015\b����5\f1RA\u0018ː\n!�Z�^\b7��h��=7V�@\u0017\u0011+\u000eD\"~�3E��m�\u0005\u000f�J�2M����Q�a(2\u0014�\nRSRU�@\u0005S�JxLѥ\u0018��#�ˏ���n>�Ј;�\u001e����\u001c9R���3\u001f~����b\\\\\u0018��9���0�_oݎ�\u001b\u001e��O�@W�w�+9���on\u001e�{�S�\u000e�����\u0010=��\u001f�\u0012�\u0003⒌u\u0018?p(�1S��wI0w\u0017X3_1�&\"�S�Z�N��^�1�/��\u0015�\u0017wʯ��V���\u000eĠs�l�<C�<�P�,��܅\u000b\u0017d�\u0017.��w�\u0002�\r!�U�o\u001a��)�E\u0006�Q��1��\r����ԙ�x=V<\u0019n(�\u0001\u0012��p]�]�1����B�'\u0017Y�\u0004�j��d�aP��\u0001��Ы_aMSm�z<�w��\u0019��\u0018�ݶ�\b?4�h�&b��\b�\u0007#\u0016i�5��_��ا���\u001a������!\u001bD\u0012�!>\u001f*�A�(\u0013�a\fE\u000bIPR��HD2i�\f�Ĩ���R�,���c�+'O��uu��O�y���V��7\\��\u00077\u001c,+�\u0007o|��[�W��\u000b�3�:�O\u001e:۵\u000ec�z�Գ�oo�\u001d�y;�������7�\u000e��?�Պ�P*�a\u001a��!%�~�\u0019�Gڂ̌D\u0006�(\u0000-��\u0016�C[�~��XOgG�R�\u0006�\u000b�M���x\u0014��n��n2�o�V5�6��{tm\u001b������v�\u001f\u000e\u001d��m�m���#=}}}؁��\u001e,�\u0001�A��U�\u0005�0YC\u0001J>�z\t��\u0012bE�Џ\\5f`R�[����6S�qˀ�\u0011���m�ooْ����gǵ�sO��Xfٰa��\u0001�m�����}������S����ן؛[�\u0007�9�����`&�P�\f�eJU��\u0003'{����EW��UVl��+���[���c�>8��_?��Q��6��\\��\tJ���y\u0006pUa��*Uf\"�_Vd �Kam{:�����Յ�:�����|�z����M\u0003��۽\u001b�\u000f����;��i�j같;qGg\u0007��*Oa�9\u0015��ƃ{�x�У\u0018o�B��\u001e\u001fWt\u0001֒�B��\u0002)rQ7e.�\u0014H�\u0014\u0011��\u001b���]�;��%�����V���qɍ��\u00055�\u000b�j㦦S�S�&�m��z�\u000b���ij�-�1\u000b��=��&���m[\u0016�\u0003�������Q\u0001���IH1�#������\u0007��*9\t��2d����\u0010��GV�w_�����q��Ғ�z��\u000e��\u0019�QZ>�lj��a�7�n��TO�<)���)�\u0017<�\\�\f\u0017\u0017\t���9x�}AZ�iOceEffҔ�3\u0017�'����\u0012�w���&c!���\u0015���~}qEu�\u0001�5[���p�ve^\u001e��^��\u0017��>�\r�Xq;�\rV�F�P�V�S\u001bԺ�45���\u0014f�,c���(%\u0015����c��\t�IYs�ݣƘ���?�X\u000e`�3|�@�&cJ��\u0018��_\r^�\u0007^�M�\"Vep�z��ou�J#�a�!\b\"X�f4���?\u000e�ݷ��_\u000e\r��'uv�1�Ն>`��\u0018�\u000eokm���';�\u000e]��8ᖛo<\u001c�N=�캫q�\u001e�2XmǸ��H?\u0006u�4�e.Z\u001c�\u000b����&1MFd\u0012���՚�h\u00105ǘ}/���e�ʿݐe2���|{Q���\u001c����c��Wgf�6\u001e\u000f�)F3�,|�э�9\u0019i���f�?PW3wN�*\u0014����Y�eu��*�r\"��\u0003΄�D\u000fpn�TRQ̤&\u0013W?r�=8ifUEoú�%���4���;\u000el�XX��d��IxA�\u0006�1\u001b�\u001b\u0004~/�_\u0013�9�\u001c�K�LV\u000f\u001e_V�_޵�|Ŋ2m^�<y�1�����e�\u0005��7�B��=\u0004��g46\"\u000f]$�����C\u0012:Y=t<���&�ᤑ�\u0014}��@�I�q�C\u000b�\r%\r��!?��U\\����W�\u001az\n�6�.�\u0013�M��x���S�$\u0002)\u001d��������`�\u001e\\R\u0012��;�q�\u000f�*���kjǸ�e�ƺZ<����q��xҩ�;++�v�;{���3���\u00063�� �\u001e\n\u000br\rH��\u0016A]���X$\u001e0�E�Z�$��B\tmC'KV�;�\u001d�\"=^Z��|mw�J�������\r���\u0003k;Â��}�Y�j�����\u0001(S\u0019\u000bKC\u0017e'_��6�^�Y1��$\u001e\u001d��\u0001�&�\u001eU\u000f�(F��\u0005݆a���GNr�\u001d\u001e\u0019\u0019����\u0017��\u0019\u0017?�UՐ+�`�\u001aiĳI\u0017�mԅ��\u0006I���/~p`���`�O�����\u0018\u001e�����kp���I�\u00197���\u000f�^\u000b�VT��^��l�7_���V\u001e�]\u0007u�K�d�T�%�R�\u0014?R�\u0013���`\")5%��Ec��S�u���m�\"�(����W�\b�B���ھ[Nl�R]�\u0018�ֶ�����K\f����eU�[�\u001f}yp���ߝ殭[��aKK��\u000bui)\u0005��E�ͼۼ� \u001f\u000e]�m��������5\u0005z}ѢҮu���QR�q�Ҡ��\u0016 �s�&A\u001f�u���I�\u0006�L��������΅���n����\u0019\u0006�#f<\u00045�\u0013b�BS\u0011J��'M��%jd��2F�&���OCw\u001e{\u001fs{�fn\u0001�(~*\\�t�#O�\u001d�\u000fR��y�9pH��4����cw˖��R��tA�O������')�a5�\\\u001c뵠a#\u0012�D�\u0010��\u0007<�%=�\u001ag�\u001d\n1K�\u000e���\u0005I�C�\u0018�Lx8���\u0003\u000f��cc\u0012r\n��\u000bcr2�\u000e!�\u0007ΥZH�!�\u0007�2-n��\u0013�ɺ�qӪ��%\u0018��_\t\u000f�-O�i��6\u0014\f��*F��|]�:�S;\u0006p�\f㺚\u001d�U\u0015)S\"5��:SD��\f�bD������z֮�X8��l�ںy�\u0014����\u0011ks[Z�\f�g�\rAi]��v��Г$k�^|\u0002Q\u0003�5�\u0014�o\u0007�Iq��G��m�_Ӛ�uU�H´bCss]��9x䮑����5�\u0000s8�����EY�\u0017���eJH�1Z\u000e�\u001f��Z.�<���\b��\nZ��\u0015�\b��sp�#W�Tm�ZV��\u0019�_l0ffa����U+[�n�&'G}vrI�c��\u0010�������qU�\u0012}�ź�u�\u001b/����D�_�,-5#?#������4k^jrz��r���\\-$�!m��Ą4��\u0005˖ww5�Y���Flx0�\u0011\u001e@\u0017H�����\u0014i3��¢����ٳe\u0017.l��[h�Q��\u000e�\u001f�^{\u0001�\tj;֩��\u0002\u0018s�����\r�q~���o��k���|������\\׭\u0018\u001d{��]\u0003kZq]���\u0017���G��Z�W��A�ID�#����_!�@�|�<�\u0016��_N��<�\u001d�9E��\nI>0���}�ي)�O�\u0017��G����5�^��0KM�\u0016m�\u001a�\u001d�\u00140M䠎uxG���m��\u0012��>��\u0016/ɮ�\\o�\u001f�\t/�Y\\\u000f-ނ�\u0015GÿƮk2�rr������7�\u000fC_\u0000�R�5��-���k�_�Xۙ�\u0007핬E���\u0019�\rɉ8\\\u0013��\u0013\u0012��)��5��Κ\u0001�\u0001�U=T�h����b���\u0018�\u001d�����\f\t8�������|�|��d��LՌ��/���o���t�G�Y���Dv\u0006^Ȯޯ��^<��*A���J\u0016)\u0012Le���\u001cvA\u000e>�b�<�ν����'ςc\u0006v=\u000b�����������}�S���Cő\f��\u0003�� �>Ҿ_zjJ�\u0012y�n\u001f���޹�sms�V]C��\u0004��n\\U-\b�u�#�`�L\u001fo5�Ngݵr%��W硫\u001f�q{U5�V\u000flmn�8�n��l���\u0002�X��\u001d�-�N���F��k�_���\u001e\u001c���\u001fCY�\bڒ��4��B\u0012n\u001dsq�R��z�fo^@�e����gjm�\r��$xkA�\u0002\u0003��k5�O�g�;>����\u0013��Z�ѐ\u0011V���� �db.�^�o�Pٔ\u0019P%��\u001d\u0015�m�{\u0018�\u0013�G�\u001b}\u0010H�bw,�Բ)h\\�n{�h{ۣx�tm����F\u0000�V��\u0015s��3ni��B��\u001d]��X(�9���Λ�q}ÉЭ�#}ee��\u001a�7��\u0007�Z�\ru&X?\u001f�h\u0005h*���+�u�$G��\u0007�'*c\u0005���,\u0013\u001b��!�qsa\u0011����A�/r\r��\u000e�y��[x�J3���d�^��jl���8#}��֝&\u0013n[�kG�I6{�q��{�.��{l���r8������y�Ϯ7o�&Ǌ\u0015+*6X��VTu���+WBElmٹ���d�ꄢ%\u0016\u0019���O��j�\u001eV�ngv��з_C���wCg�nc>�\",�}.�_�7!�%\u0015.T�ʗ��Z-�V\u0019�JHY3�e\r��Э����C\u000fwuuu<p����yݪ���4�\u0005]��{6���i���v�8�����Y~\n�>�A+qu�ه����\u0013�]���u7�y��j!��\u0015+������\u0015�\u0018\u0017�\u0016c5�����7�:������~к�o<\u0014\u0016�V�#��\"��\u001eUy�\u0011UMC�w�ߡꡜ���J\u0018R��l\fTF��\u000b��)\u001fD�)ڑR���~e\t����\r�2�8Bú��{\u0015�M����|\f�D�A4\b�Cr�֐o�\u0012\u001a�k\u0018�j�\u000e�g)��CTV;:\u000e�D��{�h\u0000��܃�\u001f<\u001f\u0001�y0Du\u0010�$ka�Y\u0018o��cXs\u0012�GAW����\u0003]]`S2�Dv�\r݀\u001eAo�Oq&ވ\u001f��`�L5s��X6Of�헝��/O�������\"E��h��Cq��%�7J�r@y��U�\u0007ʯT��-�#�㪿M�>!k�~B߄�'\\�h��G�$�����je�\bI�az�ѕ�p�D3h��#���k \u001fEZ\u001e�F�f(�,�J4U9O�U�\u0005e�DO@\u0019��\u0012=\u0011�rR�'��SɄN@�Z���lS\u000fI�\u0014��k����M�6j�uW�H4��o$�A��\u0012-C��\u000b$Z\u001e�F�&O��h%��$Z���\u001d\u0012=\u0001%&N�艨&%]�'1�UoJt\u0002�O\u0011$z2ҥ�!�Sd]�_��H�B�,��@��)\u0017)�\u0000zZj\u0002��d<u6�Ut<��\u0013(m��D)F\"-�H��\u0018��\u0018#��ǭ\u0011c$�b�DZ��H�1\u0012i1F\"-�H��\u0018��\u0018#�\u0016c$�b�\b=)��\u0004jK\u001d�'ǍO�����4bK��҉@OO\rR:)n}2�#�)q�3��!JϦ�D�s��̏����[(���'(�C�\t=!N�\tq�&ǍO��bB�ȋxdC\u001c��7�\u001e�˄\u001c�6\"\u000fr�\u0015�V���A>�ɝ�q��`a�\t��@U�q���)7�\u0019�ZaƉ��5~\u0018��oQ^>��%p��HT\u0001\u001d��\u001dN�n�=v�!@w�\u0000??\\>�\u0003w+��\rs<Ը�&>���*N�$�\u0017�C,� �\tG7t\u001aD\n��$�ċ�\u0011q��r$\u00168@{\u0017�(�L��vPY��\u0001I��Zh�{\u0003t�M��o���� H�x)o���j���\fYo�ߢ�A*��\u0012�\u0012(�\u0000̻�s/�퐤��Z\u000f�%ʎ�;)��\u0011\u000b<���|]\u0000x��+\u0002|��-�H�z��*�\u0012\u000f���z�I�\u0013M\t:\\Ү�\u0004\u000b��#I\u0015$Kɜ�͘\u0017l��p\u0013Gc~\u0015$�z$K\u0004�>H�bQ�S�:�vߏ�H�����9\u0017�\u0017��\u00039�$m9��\u0016�iV�}�gV*�NG���0#H1$k�\u0010{\u0011#\u001e��a�G��!��\u001c���\u000e���\"�/Ш9�\u001a/�3\u0011�n�S�$\u001e�B\u0014Y,��I�qQm\b6Ÿ��LvF�pѧ\u0018z\u0003��\u001b�e�Y$\u0019f�!H=m�\u0004�<�\f�\u0011�\u0012l[�\u0016�(�Y��>�[?�]�F�\u001e�:�]�w�K��l�K(��#q�E#¡k�~Qk��BgcH\u0013�[���4K��VDd���t����I2H\u000e�^\f��\u0011�#ܽ\u0014C.ZC#�i���K/�\u001a�wv�\u0012ݥ�]�\u0017���V\u0016Ý��x#���惘GYq������\u0019�s���.�}S4��ך/��.UB^�o�:%rm��Ek�~\u0016ePyF�7�l\u001bEn�c\u0004�~�m��M�\u001aa�\tN�Z���\"B7�(�_\u000b�\u0006:^\u0003#�p'9P\u0007^�������\u0014x�'�����=�f���b�Rlc�p��3�\u0003>�Qt8��=��\u001f�������`T�%ZCE�\u0005��X��� \u0015*V��:!H��/�\u000e;��Gk/�m�$�T�\u001e�f����(3�\u0003��`�7Z\u0005y)��h��h�\nHu�&����\u0015�v�1>�K�Z\\)�*�`�L+���Y��[��}\u0011ʤV]�)��_��+%Gj(��\u001c�h8�ꔼ�j�ߓ���w����+b�K�L|戧\u0004G5�RϒsK����1g%,��jhD.�~+��\u0010wZ��:���j_\u001cnc=�\u000f{�h��#��\\¯��\u0013�f|5����J\u000f�\u0015�L�z��wD�\u0011��G�K�ܢ�Ŭ�J��U�K1�C\u0016��QOm�2r�\u001e��m��\t�ֈ}��F�}Y\f|��;ƙ�硕�*��\u001eڃ���.�ǣ\u001f�'�$/�\u001a���\u0011~W�Q�V�3�P�W�q$b�e���C�Ƽ|��K��K5�n9\u0000'd�\u00039e*a4\u0007���\u0018�\u0001�C\u0016���\u0003�\u001bz��\u0010y�lC���y0�\u000f3z�6 \u001d\\dW\u0011*�w\u0013r\u0011�\u000eړxA^.|z�GK��K3�B+��;'\bUM��7�\u000b�\u0014\u0014�jKtj�\u0015Z<C\u001b�>�#u�$?œ�Gg\u0004\u001a�V���\r�*�fE��L�\\��\u0005�r�\u001e�\u0015��*��=�)J�~B\u001b]�ϕ�K{\u0000q-�O�\u0012�˽\f�Qަ~/o�,<�\u0000kr�,�\u000fr\u0001\u0018b�<>���\u0005\u0004���:-Z��\u000bp?�(�0c[=� \u0019��nؗ_R��\u0003�\u0002-[�t�-��\u0011�-������*�;��\b\u0013_?��`\u0013�\u000b6���\u0005�;���\t����*N�I��ǳ���s\u000b�\u0000kqp>�\u0012�\r��`�\u0001\u0007�fa����X\u0001�x}����~���g9�����`\u0005���f\u0003A7��\n\u0001\u0007l�a�c%�\t��@\u0006��@��X��w\u0007\u0004\u001eV[�\b���,u����q`^��s\u0001\u0017L�\r� ��'��\u001e\u001b�IU�\u0005�N �� ��\u0001!��\u001a�\u0007���@����\u0004\t��H�}.�MW�<��-\u0007�[� �M5�\n��C�{\u001d\u0002X���^����\u000b=<]@�̱Np\u0007���wn�\u0002�9��\u00077�-<\b\u0011�-\u0010g�|\u001f\u0018���,�� ;\t\u000f���\rH��K�,��̳A?o\u0015��o\u000e\u0012e�\u0016���\u0001��#\u0018\u0015\b\bn;1��C�\u0003�l\u0012&?���\b\u001e]���Vp\u0003k>`�\u0016�\u0006ۭ������\b�������\u0017T�%VP1 �\tc����<��6�ե�i-�=��|K�a\u001fAm����]d\u0014,>\u000f�Q\u0016]e4ѯ�Y�\u000fb��|���?�|��\u000e �\u0001o\u0014S����]�\u0005�\f�dd�l6-U�w��^\u0007,�66��k�*M�M�lS-�P_U��Z�Vֵ��\u0018k\u001aMS&M�dr@(\"�&a!��8�:@�\u0010�\u00072�c�q^G?�C�O�d�g�=A��B\u0010\n�\u0005�V�>�\u0004\u0000��\u001a0!\u0000�a9g��<A���m\u000e\u000e��1�ԃ��K�!��%\u0010�!�<����\u0004\u0000\u001b6�}L/\u0012v���K(,�� ��xs0\u0000�AM\u000fda�A���R\u0000��+��\tB�\u001e�\u0019�̀J�\u000f��߭e��\u0014��\u0011+�&)8�\u0012\u001c���\u0016�&X���\u0005/�)B�^�j\u0015H�\u00019>Z��ɰ���V�˔r\n.�\u0018\u0004B�^�o�_\u00046�0\u001d��\u0002f�f��w\u00109�Kt�\u000b�\r�C����\bx�C�\n����Ō#\u0015os��S1P+-��-Y������\u000eO�i\u0005��\b|�X�0���H�P5���\u0018�\u0011Ԣ��\u0012�Ř\u0018�IZ۾�-U9�A�\u0015\u0012#��\u0005��\u0005m��l\u000e��Xo�b\r��9y����\u0013�V�`^~�^\u000fw���\u001a�\nK\nK�Lr\u0004\u0002ޥ�����ZW$�\u0016�+>'x����\u0012_@\n�R���c�\fm���\u0002�M��'X\u0004�m�hn���*.�;�s\u001d\u0001�3�\u0015 �#=��_ϑ:�%���\r��\u0013F�\u001f�B�r%?���\fy�k0i@ܴхW@<\u0005\u000e���G�\nD�[i�HZ\"ҴXew�\u001e�=-{\u0016�s�Q٩8^\u001cm\f\"Ͽ���Kd�p���������:�2���j��\"Z�vā��c2D[<�#���g�\u0007B�\u0003�~p�\nendstream\nendobj\n24 0 obj\n7170\nendobj\n22 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /ArialMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 20 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 716 276 716 276 826 662 606 772 552 552 552 552 716 552 276 552 716 276 330 552 496 552 220 220 552 662 496 662 276 662 662 662 552 552 496 276 716 552 606 662 936 662 276 552 552 716 276 826 552 662 772 ]\n]\n>>\nendobj\n23 0 obj\n<< /Length 721 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0033> [<0043> <002F> <004E> <003A> <004D> <0059> <0046> <004F> <0030> <0032> <0037> <0035> <0044> <0061> <0074> <0065> <0052> <0066> <0072> <006E> <0063> <0070> <006C> <0069> <006F> <0053> <0076> <0041> <0020> <0045> <0058> <0050> <0068> <0075> <0073> <002C> <0055> <004C> <0054> <0042> <0057> <0056> <0049> <0033> <0031> <0048> <002E> <006D> <0038> <004B> <0047> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n6 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /ArialMT\n/Encoding /Identity-H\n/DescendantFonts [22 0 R]\n/ToUnicode 23 0 R>>\nendobj\n2 0 obj\n<<\n/Type /Pages\n/Kids \n[\n5 0 R\n]\n/Count 1\n/ProcSet [/PDF /Text /ImageB /ImageC]\n>>\nendobj\nxref\n0 25\n0000000000 65535 f \n0000000009 00000 n \n0000025696 00000 n \n0000000163 00000 n \n0000000258 00000 n \n0000005684 00000 n \n0000025563 00000 n \n0000016697 00000 n \n0000000295 00000 n \n0000005614 00000 n \n0000005634 00000 n \n0000006012 00000 n \n0000007993 00000 n \n0000005805 00000 n \n0000005992 00000 n \n0000008014 00000 n \n0000008276 00000 n \n0000015526 00000 n \n0000015938 00000 n \n0000015505 00000 n \n0000016835 00000 n \n0000017092 00000 n \n0000024375 00000 n \n0000024790 00000 n \n0000024354 00000 n \ntrailer\n<<\n/Size 25\n/Info 1 0 R\n/Root 10 0 R\n>>\nstartxref\n25794\n%%EOF\n"
+				}
+			]
+		},
+		{
+			"name": "C - Despatch cons via api - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"manifestID\", jsonData.manifest_id)\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "dc628e85-6773-49d0-87a6-ed68e99ae139"
+					}
+				}
+			],
+			"id": "f64eb489-fc6c-420f-b4fa-013a4f9d940e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{AuthToken}}",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}?despatch=true",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"teamwilberforce",
+						"com"
+					],
+					"path": [
+						"public",
+						"api",
+						"v1",
+						"consignments",
+						"{{considQA}}"
+					],
+					"query": [
+						{
+							"key": "despatch",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "f641bc20-eaab-42d5-baf6-00f9aa5d5509",
+					"name": "3 - Despatch cons via api - QA",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}?despatch=true",
+							"protocol": "https",
+							"host": [
+								"qa",
+								"teamwilberforce",
+								"com"
+							],
+							"path": [
+								"public",
+								"api",
+								"v1",
+								"consignments",
+								"{{considQA}}"
+							],
+							"query": [
+								{
+									"key": "despatch",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Thu, 15 Oct 2020 02:32:38 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.12.2"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"5b48f50d8b2e0fc5f9f4b4036b5c85a1\""
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=RDqOPpmZtuDOQqY7q3S13nwKUF9gWzDBjmPMIFi%2BZgv1d9CavvewjU8LuD%2FnQC30hEcMkDzaQa2Mu2lCZPrHAw%3D%3D; path=/"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_wilberforce_session=a01NR21UOExtSE9WamRoTTFGZ1JjSUw0WDRGV1VyZURRYi94UU40VU5ld3FNUUx2T3FyV1R0RUVZc0pMd245WE90WDZ0Y1A3WDhwVjJGRUhmZm1zR3FDQ3VxSnY2bGUzcG9iNjEwSjZPbFFFRUlFS0lsZjErT0c3d2RxTFZJWmZYQk9RZkdYMjVRZUduclNFVEFaNXo2bTVkMGs4R0poc2lrL1AvSVFTWlJBVVpoSlVNditLNFZLOVMwZjNXR0VKLS1YSVRWTE1VaWs0RlJpcDZ6cDFmQUtBPT0%3D--50f04a8a5aa989b5bb1e629520b24ff63488d3c0; path=/; HttpOnly"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "dfaf261f-6c04-4d15-b5fd-6b6d202bbccf"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "1.742903"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"manifest_id\": 2408732\n}"
+				}
+			]
+		},
+		{
+			"name": "D - get all files - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "51a8f3b2-0e3b-4abe-b74a-f9b7aa60413e"
+					}
+				}
+			],
+			"id": "a5084b7d-60eb-4398-87f4-e36630d030aa",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "qeXDk-tYUi7bNmdzeMNj",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qa.teamwilberforce.com/api/retrieve_file?id={{considQA}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"teamwilberforce",
+						"com"
+					],
+					"path": [
+						"api",
+						"retrieve_file"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{considQA}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "F - show consignment - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "d3269910-4325-49f3-bf9e-c89069826f88"
+					}
+				}
+			],
+			"id": "78ea5c61-36fb-4441-8ef9-3cbf4546614e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "qeXDk-tYUi7bNmdzeMNj",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://qa.teamwilberforce.com/api/consignments/{{considQA}}"
+			},
+			"response": []
+		},
+		{
+			"name": "CCC UPDATE consignment - outbound - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca16fe20-50c2-4cad-b5da-11bbf7be16ed",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"considQA\", jsonData.id)\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9868c1dd-fa75-4fd6-acc7-3c005c58b7b1",
+						"exec": [
+							"var moment = require('moment');\r",
+							"var momentdate = moment().format(\"YYYY-MM-DD\");\r",
+							"postman.setGlobalVariable(\"currentDate\", momentdate);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "a3856071-d408-44ec-a7e0-c30b9c3a7242",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "qeXDk-tYUi7bNmdzeMNj",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"site_code\": \"{{sitecode}}\",\n    \"despatch_date\": \"{{currentDate}}\",\n    \"reference\": \"{{$guid}}\",\n    //\"custom_reference\": null,\n    \"custom_reference\": \"{{customRef}}\",\n    \"account_payable\": \"{{payable}}\",\n     \"charge_account\": \"{{$randomBankAccount}}\",\n    //\"special_instructions\": null,\n    \"special_instructions\": \"edited from API\",\n    \"carrier_service\": \"{{carrierservice}}\",\n    \"carrier_route\": \"BARNACLE\",\n    \"custom_label_printer\": \"SomePrinter\",\n    \"consignment_number\": \"UPD{{$randomBankAccount}}\",\n    \"third_party\": false,\n    \"sender_address\": {\n        \"name\": \"{{sitename}}\",\n        \"code\": \"{{sitecode}}\"\n    },\n    \"receiver_address\": {\n        \"name\": \"MICHAEL CICCIA\",\n        \"code\": \"junk1\",\n        \"email\": null,\n        \"phone\": null,\n        \"address_line_1\": \"BERRIGAN ROAD\",\n        \"address_line_2\": null,\n        \"address_line_3\": null,\n        \"address_line_4\": null,\n        \"sublocality\": null,\n        \"locality\": \"RICHLANDS\",\n        \"postcode\": \"4077\",\n        \"region\": \"QLD\",\n        \"country\": \"Australia\"\n//        \"type\": null\n    },\n    \"items\": [\n        {\n            \"reference\": \"Product Code: 47263\",\n            \"quantity\": \"2\",\n            \"item_type_description\": \"{{itemtypeDesc}}\",\n            \"length\": \"120\",\n            \"width\": \"120\",\n            \"height\": \"100\",\n            \"ssccs\": \"88112032001250085002,88112032001250085003\",\n            \"weight_in_kilograms\": \"600.0\"\n        },\n        {\n            \"reference\": null,\n            \"quantity\": \"2\",\n            \"item_type_description\": \"{{itemtypeDesc2}}\",\n            \"length\": \"21\",\n            \"ssccs\": [\n                \"88112032001250085004\",\n                \"88112032001250085005\"\n            ],\n            \"width\": \"50\",\n            \"height\": \"20\",\n            \"weight_in_kilograms\": \"20.0\"\n        }\n    ]\n}"
+				},
+				"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}"
+			},
+			"response": []
+		},
+		{
+			"name": "G - get booking file - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "072b6da2-96f7-4601-b04b-b59ac73143de"
+					}
+				}
+			],
+			"id": "2d97ba11-744f-40f2-b21c-cdf44ecb29d2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "qeXDk-tYUi7bNmdzeMNj",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qa.teamwilberforce.com/api/retrieve_file?id={{considQA}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"teamwilberforce",
+						"com"
+					],
+					"path": [
+						"api",
+						"retrieve_file"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{considQA}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "E - get Customer despatch file - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "2a30b60b-19e3-4e04-be91-d1df7855afb5"
+					}
+				}
+			],
+			"id": "727402f7-36d0-4d4d-abb2-906f73a804fc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "qeXDk-tYUi7bNmdzeMNj",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qa.teamwilberforce.com/api/retrieve_file?id={{considQA}}&type=customer",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"teamwilberforce",
+						"com"
+					],
+					"path": [
+						"api",
+						"retrieve_file"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "{{considQA}}"
+						},
+						{
+							"key": "type",
+							"value": "customer"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ZZZB - PDF print API call - QA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "610ac514-761c-4e97-b99b-b1edbcae3b8b",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "ec2576f4-aea7-4a41-a8f6-d08bbd433424",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{AuthToken}}",
+						"username": "david.ealdama@flexisourceit.com.au"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://qa.teamwilberforce.com/api/printers/type/label?printable_type=consignment&printable_id={{considQA}}",
+					"protocol": "https",
+					"host": [
+						"qa",
+						"teamwilberforce",
+						"com"
+					],
+					"path": [
+						"api",
+						"printers",
+						"type",
+						"label"
+					],
+					"query": [
+						{
+							"key": "printable_type",
+							"value": "consignment"
+						},
+						{
+							"key": "printable_id",
+							"value": "{{considQA}}"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "b3aabc10-9a41-4258-83aa-2549a80838b5",
+					"name": "2 - PDF print API call - QA",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": "https://qa.teamwilberforce.com/public/api/v1/consignments/{{considQA}}.pdf"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "pdf",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 20 Apr 2021 02:11:11 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/pdf"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Server",
+							"value": "nginx/1.12.2"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-XSS-Protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, no-store"
+						},
+						{
+							"key": "Expires",
+							"value": "0"
+						},
+						{
+							"key": "Content-Disposition",
+							"value": "attachment; filename=\"labels.pdf\""
+						},
+						{
+							"key": "Content-Transfer-Encoding",
+							"value": "binary"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "XSRF-TOKEN=0SfdNhNBD%2FYqE6PwRYZKlGFy8jU%2BRKVdYVfAiT9ABKzFEVyCxRpf%2F29GeFXwpjBFUD0YGve0e%2FM9Rf8n4Ql%2Fxw%3D%3D; path=/"
+						},
+						{
+							"key": "Set-Cookie",
+							"value": "_wilberforce_session=Qmx5cThFL0VPL0tWR1NHejdZZ2JJb0FGanlzY1ZoSUlvOFNoa0VPRVZiMHFDWDhCRDk4dzc0UktReTVwQ3h6cmVON1F5STlSVTRNcDBXb2RKZGV1ZUxkd2dJeU5aTS9kUHZkYitzTW5oVFl2SUMrL0NyQWlUNjA0cDVQSy9GUDBtVlMzZW5yMW5ucXIwRFRCc3BVQVVuN3FUMjMzclpXV2d0bjE2bkpHWWp0WUFNS3F2QmJNeVhEL0RtQTl6YkNsLS11MnRpRTAvWUtvaVR6SUY1ZEdmdUlnPT0%3D--05ac672f81c592844a5b2dcbe02f17daf289d5c1; path=/; HttpOnly"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7f853594-d084-4734-9614-cbb0b7b05a46"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "2.436812"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "%PDF-1.4\n1 0 obj\n<<\n/Title (��)\n/Creator (��\u0000w\u0000k\u0000h\u0000t\u0000m\u0000l\u0000t\u0000o\u0000p\u0000d\u0000f\u0000 \u00000\u0000.\u00001\u00002\u0000.\u00004)\n/Producer (��\u0000Q\u0000t\u0000 \u00004\u0000.\u00008\u0000.\u00007)\n/CreationDate (D:20210420121111+10'00')\n>>\nendobj\n3 0 obj\n<<\n/Type /ExtGState\n/SA true\n/SM 0.02\n/ca 1.0\n/CA 1.0\n/AIS false\n/SMask /None>>\nendobj\n4 0 obj\n[/Pattern /DeviceRGB]\nendobj\n8 0 obj\n<<\n/Type /XObject\n/Subtype /Image\n/Width 420\n/Height 120\n/BitsPerComponent 8\n/ColorSpace /DeviceRGB\n/Length 9 0 R\n/Filter /FlateDecode\n>>\nstream\nx��A\u000e\u00030\b���O��$��4���#-&��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��\u001f��S���gJ �����@�H\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���oQ\u001dB d�u�i\u0006o�'�];55����z=�M~\u0012널_�\u000e�XW+r\u001fBPS���իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z��իW�^�z�\u000f�\u0005/+��\nendstream\nendobj\n9 0 obj\n5148\nendobj\n10 0 obj\n<<\n/Type /Catalog\n/Pages 2 0 R\n>>\nendobj\n5 0 obj\n<<\n/Type /Page\n/Parent 2 0 R\n/Contents 11 0 R\n/Resources 13 0 R\n/Annots 14 0 R\n/MediaBox [0 0 842 595]\n>>\nendobj\n13 0 obj\n<<\n/ColorSpace <<\n/PCSp 4 0 R\n/CSp /DeviceRGB\n/CSpg /DeviceGray\n>>\n/ExtGState <<\n/GSa 3 0 R\n>>\n/Pattern <<\n>>\n/Font <<\n/F6 6 0 R\n/F7 7 0 R\n>>\n/XObject <<\n/Im8 8 0 R\n>>\n>>\nendobj\n14 0 obj\n[ ]\nendobj\n11 0 obj\n<<\n/Length 12 0 R\n/Filter /FlateDecode\n>>\nstream\nx��]Ko�6\u0010��W�\\ \n9|�\u0004�\u0002��\u0014���\"\u0001z(z(��\u0016�Ͷi\u000f���DI�,t\";��0\u0001b�cR\u001cr\u001e�\fG���w��?�e�����C���+xYi\u001e~X�{\u00117�-��L\u001bӾg\u000f��\u0013{*>\u0014\u001f������F\rc���\f�+B���'��?F�G��3��W��\u001d���c!���z|�?~�?V�*I\bN·�����,~��}����\\i[�\u000bs���>y�\u001b.E�\u001bw}֕�\u0017!�e�\"���ŧ��W��Q�W�\u000eDN\u001a�\u0004���Z����ڒ���q���]��\u00137��o��A�q�d{�0/f/^[�\u0017�\u0010Y(�\u0017�\u0015ʾ[I�w���`�g|?�$m.�4������a���'&\u001a�.���c�م���G�m�w߱�υP���W��\u0012(�Pt���5iC���j(�{�\u0017o)UBz���q<��Z��\u0002��:3�ب��K��2��7���8�����sl�?��Od\u001d����,bV���Ǭ\fY\u0019����`�0\u0003�\u0003�0�ц\u0006��\u0004�,%Y�I\u001bJ\u0015(�//�\u0014\fcl��8�90�\u0005�(\u0005wr��\nR�!e������0^�EbQ��\u00106��[���(�h�d�5\b�]�n��XC[��i�a�8�>يT)�\u0013\t;� H�0ŀ��\t�M�\u001b�!�L�\u0007S\u0002��\u0001ҬFÜ�=���Ҝ�oA�0\u000b\b'��\n�/K��hS\u0012}�\u0002�V0_lZN\u0003K�*���x32�%Q�\u0000�\bnKn�k`F4\u000ej\u001f�3\u0003o�aɑ\u00189�E��p\u001e���!+��u�\u001f\u0016j��\u0006\r�F�\t�\u0000D{h\u0015Q,���ͤ@\u000b�\u000f\u0013~\"�I9E7\u000b6��[�����h�d�5\f�u\u001f�_�S�I���(�~���u\u0018\u001e��Ghb��Mס�A��83Иlz\u0016oz�2de�ʐ����L\b���C\t\\�\"V��\u0006�a�\u001b\u0018@�!��E\u0014�\u000f>d�����*\u0007�3c3�ĥ��\f\u0010����,��:\u000f�P1�\u0012\u001eJlU�ڲ�����5���7��Y����vn6�\u0004DA#$\u0011��G-\u0001\u001f�\u0018W���k�%�����f6gK7gٷ\u001f�����N��\\핶bVYu��`[1��k[wsQ�\u0001\u0017����$�vՂ��>�h3��l���{��{d~���)u��\u0013\u0018�ռ�l\u0007̝\u0010��%9*T��M���\t�\u0013x4Rpn7��Q�{!�����/�2�\"\u000fE\u0005ߘ��%��\u0012û�\u0012�\u0002��4�0xO\u001e��\"����#���,+�\u0007\u000b\u0013��ȘNd����Iix�'N����[�m\u0012�\u0001���H=O�\u000b�g}�r\u0001L\\\u0007�bJ7Pmp\u001fH�\u00050�P�gA�\u000b̈́�\u001a��^���]\u001d�\u0004�fH3\u001c�\u0001�\t�+i�\u0017�r=�\u0019^?���S�A�\u0000AF\u0000J���!�@J�)WV�n\u0019N�\u0002\u001d\u0007@K��zV\u001f\u0007g}\u0005)��kHYANo e\r)����ӓ\u0007BX�d'J��`c�8\u0014�Μ�)\u001b�<Z,|\u001d(\u0016\u001d�wc�\t����;6\u001f\n3I(�X`�X@QJp� �X01?x\r��c�Y����\u0016�\u0003z/�\u0016p�\u0013��E�@J\u0005�\u0006Ţ�hu�Bl!\n\u0007���$��⇅,�\u0000WH\u0001�\fZ����$��`\u001e\u0012k\rg�賂�L��_\u0005]�����,u`c\u0004[Mi�⏠����\u001a�z�5��\u0007z�\u0004\u0005�-\u0001t�\u001aX8k<�\u0014�\r����s�Qe��io���\u0010'�G%�M��\tG{0vL$<�u`���tJ�\u0016N��t\u0010|HTbu�pn��7�\u001b^�)�H�\u001d7���3,�s6\u0003����\b�Śp� 9\u0012��<�e��m�MU�5 \b�1��X\u000e�L�Z���\u0004Iګ�XN�'E;nr\u001d�|:��W|�\u0018�RX˫�\u001cR�\u000f�iU��_\u0006��6\"ª��G�\u001e�ӟ�\u001f�\u000e�Y�C&2\u001b&�0da8\u0007a8�#��%�\u0007ç��\u0016\u0001�/`ܔ\u001f���\u001a�lV��9��\u001c~H��.)�\u001eNta����u���\n�u�MT��`�g�\u0014�:\u0003\u001dOv\r\u0002�ɢ����oQVίp����)R�YP�9\u000b6�>��y?���yԤ���\u000f)���RΙ\u001b�\u00036p\u0011Y�\"q\u0016�\u0001=9�\u001aϟ�\t��V03;�\u001az�\u001f\u0019�{�\r��i�{�|ѳ�%�u�m�!��)r/V)�4e%\u001b�E)�⮲��W\u000fӎ�Q��Bڃ\\�\"ޮs�����.x�����\u001e]��T\u000bX\u0017��3���V�\u0014<\u0003H�A%�V�7B��\u0005��5\"�Q8�P�\u000f�G��\nendstream\nendobj\n12 0 obj\n1905\nendobj\n15 0 obj\n<< /Type /FontDescriptor\n/FontName /QPAAAA+Arial-BoldMT\n/Flags 4 \n/FontBBox [-627.929687 -376.464843 2033.69140 1047.85156 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 104.980468 \n/FontFile2 16 0 R\n>>\nendobj\n16 0 obj\n<<\n/Length1 12648 \n/Length 19 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|Tչ?�Ν�\u0010���6\t[n\u00162Yg�L&\u000b[�\n!$!+D�p3��\\�%�B\f ����\u0015\u0011|\u0005\\jժX}.\u0015�\r�O�吝Z�ֺ<+�jkmU*����s�L&���^3�;�=�;����s� �\b�(�\u001di\u0010j봔�M��\u0004#���\u0019r�\u000e�ܺ�1�?@Ȱ�!�\u0003�ǚ�\u0011Jp�X�\u0003\u0006�\u0001�w�s������\u0012���Ex~�鱋��\u0007_G(�zx\u001et�W\f�r�\b��ó�\u0016]�/d�w\b%�\"4�\raͫܓH����֊\u0010��~k~�\u0006��(-7U�s�Gh����E�[���A\u0002\u0012�Ǵ�(�ت_�\u001fZ����8�ሓZ\"X��\be\u00182\fs��\u0011��\u0004��EZt\u0001\t�iP�@\u001f\u001f�=����!���~l9�\u001c�N���!��Ɣd�~��1S��O�*��K�V�Zmz壴]����-8s�2���df�`�r��5��z���g��\u0004�2��\u001fI\u00038\u0010�`�*�vtSn�\u001cġ��s|\u001c蟆L`A�1%1^���4�\u0018�+ʍT�!�\b��RbY\"\u0007��p��]q\u001d�~�ׯ�y���Xs�gMO�3YK�Lƙ\u0018�M7�iO�\u001eQ����\u001d����'��G�|��3��ʸ���O\u00172һ��ø]\u0006�\u0018�\u0007��q󴯐��c+����(\u0007Ӵ�|�\u0004��\u001c��\u001e�F�\u0014Q\u001b�\u001a��Y\u0006l�����ܖO\u001e}T�Ly\u0000����xl�W�o���\u000be*��v\bD\u000e]�22\f:���j��(玽�jG�\u0007|��\r����5D�YX�>���.\u0011b\u0007q1��i�9���%�c#w�K����\u0014pR�\u001a���D�F�����ࣣ���<\\�����\u0016�a���k9!�.Xt\u0010!]\u001a��A�\n��I��\fl8����X��T>U�V�[�=�I�|�u#Յ�䂵����T'�!#\u0019�����\u0007�V����\u0017\u0016\u0002\u000f�\u0014�\u000bx�P��A��4�\u0006�q\u0003���S�;�\u0007\u000f\u0012l\u000e\u0003�g�95�3#�0_=�1�nP�X\t�\u0013_)\u001b�B��۩rCNe��\u0003����p\u000e\u0016�\n�\u0012��)O(�� ����_\u000fV\u0006��\u0005E\u000bx\u0011m�a}\u0002ʠ�\u0004�Y�Ijjge\u0019\f\u00065�h\u0001�d\u001d�o���+{�KJ�������\u001f�77+\u0003�-Kl�iO�d�<\u000f�Y���<>9�:FYgL)-�i�Y�It���O��\u0019(�j+\rk�ocb�FՒ\u0015�ZF�MYG8ϟ��5�����\u0017�X��7��\u0002�ep�[����g��\u0016g?rN{ʔ7 ]u��Ι�u��*���\u0013E\u0005\t���ք��&KQ\f�\u0001���\u001f�CfWA>�!��\u0012�\u0005\u001f[\u000e�m%Ph�9�Dr\u0012�t\u0002�,���\u0014\u000bi�m��[�d��l{�/}�qM�\u0015\u001b��I���R�HZ�hˎ&Ka�o�p\f͛۸xێ���o<�ߞyC]=^8�ݚ�=�`��b���~�j\u001d�t6v\u0018:CYV�-�b��W��۷��)+߱\rl����S3��4D91��ZRnǖ�q\f^��{8_9�<��Ny\u001b\u0012ՠ��\u0018�8H�%\u0017\u001e#��\u0000���f#3�Z�9}���\u0006��X��B`p\u0012Åpe�u�4峩y�u�\u000b\u0016���\u001fض\u0005����;��������\n������V�+*�:**��ٝy��myp\u000b�z�+��ًz\u001fދox��5}c���\u0019\u0000�]}mu\r��$/����\u0017$&\u0019�`G$�\u0016*rrf\u0018 �h�V3�\b������������W7-1\u0017��o\\��A�Źg�+XVX0��T��8�����\\�Ӆ�\u000b�jO��ifKs�ZGwO�im�Viͺ���)�^��vJa����)<\u000e>�\\1%�bn�����\t�\u001d�\u001f�G��(\u0011e��e4q��@z�)gN\u0012��\fƎ���[�v�(>z�n�uM}\u0003\u0016��ݮeM\u00187-s�����}��jl8~˟?�����������G���M:D���w@?4\u0012�\u0012!\u000bB[\u0011h4�T@�*�p�r\u001eg){�r����ꚶ�ִZ�Xl���\u0004��Ǹ�ה��\u0012�\r���a<���xS\u0003{O\u000ex��2I~\u0010�<�C���iHX*��D拑�\u001a�V�\u0002\u000f(�%_���O���\u0006\u0017ij\u0016��\u0016\u0015�4�\u0017t�����\u001d�cm��уo�#7��(O_ٰ\u0018ggc�hMu]����\u001bҠ��Hv��d�c�Q��΀o�f��+/kX׻b����)�|�M�ge�/̰�u�(�\u00139>��;��F�,�S��\\�[�\u001b0J�^�T�\u0007cҨqFr��\u000bv�%cokj�T���\u001f�e}\u0005H�\u0006$n�}1�v*\u0003�\u0011\u0003يu\u0010��D�\nE\u0005�C�\u0002��x����v�|l���E\tضdӚ�E��vH��מ\n~v#�w���١C�R�{�˿�m\u0003^�v�g\u001dm�u9R� �\u00170�E1�\tNP\u0006�\r\u0014\u0012k)�\n�W9����W��j^�\u0011\u0013h�}uM˲�\u001c�4n�}֒Y3s�jj\u001fR����ddYm5����.�\u001a4d��\u001f�'��:� �&\r ��\u0007P×(�+)m�|A54��me�d�T8��>�v?���}����}R�Q��d�=O���[\u001e�3��1x�cݍ\u00071��\"Y�\u0004j�\fZ��B�k*WŃ\u001f\u001a�U3�ъ���y�Cʛ�\u001e��\u001b�\u0018��\u0015X\u001a/�嗞X��4G\u0013\u0017���qj|\u0014���s�\u001dk�paA�Cϵ�湛�\u000bp_y �]\t�\r�\u001aJ\rј{�|t)�Y����������\u0019�iQ�3�zW�lqcN��9��vȩ���+\tiӍ���\n\nq��l\t��\u000b��\u000b��\u0006u��\u001b��4܄/S\u000e㫕_)_���%ިl\t��o�U�#�\u0007���8\rő�e͌␵\u001f�%'ϝwYEwv6�\u0007���Ը��*�?�����\\\u0001:S�wѕ�\u0003*\u001c\u0019\t�\t\u0015+4ώl޼��S��\u001f��<�#��e୷�<�,��\u0005x�?\u0000�����`�S�\u0013\u0003�ll�L�\u0001{\u0018�Et'\u0010݋�KVv;�<���,~������gp)��\u001e|�;���s���\u0006��w~8ܻ�p�ٳ�Q��\u000bg_|\u0001;�޶c���\u000bp�ݲ\u0015twB���\n�Ȱ���1p���\u0019+�\u0018Y\u0005�r�fe�e'�ډ�o;��N�\u0016L��m\u0016��h\u0015��\u001f_]P�\u000f\u001f�Q8��>|#\u0017?6|�2wg�\u001d'��p[;�<\u0004��\u0007:'�\u0014\u000f�'E�Q�+c\u0017��9\u0017�$����}\n�Ƀ\u0007\u001b9����c+���\u0013ӌ�Dl�jn��\u0007\u001e�ه'���Y���\u0003����~X��)t��v��\u0007��Zݷ����U�Uu\rp�~�W?x���&��l��z\u0001޼��\u0005�1'�v��q\u0000p�nN���J\u0010�\u0000�uFv4��\u000e\u001e5������{��@�\u0019���.ZRU����n�).�\u0016sO�\u0011�6%������q�i��\u000f�i�+��`�X\u0007\u0015��*\u00112j�/\u000f6�ΤS\u001b<�7@!t�\u0013H-&�ʎ�0�k��s{\\��I�[O���Ƕ�����t�\u0002�*�)\u001dހ���ġō\u0018�5\f\r.�m4U&��H.��;�S�\u001f��7x�\u0003���c��\\���6{��U?��v�۲\u001c���z�r�\n1��tB��,�\u000e\u0016�{�\r��>��$�'�<%��䙦�B\u001b�7��\u0016,.�L���a0��[��TT�5\\\u0017<ȕ�e.���3��\u001a�\u000e~���o�3��\u0001*Ŵ*U5�Ô�\u001bprH��\u001d��V��wz������}u�}y�L҆g����R�ʹi�҅�2[2�|��{����dU�M�^��f����Ň\u0015�k<j.��VfVm�\u000f�c`W1dD<�U�N�\u0015�\u0014f�V;$50�}�f�\u0012�\u0018O7TV؝�spbr�rⲭ������<�\u0004s�JO��g�y���V���~����RЙW�q�LKzJbB���{������J\u0016df�\u001b3g'�*-kZv�\r��{W�}��*!c�IT=�dh4�W�wlx�$���/p�rB���#p�X�=F�\u000bor'����>�\u0011wP{3�.�0&��Y#;1��ϲYms\fܦ�:>9a�iij����\u000bg̎��c\u0007�#̻J��$cl܌7��57���0~��W�P�\u0012��\u000b@�ը}\u001a�?t\u0002�\u0019��N���\u0000+�Soƹܻ��/4�w)r\n͟���\u0011�ǹ�\u001bAxu\t>��|���\bn#����\u0011�o��8W{��F2�\nN�6�ۙ�7�R��\n\tdJ\u0004�z�W�$5h�pj̼��+\u0016.��pݦ�\u000f���\u0005�\\����Ϋ�냿ܶ\u001d��ꫨ\\�xp7t��3�\u000b�?�a�{����3\u0010_��\u00054΀�}Y(k&zk8�¿`��Ԥ�ٚ4�\u0016\u001c\u001f[Uվb�\\\\U�Qޜ�?\u001f\u0017\u00146-��E+�����6�t��+W�4\u001f8��\u0017��]�ᨨĵ5\u001b._�\u0000'�Ac+[�TT�qI�«��Z�v9����X۷���\u0018���}\u0015������i�`?�L�\u001b\u000f*���\n���F�PiEu�h���Q�>��7�T\u0007C�\u000fY���ƃ�\u0003��\u001c�Op����\u0017 k�E\u0007��F�pݤ�A��B��\u0005t\u0004���\u000f =�YA���\u0003�8�j4��n�ჱ\u0014�v�u\u0010ƻ�j�k/�\b�u�*�\u000bs]�|\b�~�\u000f�g�n��B[��\u0018Ƨ��t�\u0003�7\u0013]@Up��/ɨ\u001b\u001dE��\u0017����w\u001c��x\u0011��N�\u001f���s\"��{IS�\u0019�\u001cҼ��;���>��Z���֮�n�>���n��E�M��>Zߣ�K����(MTBTATeԆ��TLQ)�&�˞.���7!��\u0015z�P�h���\u001c�����\u001a�\u0012�O�y���5��(U�\u0011�u(U��h=zNW��(�����)��ػ\u0019\u001d͟��\t=\u0015�Ǖ2:\u0006\r����X�#��3:\u000e���:�˶i=��H;�\u000bFs�Oh`�\u0006\u0015&�3�G�\tՌ֢�����\u0001��h=�Op3:\n%&�0z\njH�gt4'N{��SQI���1Țr\u001b�c5�%���8dN!��a^\u0003��\u0019c\u0019ͣ�FLi�;M���h\u001e�\u0018gPZ\u0007�:�\u0002F�(�XBi=�����\u0010\u000bc\u001d��`<�hg4�R�+(=��W�����\u001a_�V��j|UZ��J��Ui5�*��W�����\u001a_�V��j|UZ��J��%t4�j3�\tV\u001eJO��\u0004�aF�h�q/�c(&\u000f3�`�\u0013J��x��W���L�P:��y��D�ʟH1���\u0004��(�D�\u0019g4��o�N���4F�HHU�B�S�\u0018\r��E�N����&��)=��@��ѐ\u0003�C��E�ic4�G�u:���h�%��I\u000e���hȁ�C��'���d4��z��ET�/\u0018M�<C�\b��\"����+*¯�\b��\b����Ą�҅F�0�� \u0012�\u001d�\u0005�\u0002�:(݂<�\r��q\t�\u000e��@��\b�2�\u0010`�\t��@��q��)�\u0012�L@�0�D�0�\u000fƚ�[�W���S\fo�*UJGk`�\u0013�;`�\u0010�৫:@�\u000f./�\b�\u0001j�\u001b�$�\n[�\u0005�\u0002p�L��/\u0003B\u0002� �D7*�ZȌH5ٙ,\u0011Fԕ.*�x�\u0000�]T�\f3~����\b�~��G=�ӵ~:�R�7��Cm��/�T6��N��Qmd��\u000f�o��\u0000�&P\r�V�T�\u001f���y��v0�\u0012��PY��и���3D��\"s1�\u001fdJ\u0014\u0015\u0019�U�v6\u0012�H�XMd����K\u0011u���R�\u001d.�*��N�odZe�)�Sќ@a\u00108�4ut\u0002W���a�Ȕ?@�&��\u0019��}sN�*�\u0017��̹��\t\u0019^г�Y+2��4�\u0005��!�\u0006��!:��\u001f�\u0019�Ő�8!�j���\u001b���\fmU�D-�4Vjv\b\u0014C;�_�QsR�aZgj6��JՓ��Ù%��\u0015,2.j\r�M5n>V�ΰ\u001d.�4�������\"��LG?�\u0010�H\u000fL�M\tm��\u0010�$��a\u000f\u0007in\u000b4\u0007����h��i4��Q'���Nj�0\\M>�e\u0013�H�uш�h\u0013]�ZM����D���\u0007(ZôJF�^�t��#t^�Hx�\u000eRC*�~�>dqH�0�!\u0017��!�̗�չ��VK;�\u0000��0M�.K�d%�\u0005�\u000b2\b�^Z\tj\u0005�EH)\nKi�ܞ\u0018��溗վ����p���}_��\u0010�\u0012�q\u0013�J��\r{�����\u0002ʡ�Z��\u0006�\u0007i��P#�飈;�43j\u0005�.�A\u001a�\u0003�\b�\u0006�d}#ܗ��\u0006\u0018�;��Űs4����v�X�/���K�����hh\\�X��0��D=\\����y\u0000\u0003/�\u0010\u0007�\u000e�\u0013����꧳��\u001f\b봇���]����\u0012�\u0010ҥ&z��+d֟}�\fQ)R��\u0012l{�6�I6���\u001f��T���@&�e#�N(����㥽��z� ��o�+T�\u00041)B�DǸT�\u0000�/����\u000b�V��ȸ��o���z5\u0019)��_�\u0015�j\u000e�Q�1Ez�\u0011A����c���t�i�#z��%��؉&�rԝB�\u0016\rSd��%�z���\u000b,\u0017�\u0011}4��T�\u0000EZ�ر�\u0011���0�7\"o'�\tߍ\u0014��E���3I�\b��z\u001a��n\u0012��\u0013�\u001e�U�L�\"N�;���vEf��uo\u0015���Y~Lt��9�]\u001eM�G\u0013���ȅ�yd��iP�F=[�iT�\u0017��{\u0011�\u0013��\u001ez�\u0019`}u#=���ȓ��G?$O�I��7&��!y��QEk�tl�2/��P�ċ�\u001e����@�R\r��\u0016�-�؉�\u000f{eH\u0002�ej`�\b\t���2T\u0001;�\u0000�\u0012x*�w�2��\u0011y��F͌�\u0018fK`���\u0015�\n\u0017YU�l�~B.\"�A�%à�\u0002�\u0011�1��}r��i���}�P��:G�y��2�Ħ\u000eڡ�=����<�\u0014O�S�I�tF�\u0011��ľA���]�\u0013�?g���@�\u0005�~�!H�,t��Y��'�a���\u0011z\u0006Py���М�|\f��\u001a\u001d�\u0006E�$�#t9$��\u000fs~\u0018\u0012�<�a�W��\u001e�0촛�z�/~\u000f��\b\u0013:=�\u0000\u0019�\tMnXWRUU\\\u0004�R�P�t\n\u001d���\u0013:$���(\r�y�~�E�xG\u0005�\b�`\\\u001e\u0014\u0006$�<�.\u0014j���\u0014��%�0��x%�\u0011p�n��\u0017�\u000e�+������>��\u0010�\u0002̍\n�AA\u0006-�^i@�K>���\u0013D�� ����!�L��\u0016�\u0001�$��~\u0007,�`�3@V\u0013�)�\u000eX/�1�1�����\u0012pہ\bxG�\u0002�ĳQ����+�~\u0017L�\u0005�\u0000��#�|�A0��0\u0018p:����z�\u0007���O]��G�R$\u0012$8>�E�d7��zփX\u0011�\u0007@��Z6 �C\u001e2?��C��\u001c\u0006D<�Q�\f4ʢ�\u00048\u0004�\u0004عe;����\u0012��K�D�[&`\t�\u0015��Kr�\n��\u000f��$2\\����gy�c�찢_\u0012\u0002>i@ES�\u0010 �\u0006�\u0004a�\u0003.�Dp���C�u�\u0004q��\nI�|\u0000\u0019�#xt�C�&�\r�%��P\u0005\r�\u000fȾa�8JT��ni�7,\u000e�i�2\u0000&�e\u001f\u0011L؇�\u001e��J3�ru��Z��90�\u0007\u0016��-5W�\n�-���!\u0001ʣ,E�����w\u000b]^��K��'>W�7C��\u0012d\u001c�*`��\u0014��~!G�j\u0011�\u0006\u0007��4��F\u001c�fnm�jjl���jjk\u0015�\u001a�eMu\r��\rB�⎆���֮����.\u0007\u0004#�5\t\f\u0011\f��~\u001a��=P{�!�8�\u0018�zH�\u0013��G�QO����\u001c\u0005�\u0002�\u0001��\u0015�R4�!+d�g`\u0017���D��,��2�\b���'�\u0007+���!���$� �\u0012��W��!;\u0006\u0001�\t�H�=C\u0012e��\u0011^\u0007\u0001���\u000f�A4��:�p��\u000b\u0019\u0005�\u001f�\"��䨰Qt\u0006�~�K�\u0007y\u0015��,t�i����\u0000�Xp�(D�7,��A�~��\u0002��9J֊\u0003\u00032�1䎗��B2��Ҟp�QN�%\u0013�@\t�\u001b�x���ԦYL\u0007=#�3�~��s\u0010= K��\u0005�\r�C��G\u00055�\u0019B�\u0015Q<�\u0006'�#=oC@�Q5�-���<�2�)���\t8\u0007 W7�҈��.q��A$%�\u001b\u0003\u0013�1�#�E۱�?\u0011c�Ȭ\u001e�f����\u0002�-� �#��\u0012���\u001a�Hȭ,��\u0013*J*��ˊ��L�n��⒒�2�WX+��r[��*6���\u000fϵXFFF̮P��\u001eWdMHB�W\u001c!X@\t�Q ���\u000f\u0015�\n]�\u0003-��\u0014�W�ˢ�)�����UY�-�-\u000e��iq����nq��D�'�d��`Dr¨��Kȓ��H�'�\\�Jz��W0qҌ\u001f\u0005p,l�\u001fO\u001a\u001d���ȑF�sSĘf��)�s�g���7j�/Ѷ\f(���Cg\u0003�f\u0017��^�U��\u0010M��c�^����\u001f�x�\\\u000f]\u00119��~o��L�Y�~�\bЃ����|���,�����<��/�+�E�\u0002�������\u001b�l&߸\u0004�'��?խ��\u0003\u001b���,8jMF��~<�\u001f��S\u0015\nendstream\nendobj\n19 0 obj\n7137\nendobj\n17 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /Arial-BoldMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 15 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 552 552 276 552 552 276 330 716 826 606 606 662 662 662 716 662 936 552 716 606 552 552 386 330 606 606 606 552 552 552 276 552 772 606 276 772 606 606 606 882 552 772 330 276 606 716 276 552 552 ]\n]\n>>\nendobj\n18 0 obj\n<< /Length 707 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0031> [<0032> <0030> <002F> <0034> <0031> <0020> <003A> <0041> <004D> <0054> <0046> <0045> <0058> <0050> <0052> <0053> <0057> <0036> <0042> <006F> <0079> <0065> <0072> <002D> <005A> <0062> <006E> <0063> <0061> <006B> <002C> <0037> <004F> <0064> <0069> <0047> <0075> <0067> <0068> <006D> <0073> <0077> <0074> <002E> <004C> <0048> <0049> <0035> <0033> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n7 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /Arial-BoldMT\n/Encoding /Identity-H\n/DescendantFonts [17 0 R]\n/ToUnicode 18 0 R>>\nendobj\n20 0 obj\n<< /Type /FontDescriptor\n/FontName /QUAAAA+ArialMT\n/Flags 4 \n/FontBBox [-664.550781 -324.707031 2028.32031 1037.10937 ]\n/ItalicAngle 0 \n/Ascent 905.273437 \n/Descent -211.914062 \n/CapHeight 905.273437 \n/StemV 73.2421875 \n/FontFile2 21 0 R\n>>\nendobj\n21 0 obj\n<<\n/Length1 12360 \n/Length 24 0 R\n/Filter /FlateDecode\n>>\nstream\nx��Z\t|\u0014U���\u0002\u0002H���j\u0012\u0012\u0002I��N:!!$�\"�NH�\t9P���.�>r�!\u0010B¥��'*ǎ�\u0000��U�9訣���ǌ�̎����tg�ݑtg����\u0000\u001c�ٝ4U��;���}���0Bh\u0002ځd\b5��\u0016L��`\u0013�\u001c����췽��\u0002����;\u001c<g���/F(q\u0007�\u00159``��S���\u0013��p\u0005��\u0018J�\u0014�\u0003�o8=\u0016��\u0017z\u001a\u0011J:\u0005�\u001b]\\�\u0017\u0015�:��g�3��\\�ϰ�\f����)\bˆ�!�@Hq�B�\u0010�-~��D6f�\u0004\u0005���3�O�еCD\u0005�;�\u0019=n\u000f�@�����p3֩��#\u0015\b����5\f1RA\u0018ː\n!�Z�^\b7��h��=7V�@\u0017\u0011+\u000eD\"~�3E��m�\u0005\u000f�J�2M����Q�a(2\u0014�\nRSRU�@\u0005S�JxLѥ\u0018��#�ˏ���n>�Ј;�\u001e����\u001c9R���3\u001f~����b\\\\\u0018��9���0�_oݎ�\u001b\u001e��O�@W�w�+9���on\u001e�{�S�\u000e�����\u0010=��\u001f�\u0012�\u0003⒌u\u0018?p(�1S��wI0w\u0017X3_1�&\"�S�Z�N��^�1�/��\u0015�\u0017wʯ��V���\u000eĠs�l�<C�<�P�,��܅\u000b\u0017d�\u0017.��w�\u0002�\r!�U�o\u001a��)�E\u0006�Q��1��\r����ԙ�x=V<\u0019n(�\u0001\u0012��p]�]�1����B�'\u0017Y�\u0004�j��d�aP��\u0001��Ы_aMSm�z<�w��\u0019��\u0018�ݶ�\b?4�h�&b��\b�\u0007#\u0016i�5��_��ا���\u001a������!\u001bD\u0012�!>\u001f*�A�(\u0013�a\fE\u000bIPR��HD2i�\f�Ĩ���R�,���c�+'O��uu��O�y���V��7\\��\u00077\u001c,+�\u0007o|��[�W��\u000b�3�:�O\u001e:۵\u000ec�z�Գ�oo�\u001d�y;�������7�\u000e��?�Պ�P*�a\u001a��!%�~�\u0019�Gڂ̌D\u0006�(\u0000-��\u0016�C[�~��XOgG�R�\u0006�\u000b�M���x\u0014��n��n2�o�V5�6��{tm\u001b������v�\u001f\u000e\u001d��m�m���#=}}}؁��\u001e,�\u0001�A��U�\u0005�0YC\u0001J>�z\t��\u0012bE�Џ\\5f`R�[����6S�qˀ�\u0011���m�ooْ����gǵ�sO��Xfٰa��\u0001�m�����}������S����ן؛[�\u0007�9�����`&�P�\f�eJU��\u0003'{����EW��UVl��+���[���c�>8��_?��Q��6��\\��\tJ���y\u0006pUa��*Uf\"�_Vd �Kam{:�����Յ�:�����|�z����M\u0003��۽\u001b�\u000f����;��i�j같;qGg\u0007��*Oa�9\u0015��ƃ{�x�У\u0018o�B��\u001e\u001fWt\u0001֒�B��\u0002)rQ7e.�\u0014H�\u0014\u0011��\u001b���]�;��%�����V���qɍ��\u00055�\u000b�j㦦S�S�&�m��z�\u000b���ij�-�1\u000b��=��&���m[\u0016�\u0003�������Q\u0001���IH1�#������\u0007��*9\t��2d����\u0010��GV�w_�����q��Ғ�z��\u000e��\u0019�QZ>�lj��a�7�n��TO�<)���)�\u0017<�\\�\f\u0017\u0017\t���9x�}AZ�iOceEffҔ�3\u0017�'����\u0012�w���&c!���\u0015���~}qEu�\u0001�5[���p�ve^\u001e��^��\u0017��>�\r�Xq;�\rV�F�P�V�S\u001bԺ�45���\u0014f�,c���(%\u0015����c��\t�IYs�ݣƘ���?�X\u000e`�3|�@�&cJ��\u0018��_\r^�\u0007^�M�\"Vep�z��ou�J#�a�!\b\"X�f4���?\u000e�ݷ��_\u000e\r��'uv�1�Ն>`��\u0018�\u000eokm���';�\u000e]��8ᖛo<\u001c�N=�캫q�\u001e�2XmǸ��H?\u0006u�4�e.Z\u001c�\u000b����&1MFd\u0012���՚�h\u00105ǘ}/���e�ʿݐe2���|{Q���\u001c����c��Wgf�6\u001e\u000f�)F3�,|�э�9\u0019i���f�?PW3wN�*\u0014����Y�eu��*�r\"��\u0003΄�D\u000fpn�TRQ̤&\u0013W?r�=8ifUEoú�%���4���;\u000el�XX��d��IxA�\u0006�1\u001b�\u001b\u0004~/�_\u0013�9�\u001c�K�LV\u000f\u001e_V�_޵�|Ŋ2m^�<y�1�����e�\u0005��7�B��=\u0004��g46\"\u000f]$�����C\u0012:Y=t<���&�ᤑ�\u0014}��@�I�q�C\u000b�\r%\r��!?��U\\����W�\u001az\n�6�.�\u0013�M��x���S�$\u0002)\u001d��������`�\u001e\\R\u0012��;�q�\u000f�*���kjǸ�e�ƺZ<����q��xҩ�;++�v�;{���3���\u00063�� �\u001e\n\u000br\rH��\u0016A]���X$\u001e0�E�Z�$��B\tmC'KV�;�\u001d�\"=^Z��|mw�J�������\r���\u0003k;Â��}�Y�j�����\u0001(S\u0019\u000bKC\u0017e'_��6�^�Y1��$\u001e\u001d��\u0001�&�\u001eU\u000f�(F��\u0005݆a���GNr�\u001d\u001e\u0019\u0019����\u0017��\u0019\u0017?�UՐ+�`�\u001aiĳI\u0017�mԅ��\u0006I���/~p`���`�O�����\u0018\u001e�����kp���I�\u00197���\u000f�^\u000b�VT��^��l�7_���V\u001e�]\u0007u�K�d�T�%�R�\u0014?R�\u0013���`\")5%��Ec��S�u���m�\"�(����W�\b�B���ھ[Nl�R]�\u0018�ֶ�����K\f����eU�[�\u001f}yp���ߝ殭[��aKK��\u000bui)\u0005��E�ͼۼ� \u001f\u000e]�m��������5\u0005z}ѢҮu���QR�q�Ҡ��\u0016 �s�&A\u001f�u���I�\u0006�L��������΅���n����\u0019\u0006�#f<\u00045�\u0013b�BS\u0011J��'M��%jd��2F�&���OCw\u001e{\u001fs{�fn\u0001�(~*\\�t�#O�\u001d�\u000fR��y�9pH��4����cw˖��R��tA�O������')�a5�\\\u001c뵠a#\u0012�D�\u0010��\u0007<�%=�\u001ag�\u001d\n1K�\u000e���\u0005I�C�\u0018�Lx8���\u0003\u000f��cc\u0012r\n��\u000bcr2�\u000e!�\u0007ΥZH�!�\u0007�2-n��\u0013�ɺ�qӪ��%\u0018��_\t\u000f�-O�i��6\u0014\f��*F��|]�:�S;\u0006p�\f㺚\u001d�U\u0015)S\"5��:SD��\f�bD������z֮�X8��l�ںy�\u0014����\u0011ks[Z�\f�g�\rAi]��v��Г$k�^|\u0002Q\u0003�5�\u0014�o\u0007�Iq��G��m�_Ӛ�uU�H´bCss]��9x䮑����5�\u0000s8�����EY�\u0017���eJH�1Z\u000e�\u001f��Z.�<���\b��\nZ��\u0015�\b��sp�#W�Tm�ZV��\u0019�_l0ffa����U+[�n�&'G}vrI�c��\u0010�������qU�\u0012}�ź�u�\u001b/����D�_�,-5#?#������4k^jrz��r���\\-$�!m��Ą4��\u0005˖ww5�Y���Flx0�\u0011\u001e@\u0017H�����\u0014i3��¢����ٳe\u0017.l��[h�Q��\u000e�\u001f�^{\u0001�\tj;֩��\u0002\u0018s�����\r�q~���o��k���|������\\׭\u0018\u001d{��]\u0003kZq]���\u0017���G��Z�W��A�ID�#����_!�@�|�<�\u0016��_N��<�\u001d�9E��\nI>0���}�ي)�O�\u0017��G����5�^��0KM�\u0016m�\u001a�\u001d�\u00140M䠎uxG���m��\u0012��>��\u0016/ɮ�\\o�\u001f�\t/�Y\\\u000f-ނ�\u0015GÿƮk2�rr������7�\u000fC_\u0000�R�5��-���k�_�Xۙ�\u0007핬E���\u0019�\rɉ8\\\u0013��\u0013\u0012��)��5��Κ\u0001�\u0001�U=T�h����b���\u0018�\u001d�����\f\t8�������|�|��d��LՌ��/���o���t�G�Y���Dv\u0006^Ȯޯ��^<��*A���J\u0016)\u0012Le���\u001cvA\u000e>�b�<�ν����'ςc\u0006v=\u000b�����������}�S���Cő\f��\u0003�� �>Ҿ_zjJ�\u0012y�n\u001f���޹�sms�V]C��\u0004��n\\U-\b�u�#�`�L\u001fo5�Ngݵr%��W硫\u001f�q{U5�V\u000flmn�8�n��l���\u0002�X��\u001d�-�N���F��k�_���\u001e\u001c���\u001fCY�\bڒ��4��B\u0012n\u001dsq�R��z�fo^@�e����gjm�\r��$xkA�\u0002\u0003��k5�O�g�;>����\u0013��Z�ѐ\u0011V���� �db.�^�o�Pٔ\u0019P%��\u001d\u0015�m�{\u0018�\u0013�G�\u001b}\u0010H�bw,�Բ)h\\�n{�h{ۣx�tm����F\u0000�V��\u0015s��3ni��B��\u001d]��X(�9���Λ�q}ÉЭ�#}ee��\u001a�7��\u0007�Z�\ru&X?\u001f�h\u0005h*���+�u�$G��\u0007�'*c\u0005���,\u0013\u001b��!�qsa\u0011����A�/r\r��\u000e�y��[x�J3���d�^��jl���8#}��֝&\u0013n[�kG�I6{�q��{�.��{l���r8������y�Ϯ7o�&Ǌ\u0015+*6X��VTu���+WBElmٹ���d�ꄢ%\u0016\u0019���O��j�\u001eV�ngv��з_C���wCg�nc>�\",�}.�_�7!�%\u0015.T�ʗ��Z-�V\u0019�JHY3�e\r��Э����C\u000fwuuu<p����yݪ���4�\u0005]��{6���i���v�8�����Y~\n�>�A+qu�ه����\u0013�]���u7�y��j!��\u0015+������\u0015�\u0018\u0017�\u0016c5�����7�:������~к�o<\u0014\u0016�V�#��\"��\u001eUy�\u0011UMC�w�ߡꡜ���J\u0018R��l\fTF��\u000b��)\u001fD�)ڑR���~e\t����\r�2�8Bú��{\u0015�M����|\f�D�A4\b�Cr�֐o�\u0012\u001a�k\u0018�j�\u000e�g)��CTV;:\u000e�D��{�h\u0000��܃�\u001f<\u001f\u0001�y0Du\u0010�$ka�Y\u0018o��cXs\u0012�GAW����\u0003]]`S2�Dv�\r݀\u001eAo�Oq&ވ\u001f��`�L5s��X6Of�헝��/O�������\"E��h��Cq��%�7J�r@y��U�\u0007ʯT��-�#�㪿M�>!k�~B߄�'\\�h��G�$�����je�\bI�az�ѕ�p�D3h��#���k \u001fEZ\u001e�F�f(�,�J4U9O�U�\u0005e�DO@\u0019��\u0012=\u0011�rR�'��SɄN@�Z���lS\u000fI�\u0014��k����M�6j�uW�H4��o$�A��\u0012-C��\u000b$Z\u001e�F�&O��h%��$Z���\u001d\u0012=\u0001%&N�艨&%]�'1�UoJt\u0002�O\u0011$z2ҥ�!�Sd]�_��H�B�,��@��)\u0017)�\u0000zZj\u0002��d<u6�Ut<��\u0013(m��D)F\"-�H��\u0018��\u0018#��ǭ\u0011c$�b�DZ��H�1\u0012i1F\"-�H��\u0018��\u0018#�\u0016c$�b�\b=)��\u0004jK\u001d�'ǍO�����4bK��҉@OO\rR:)n}2�#�)q�3��!JϦ�D�s��̏����[(���'(�C�\t=!N�\tq�&ǍO��bB�ȋxdC\u001c��7�\u001e�˄\u001c�6\"\u000fr�\u0015�V���A>�ɝ�q��`a�\t��@U�q���)7�\u0019�ZaƉ��5~\u0018��oQ^>��%p��HT\u0001\u001d��\u001dN�n�=v�!@w�\u0000??\\>�\u0003w+��\rs<Ը�&>���*N�$�\u0017�C,� �\tG7t\u001aD\n��$�ċ�\u0011q��r$\u00168@{\u0017�(�L��vPY��\u0001I��Zh�{\u0003t�M��o���� H�x)o���j���\fYo�ߢ�A*��\u0012�\u0012(�\u0000̻�s/�퐤��Z\u000f�%ʎ�;)��\u0011\u000b<���|]\u0000x��+\u0002|��-�H�z��*�\u0012\u000f���z�I�\u0013M\t:\\Ү�\u0004\u000b��#I\u0015$Kɜ�͘\u0017l��p\u0013Gc~\u0015$�z$K\u0004�>H�bQ�S�:�vߏ�H�����9\u0017�\u0017��\u00039�$m9��\u0016�iV�}�gV*�NG���0#H1$k�\u0010{\u0011#\u001e��a�G��!��\u001c���\u000e���\"�/Ш9�\u001a/�3\u0011�n�S�$\u001e�B\u0014Y,��I�qQm\b6Ÿ��LvF�pѧ\u0018z\u0003��\u001b�e�Y$\u0019f�!H=m�\u0004�<�\f�\u0011�\u0012l[�\u0016�(�Y��>�[?�]�F�\u001e�:�]�w�K��l�K(��#q�E#¡k�~Qk��BgcH\u0013�[���4K��VDd���t����I2H\u000e�^\f��\u0011�#ܽ\u0014C.ZC#�i���K/�\u001a�wv�\u0012ݥ�]�\u0017���V\u0016Ý��x#���惘GYq������\u0019�s���.�}S4��ך/��.UB^�o�:%rm��Ek�~\u0016ePyF�7�l\u001bEn�c\u0004�~�m��M�\u001aa�\tN�Z���\"B7�(�_\u000b�\u0006:^\u0003#�p'9P\u0007^�������\u0014x�'�����=�f���b�Rlc�p��3�\u0003>�Qt8��=��\u001f�������`T�%ZCE�\u0005��X��� \u0015*V��:!H��/�\u000e;��Gk/�m�$�T�\u001e�f����(3�\u0003��`�7Z\u0005y)��h��h�\nHu�&����\u0015�v�1>�K�Z\\)�*�`�L+���Y��[��}\u0011ʤV]�)��_��+%Gj(��\u001c�h8�ꔼ�j�ߓ���w����+b�K�L|戧\u0004G5�RϒsK����1g%,��jhD.�~+��\u0010wZ��:���j_\u001cnc=�\u000f{�h��#��\\¯��\u0013�f|5����J\u000f�\u0015�L�z��wD�\u0011��G�K�ܢ�Ŭ�J��U�K1�C\u0016��QOm�2r�\u001e��m��\t�ֈ}��F�}Y\f|��;ƙ�硕�*��\u001eڃ���.�ǣ\u001f�'�$/�\u001a���\u0011~W�Q�V�3�P�W�q$b�e���C�Ƽ|��K��K5�n9\u0000'd�\u00039e*a4\u0007���\u0018�\u0001�C\u0016���\u0003�\u001bz��\u0010y�lC���y0�\u000f3z�6 \u001d\\dW\u0011*�w\u0013r\u0011�\u000eړxA^.|z�GK��K3�B+��;'\bUM��7�\u000b�\u0014\u0014�jKtj�\u0015Z<C\u001b�>�#u�$?œ�Gg\u0004\u001a�V���\r�*�fE��L�\\��\u0005�r�\u001e�\u0015��*��=�)J�~B\u001b]�ϕ�K{\u0000q-�O�\u0012�˽\f�Qަ~/o�,<�\u0000kr�,�\u000fr\u0001\u0018b�<>���\u0005\u0004���:-Z��\u000bp?�(�0c[=� \u0019��nؗ_R��\u0003�\u0002-[�t�-��\u0011�-������*�;��\b\u0013_?��`\u0013�\u000b6���\u0005�;���\t����*N�I��ǳ���s\u000b�\u0000kqp>�\u0012�\r��`�\u0001\u0007�fa����X\u0001�x}����~���g9�����`\u0005���f\u0003A7��\n\u0001\u0007l�a�c%�\t��@\u0006��@��X��w\u0007\u0004\u001eV[�\b���,u����q`^��s\u0001\u0017L�\r� ��'��\u001e\u001b�IU�\u0005�N �� ��\u0001!��\u001a�\u0007���@����\u0004\t��H�}.�MW�<��-\u0007�[� �M5�\n��C�{\u001d\u0002X���^����\u000b=<]@�̱Np\u0007���wn�\u0002�9��\u00077�-<\b\u0011�-\u0010g�|\u001f\u0018���,�� ;\t\u000f���\rH��K�,��̳A?o\u0015��o\u000e\u0012e�\u0016���\u0001��#\u0018\u0015\b\bn;1��C�\u0003�l\u0012&?���\b\u001e]���Vp\u0003k>`�\u0016�\u0006ۭ������\b�������\u0017T�%VP1 �\tc����<��6�ե�i-�=��|K�a\u001fAm����]d\u0014,>\u000f�Q\u0016]e4ѯ�Y�\u000fb��|���?�|��\u000e �\u0001o\u0014S����]�\u0005�\f�dd�l6-U�w��^\u0007,�66��k�*M�M�lS-�P_U��Z�Vֵ��\u0018k\u001aMS&M�dr@(\"�&a!��8�:@�\u0010�\u00072�c�q^G?�C�O�d�g�=A��B\u0010\n�\u0005�V�>�\u0004\u0000��\u001a0!\u0000�a9g��<A���m\u000e\u000e��1�ԃ��K�!��%\u0010�!�<����\u0004\u0000\u001b6�}L/\u0012v���K(,�� ��xs0\u0000�AM\u000fda�A���R\u0000��+��\tB�\u001e�\u0019�̀J�\u000f��߭e��\u0014��\u0011+�&)8�\u0012\u001c���\u0016�&X���\u0005/�)B�^�j\u0015H�\u00019>Z��ɰ���V�˔r\n.�\u0018\u0004B�^�o�_\u00046�0\u001d��\u0002f�f��w\u00109�Kt�\u000b�\r�C����\bx�C�\n����Ō#\u0015os��S1P+-��-Y������\u000eO�i\u0005��\b|�X�0���H�P5���\u0018�\u0011Ԣ��\u0012�Ř\u0018�IZ۾�-U9�A�\u0015\u0012#��\u0005��\u0005m��l\u000e��Xo�b\r��9y����\u0013�V�`^~�^\u000fw���\u001a�\nK\nK�Lr\u0004\u0002ޥ�����ZW$�\u0016�+>'x����\u0012_@\n�R���c�\fm���\u0002�M��'X\u0004�m�hn���*.�;�s\u001d\u0001�3�\u0015 �#=��_ϑ:�%���\r��\u0013F�\u001f�B�r%?���\fy�k0i@ܴхW@<\u0005\u000e���G�\nD�[i�HZ\"ҴXew�\u001e�=-{\u0016�s�Q٩8^\u001cm\f\"Ͽ���Kd�p���������:�2���j��\"Z�vā��c2D[<�#���g�\u0007B�\u0003�~p�\nendstream\nendobj\n24 0 obj\n7170\nendobj\n22 0 obj\n<< /Type /Font\n/Subtype /CIDFontType2\n/BaseFont /ArialMT\n/CIDSystemInfo << /Registry (Adobe) /Ordering (Identity) /Supplement 0 >>\n/FontDescriptor 20 0 R\n/CIDToGIDMap /Identity\n/W [0 [744 716 276 716 276 826 662 606 772 552 552 552 552 716 552 276 552 716 276 330 552 496 552 220 220 552 662 496 662 276 662 662 662 552 552 496 276 716 552 606 662 936 662 276 552 552 716 276 826 552 662 772 ]\n]\n>>\nendobj\n23 0 obj\n<< /Length 721 >>\nstream\n/CIDInit /ProcSet findresource begin\n12 dict begin\nbegincmap\n/CIDSystemInfo << /Registry (Adobe) /Ordering (UCS) /Supplement 0 >> def\n/CMapName /Adobe-Identity-UCS def\n/CMapType 2 def\n1 begincodespacerange\n<0000> <FFFF>\nendcodespacerange\n2 beginbfrange\n<0000> <0000> <0000>\n<0001> <0033> [<0043> <002F> <004E> <003A> <004D> <0059> <0046> <004F> <0030> <0032> <0037> <0035> <0044> <0061> <0074> <0065> <0052> <0066> <0072> <006E> <0063> <0070> <006C> <0069> <006F> <0053> <0076> <0041> <0020> <0045> <0058> <0050> <0068> <0075> <0073> <002C> <0055> <004C> <0054> <0042> <0057> <0056> <0049> <0033> <0031> <0048> <002E> <006D> <0038> <004B> <0047> ]\nendbfrange\nendcmap\nCMapName currentdict /CMap defineresource pop\nend\nend\n\nendstream\nendobj\n6 0 obj\n<< /Type /Font\n/Subtype /Type0\n/BaseFont /ArialMT\n/Encoding /Identity-H\n/DescendantFonts [22 0 R]\n/ToUnicode 23 0 R>>\nendobj\n2 0 obj\n<<\n/Type /Pages\n/Kids \n[\n5 0 R\n]\n/Count 1\n/ProcSet [/PDF /Text /ImageB /ImageC]\n>>\nendobj\nxref\n0 25\n0000000000 65535 f \n0000000009 00000 n \n0000025696 00000 n \n0000000163 00000 n \n0000000258 00000 n \n0000005684 00000 n \n0000025563 00000 n \n0000016697 00000 n \n0000000295 00000 n \n0000005614 00000 n \n0000005634 00000 n \n0000006012 00000 n \n0000007993 00000 n \n0000005805 00000 n \n0000005992 00000 n \n0000008014 00000 n \n0000008276 00000 n \n0000015526 00000 n \n0000015938 00000 n \n0000015505 00000 n \n0000016835 00000 n \n0000017092 00000 n \n0000024375 00000 n \n0000024790 00000 n \n0000024354 00000 n \ntrailer\n<<\n/Size 25\n/Info 1 0 R\n/Root 10 0 R\n>>\nstartxref\n25794\n%%EOF\n"
+				}
+			]
+		}
+	]
+}
