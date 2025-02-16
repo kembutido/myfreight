@@ -3166,6 +3166,22 @@
 				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/toll"
 			},
 			"response": []
+		},
+		{
+			"name": "https://tracking.qa.teamwilberforce.com/events/7/pod_details",
+			"id": "922b77c3-e172-4694-9965-2881410f3fc2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://tracking.qa.teamwilberforce.com/events/7/pod_details"
+			},
+			"response": []
 		}
 	]
 }
