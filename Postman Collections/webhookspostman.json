@@ -3182,6 +3182,54 @@
 				"url": "https://tracking.qa.teamwilberforce.com/events/7/pod_details"
 			},
 			"response": []
+		},
+		{
+			"name": "SFL tracking-pickup1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "865863df-93ca-4cb3-9a21-e2ac9b540e4d",
+						"exec": [
+							"var moment = require('moment');\r",
+							"var momentdate = moment().format();\r",
+							"pm.globals.set(\"currentTimestamp\", momentdate);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "64369967-2d28-454b-8185-e3c382a9d9d5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{sflPwd}}",
+						"username": "sfl"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aHVudGVyOkluREludGdja0hLbWVDb2JyclVMSWdISHJFaGdqSmxy"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"events\": [\n        {\n            \"status\": \"PICKUP\",\n           \"timestamp\": \"{{currentTimestamp}}\",\n            \"latitude\": \"{{$randomLatitude}}\",\n            \"longitude\": \"{{$randomLongitude}}\",\n            \"consignment_number\": \"BKSFL000046\",\n            \"note\": \"Package picked up\",\n            \"tracking_url\": \"http://www.example.com/tracking/BKSFL000046\"\n        }\n    ]\n}"
+				},
+				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/sfl/"
+			},
+			"response": []
 		}
 	]
 }
