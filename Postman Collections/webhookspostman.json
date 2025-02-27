@@ -259,8 +259,8 @@
 				"auth": {
 					"type": "basic",
 					"basic": {
-						"password": "InDIntgckHKmeCobrrULIgHHrEhgjJlr",
-						"username": "hunter"
+						"password": "{{bundybpwd}}",
+						"username": "bundyb"
 					}
 				},
 				"method": "POST",
