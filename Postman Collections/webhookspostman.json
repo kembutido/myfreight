@@ -283,6 +283,39 @@
 			"response": []
 		},
 		{
+			"name": "BundyBullet tracking-scan",
+			"id": "a56a090b-969b-4ae1-b6f2-087e7612d124",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{vault:bundybpwd}}",
+						"username": "bundyb"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aHVudGVyOkluREludGdja0hLbWVDb2JyclVMSWdISHJFaGdqSmxy"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConsignmentNumber\":\"INBB00002\",\n    \"SenderReference\":\"fdse\",\n    \"ScanDateTime\":\"2025-02-27 17:27\",\n    \"BarcodeValue\":\"INBB00002001\",\n    \"ScanType\":\"On Delivery\",\n    \"ScanLocation\":\"NewCastle\",\n    \"ScanDestLocation\":\"\",\n    \"ScanTag\":\"Note here\"\n}"
+				},
+				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/bundyb"
+			},
+			"response": []
+		},
+		{
 			"name": "A1Dist tracking-status",
 			"id": "f8faf256-0ad2-4c7e-b694-ae314cc8ea0c",
 			"protocolProfileBehavior": {
