@@ -349,6 +349,39 @@
 			"response": []
 		},
 		{
+			"name": "Freightlink couriers tracking-status",
+			"id": "7004380d-e399-452b-80db-9eca9a2b5889",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"username": "freightc",
+						"password": "{{vault:bundybpwd}}"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aHVudGVyOkluREludGdja0hLbWVDb2JyclVMSWdISHJFaGdqSmxy"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConsignmentNumber\":\"INBB00002\",\n    \"StatusDateTime\":\"2025-02-27T19:53+10:00\",\n    \"ExportDateTime\":\"2025-02-27 19:27\",\n    \"Status\":\"PickupReceived\",\n    \"DriverNotes\":\"Some Notes Here\",\n    \"StatusUserName\":\"Barry\",\n    \"PickupRelated\":\"N\"\n}"
+				},
+				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/freightc"
+			},
+			"response": []
+		},
+		{
 			"name": "A1Dist tracking-status",
 			"id": "f8faf256-0ad2-4c7e-b694-ae314cc8ea0c",
 			"protocolProfileBehavior": {
