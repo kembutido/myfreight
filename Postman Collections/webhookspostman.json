@@ -382,6 +382,72 @@
 			"response": []
 		},
 		{
+			"name": "Freightlink couriers tracking-scan",
+			"id": "37a71a95-193a-48de-909d-1f81c3c1173a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{vault:freightcpwd}}",
+						"username": "freightc"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aHVudGVyOkluREludGdja0hLbWVDb2JyclVMSWdISHJFaGdqSmxy"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConsignmentNumber\":\"BKWFC00007\",\n    \"SenderReference\":\"fdse\",\n    \"ScanDateTime\":\"2025-02-28 22:22\",\n    \"BarcodeValue\":\"BKWFC00007001\",\n    \"ScanType\":\"On Delivery\",\n    \"ScanLocation\":\"NewCastle\",\n    \"ScanDestLocation\":\"\",\n    \"ScanTag\":\"Note here\"\n}"
+				},
+				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/freightc"
+			},
+			"response": []
+		},
+		{
+			"name": "Freightlink couriers tracking-POD",
+			"id": "833b96ee-96a3-4a35-b820-847abe55d49b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "{{vault:freightcpwd}}",
+						"username": "freightc"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic aHVudGVyOkluREludGdja0hLbWVDb2JyclVMSWdISHJFaGdqSmxy"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConsignmentNumber\":\"BKWFC00007\",\n    \"SenderReference\":\"fdse\",\n    \"ScanDateTime\":\"2025-02-28 22:22\",\n    \"BarcodeValue\":\"BKWFC00007001\",\n    \"ScanType\":\"On Delivery\",\n    \"ScanLocation\":\"NewCastle\",\n    \"ScanDestLocation\":\"\",\n    \"ScanTag\":\"Note here\"\n}"
+				},
+				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/freightc"
+			},
+			"response": []
+		},
+		{
 			"name": "A1Dist tracking-status",
 			"id": "f8faf256-0ad2-4c7e-b694-ae314cc8ea0c",
 			"protocolProfileBehavior": {
