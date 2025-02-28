@@ -375,7 +375,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"ConsignmentNumber\":\"INBB00002\",\n    \"StatusDateTime\":\"2025-02-27T19:53+10:00\",\n    \"ExportDateTime\":\"2025-02-27 19:27\",\n    \"Status\":\"PickupReceived\",\n    \"DriverNotes\":\"Some Notes Here\",\n    \"StatusUserName\":\"Barry\",\n    \"PickupRelated\":\"N\"\n}"
+					"raw": "{\n    \"ConsignmentNumber\":\"BKWFC00007\",\n    \"StatusDateTime\":\"2025-02-28T21:21+10:00\",\n    \"ExportDateTime\":\"2025-02-28 21:21\",\n    \"Status\":\"PickupReceived\",\n    \"DriverNotes\":\"Some Notes Here\",\n    \"StatusUserName\":\"Barry\",\n    \"PickupRelated\":\"N\"\n}"
 				},
 				"url": "https://tracking.qa.teamwilberforce.com/webhooks/create_events/freightc"
 			},
